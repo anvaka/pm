@@ -1,9 +1,7 @@
 /**
  * This is the entry point to the app
  */
-
-// Make sure we have valid ES6 polyfills
-import "babel-core/polyfill";
+import "./styles/main.less";
 
 import React from "react";
 import Router from "react-router";

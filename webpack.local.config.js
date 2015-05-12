@@ -1,19 +1,21 @@
 // development config
 var webpack = require('webpack');
 
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 // Where to listen for the dev server
-var devPort = process.env.DEVPORT || 9090;
+var port = process.env.PORT || 8080;
 
 // For more information, see: http://webpack.github.io/docs/configuration.html
 module.exports = {
-  devPort: devPort,
+  port: port,
 
   // Efficiently evaluate modules with source maps
-  devtool: "eval",
+  //devtool: "eval",
 
   // Set entry point to ./src/main and include necessary files for hot load
-  entry:  [
-    "webpack-dev-server/client?http://localhost:" + devPort,
+  entry: [
+    "webpack-dev-server/client?http://localhost:" + port,
     "webpack/hot/only-dev-server",
     "./src/main"
   ],
@@ -23,21 +25,31 @@ module.exports = {
   output: {
     path: __dirname + "/build/",
     filename: "app.js",
-    publicPath: "http://localhost:" + devPort + "/build/"
+    publicPath: "/"
+  },
+
+  // Transform source code using Babel and React Hot Loader
+  module: {
+    loaders: [{
+      test: /\.jsx?$/,
+      exclude: /node_modules/,
+      loaders: ["react-hot", "babel-loader"]
+    }, {
+      test: /\.less$/,
+      loader: ExtractTextPlugin.extract('css!less')
+    }, {
+      test: /\.(woff|woff2|eot|ttf|svg)$/,
+      loader: 'url-loader?limit=1&name=[name].[ext]'
+    }]
   },
 
   // Necessary plugins for hot load
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    // extract inline css into separate 'styles.css'
+    new ExtractTextPlugin('styles.css', {allChunks: true})
   ],
-
-  // Transform source code using Babel and React Hot Loader
-  module: {
-    loaders: [
-      { test: /\.jsx?$/, exclude: /node_modules/, loaders: ["react-hot", "babel-loader"]}
-    ]
-  },
 
   // Automatically transform files with these extensions
   resolve: {

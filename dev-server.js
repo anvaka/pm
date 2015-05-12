@@ -1,47 +1,27 @@
-var port = process.env.PORT || 8080;
-
-var express = require('express');
-var app = express();
 var devConfig = require('./webpack.local.config');
 
 ensureBuildExists();
 
-// Serve application file depending on environment
-app.get('/app.js', function(req, res) {
-  if (process.env.PRODUCTION) {
-    res.sendFile(__dirname + '/build/app.js');
-  } else {
-    res.redirect('//localhost:' + devConfig.devPort + '/build/app.js');
-  }
-});
-
-// Serve index page
-app.get('*', function(req, res) {
-  res.sendFile(__dirname + '/build/index.html');
-});
-
 // Start webpack:
-if (!process.env.PRODUCTION) {
-  var webpack = require('webpack');
-  var WebpackDevServer = require('webpack-dev-server');
+var webpack = require('webpack');
+var WebpackDevServer = require('webpack-dev-server');
+var compiler = webpack(devConfig);
 
-  new WebpackDevServer(webpack(devConfig), {
-    publicPath: devConfig.output.publicPath,
-    hot: true,
-    noInfo: true,
-    historyApiFallback: true
-  }).listen(devConfig.devPort, 'localhost', function (err) {
-    if (err) {
-      console.log(err);
-    }
-  });
-}
-
-// GO!
-var server = app.listen(port, function () {
-  var port = server.address().port;
-
-  console.log('Dev Server listening at http://127.0.0.1:' + port);
+new WebpackDevServer(compiler, {
+  publicPath: devConfig.output.publicPath,
+  contentBase: "./build",
+  hot: true,
+  quiet: false,
+  filename: 'app.js',
+  stats: { colors: true },
+  noInfo: false,
+  historyApiFallback: true
+}).listen(devConfig.port, 'localhost', function (err) {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log('Dev Server listening at http://127.0.0.1:' + devConfig.port);
+  }
 });
 
 function ensureBuildExists() {
