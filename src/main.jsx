@@ -5,21 +5,25 @@ import "./styles/main.less";
 
 import React from "react";
 import Router from "react-router";
+import WelcomePage from "./welcome";
+import GalaxyPage from "./galaxy/index";
 
-var {Route, RouteHandler} = Router;
+var {Route, RouteHandler, DefaultRoute} = Router;
 
 var App = React.createClass({
   render () {
     return (
-      <div>
-        <h1>Hello world!</h1>
-        <RouteHandler/>
-      </div>
+      <RouteHandler/>
     )
   }
 });
 
-var routes = <Route path='/' handler={App}></Route>;
+var routes = (
+    <Route path='/' handler={App}>
+      <Route name='galaxy' path='/galaxy/:name' handler={GalaxyPage}/>
+      <DefaultRoute name='welcome' handler={WelcomePage}/>
+    </Route>
+    );
 
 // Start the router
 Router.run(routes, Router.HashLocation, (Root) => {
