@@ -31,6 +31,7 @@
   "homepage": "https://github.com/anvaka/pm",
   "devDependencies": {
     "express": "^4.12.3",
+    "ngraph.generators": "0.0.15",
     "react-hot-loader": "^1.2.7",
     "webpack-dev-server": "^1.8.2"
   },
@@ -45,6 +46,7 @@
     "less": "^2.5.0",
     "less-loader": "^2.2.0",
     "ngraph.events": "0.0.3",
+    "ngraph.pixel": "^0.1.12",
     "node-libs-browser": "^0.5.0",
     "react": "^0.13.3",
     "react-router": "^0.13.3",

@@ -1,6 +1,7 @@
 import React from 'react';
 import createGraphModel from  './service/graphModel.js';
 import LoadingIndicator from './loadingIndicator.jsx';
+import Graph from './graph.jsx';
 
 export default class GalaxyPage extends React.Component {
   constructor(props) {
@@ -12,8 +13,8 @@ export default class GalaxyPage extends React.Component {
     var name = this.props.params.name;
     return (
       <div>
-        <LoadingIndicator message={this.state.loadLog}/>
-        {name}
+        <LoadingIndicator message={this.state.loadLog} />
+        <Graph points={this.state.points} />
       </div>
     );
   }
