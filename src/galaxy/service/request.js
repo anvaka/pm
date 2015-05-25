@@ -9,9 +9,6 @@ function request(url, options) {
 
   function download(resolve, reject) {
     var req = new XMLHttpRequest();
-    if (options.responseType) {
-      req.responseType = options.responseType;
-    }
 
     if (typeof options.progress === 'function') {
       req.addEventListener("progress", updateProgress, false);
@@ -22,6 +19,9 @@ function request(url, options) {
     req.addEventListener("abort", transferCanceled, false);
 
     req.open('GET', url);
+    if (options.responseType) {
+      req.responseType = options.responseType;
+    }
     req.send(null);
 
     function updateProgress(e) {
@@ -50,5 +50,5 @@ function request(url, options) {
     function transferCanceled() {
       reject(`Cancelled download of ${url}`);
     }
-  };
+  }
 }
