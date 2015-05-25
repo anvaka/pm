@@ -1,6 +1,6 @@
+import appEvents from './appEvents.js';
 import config from '../../config.js';
 import request from './request.js';
-import appEvents from './appEvents.js';
 import eventify from 'ngraph.events';
 
 export default graphModel;
@@ -8,11 +8,22 @@ export default graphModel;
 function graphModel() {
   var positions, links, labels;
   var api = {
-    load: load
+    load: load,
+    getPositions: getPositions,
+    getLinks: getLinks
   };
+
   eventify(api);
 
   return api;
+
+  function getPositions() {
+    return positions;
+  }
+
+  function getLinks() {
+    return links;
+  }
 
   function load(name) {
     // todo: handle errors
@@ -45,7 +56,7 @@ function graphModel() {
 
     function setPositions(buffer) {
       positions = new Int32Array(buffer);
-      appEvents.fire('positionsLoaded', api);
+      appEvents.fire('positions', positions);
     }
 
     function loadLinks() {
@@ -57,7 +68,7 @@ function graphModel() {
 
     function setLinks(buffer) {
       links = new Int32Array(buffer);
-      appEvents.fire('linksLoaded', api);
+      appEvents.fire('links', api);
     }
 
     function loadLabels() {
@@ -79,6 +90,6 @@ function graphModel() {
         file: file,
         completed: Math.round(e.percent * 100) + '%'
       });
-    }
+    };
   }
 }
