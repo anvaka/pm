@@ -12,6 +12,7 @@ export default class Scene extends React.Component {
   }
 
   componentWillUnmount() {
+    var container = React.findDOMNode(this.refs.graphContainer);
     scene.detach(container);
   }
 }

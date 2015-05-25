@@ -10,7 +10,6 @@ export default class GalaxyPage extends React.Component {
   }
 
   render() {
-    var name = this.props.params.name;
     return (
       <div>
         <LoadingIndicator message={this.state.loadLog} />
