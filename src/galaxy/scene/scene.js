@@ -27,6 +27,8 @@ function sceneController(container) {
 
   function destroy() {
     nativeScene.destroy();
+    appEvents.off('positions', setPositions);
+    nativeScene = null;
   }
 
   return api;
