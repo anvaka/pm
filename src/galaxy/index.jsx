@@ -6,39 +6,35 @@ import Scene from './scene.jsx';
 export default class GalaxyPage extends React.Component {
   constructor(props) {
     super(props);
-    pageLogic(this);
+    var model = createGraphModel();
+    model.on('progress', this.updateState, this);
+    model.load(this.getName());
+    this.state = {
+      loading: true,
+      graphModel: model
+    };
+    this._model = model;
   }
 
   render() {
     return (
       <div>
         <LoadingIndicator message={this.state.loadLog} />
-        <Scene />
+        <Scene graphModel={this.state.graphModel}/>
       </div>
     );
   }
-}
 
-function pageLogic(page) {
-  var model = createGraphModel();
-  model.on('progress', updateState);
-  augmentPage();
-
-  model.load(getName());
-
-  return {};
-
-  function getName() {
-    return page.props.params.name;
+  componentWillReceiveProps() {
+    this._model.load(this.getName());
   }
 
-  function augmentPage() {
-    page.state = { loading: true };
-    page.componentWillReceiveProps = () => { model.load(getName()); };
+  getName() {
+    return this.props.params.name;
   }
 
-  function updateState(progress) {
-    page.setState({
+  updateState(progress) {
+    this.setState({
       loadLog: `${progress.name}: ${progress.file} - ${progress.completed}`
     });
   }

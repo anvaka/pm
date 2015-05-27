@@ -10,12 +10,22 @@ function graphModel() {
   var api = {
     load: load,
     getPositions: getPositions,
-    getLinks: getLinks
+    getLinks: getLinks,
+    getName: getName
   };
 
   eventify(api);
 
   return api;
+
+
+  function getName(idx) {
+    if (!labels) return '';
+    if (idx < 0 || idx > labels.length) {
+      throw new Error(idx + " is outside of labels.json range");
+    }
+    return labels[idx];
+  }
 
   function getPositions() {
     return positions;

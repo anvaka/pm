@@ -1,4 +1,5 @@
 import unrender from 'unrender';
+import eventify from 'ngraph.events';
 import appEvents from '../service/appEvents.js';
 
 export default sceneController;
@@ -14,11 +15,20 @@ function sceneController(container) {
     destroy: destroy
   };
 
+  eventify(api);
   return api;
 
   function setPositions(positions) {
     if (!nativeScene) createNativeScene();
     nativeScene.particles(positions);
+    var hitTest = nativeScene.hitTest();
+    hitTest.on('over', fire('over'));
+  }
+
+  function fire(name) {
+    return function(e) {
+      api.fire(name,e);
+    };
   }
 
   function createNativeScene() {
@@ -41,4 +51,5 @@ function detachScene(dom) {
 
 function attachScene(dom) {
   dom.__nativeScene = sceneController(dom);
+  return dom.__nativeScene;
 }
