@@ -8,8 +8,9 @@ sceneController.attach = attachScene;
 sceneController.detach = detachScene;
 
 function sceneController(container) {
-  var nativeScene;
+  var renderer, links, positions;
   appEvents.on('positions', setPositions);
+  appEvents.on('links', setLinks);
 
   var api = {
     destroy: destroy
@@ -18,38 +19,39 @@ function sceneController(container) {
   eventify(api);
   return api;
 
-  function setPositions(positions) {
-    if (!nativeScene) createNativeScene();
-    nativeScene.particles(positions);
-    var hitTest = nativeScene.hitTest();
-    hitTest.on('over', fire('over'));
+  function setPositions(_positions) {
+    positions = _positions;
+    if (!renderer) renderer = unrender(container);
+    renderer.particles(positions);
+
+    var hitTest = renderer.hitTest();
+    hitTest.on('over', handleOver);
   }
 
-  function fire(name) {
-    return function(e) {
-      api.fire(name,e);
-    };
+  function handleOver(indexes) {
+    renderer.highlight(indexes, 0xff0000);
+    api.fire('over', indexes);
   }
 
-  function createNativeScene() {
-    nativeScene = unrender(container);
+  function setLinks(_links) {
+    links = _links;
   }
 
   function destroy() {
-    nativeScene.destroy();
+    renderer.destroy();
     appEvents.off('positions', setPositions);
-    nativeScene = null;
+    renderer = null;
   }
 
   return api;
 }
 
 function detachScene(dom) {
-  if (!dom.__nativeScene) return;
-  dom.__nativeScene.destroy();
+  if (!dom.__sceneController) return;
+  dom.__sceneController.destroy();
 }
 
 function attachScene(dom) {
-  dom.__nativeScene = sceneController(dom);
-  return dom.__nativeScene;
+  dom.__sceneController = sceneController(dom);
+  return dom.__sceneController;
 }

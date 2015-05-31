@@ -6,7 +6,8 @@ import eventify from 'ngraph.events';
 export default graphModel;
 
 function graphModel() {
-  var positions, links, labels;
+  var positions, labels;
+  var graphLinks = [];
   var api = {
     load: load,
     getPositions: getPositions,
@@ -32,7 +33,7 @@ function graphModel() {
   }
 
   function getLinks() {
-    return links;
+    return graphLinks;
   }
 
   function load(name) {
@@ -77,8 +78,20 @@ function graphModel() {
     }
 
     function setLinks(buffer) {
-      links = new Int32Array(buffer);
-      appEvents.fire('links', api);
+      var links = new Int32Array(buffer);
+      var lastArray = [];
+      graphLinks[0] = lastArray;
+      for (var i = 0; i < links.length; ++i) {
+        if (links[i] < 0) {
+          var srcIndex = -(links[i]) - 1;
+          lastArray = graphLinks[srcIndex] = [];
+        }
+        else {
+          lastArray.push(links[i] - 1);
+        }
+      }
+
+      appEvents.fire('links', graphLinks);
     }
 
     function loadLabels() {
