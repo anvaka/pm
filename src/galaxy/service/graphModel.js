@@ -12,13 +12,18 @@ function graphModel() {
     load: load,
     getPositions: getPositions,
     getLinks: getLinks,
-    getName: getName
+    getName: getName,
+    getNodeInfo: getNodeInfo
   };
 
   eventify(api);
 
   return api;
 
+  function getNodeInfo(idx) {
+    if (!labels) return;
+    return labels[idx]
+  }
 
   function getName(idx) {
     if (!labels) return '';
@@ -45,7 +50,12 @@ function graphModel() {
     return loadManifest()
       .then(loadPositions)
       .then(loadLinks)
-      .then(loadLabels);
+      .then(loadLabels)
+      .then(declareModelIsReady);
+
+    function declareModelIsReady() {
+      appEvents.fire('graphModel', api);
+    }
 
     function loadManifest() {
       return request(galaxyEndpoint + '/manifest.json', {
@@ -81,6 +91,7 @@ function graphModel() {
       var links = new Int32Array(buffer);
       var lastArray = [];
       graphLinks[0] = lastArray;
+
       for (var i = 0; i < links.length; ++i) {
         if (links[i] < 0) {
           var srcIndex = -(links[i]) - 1;
@@ -103,6 +114,7 @@ function graphModel() {
 
     function setLabels(data) {
       labels = data;
+      appEvents.fire('labels', labels);
     }
   }
 

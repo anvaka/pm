@@ -1,13 +1,17 @@
 import React from 'react';
 import scene from './scene/scene.js';
-import Tooltip from './tooltip.jsx';
+import HoverPreview from './hoverPreview.jsx';
 
 export default class Scene extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { };
+  }
+
   render() {
-    var tooltipModel = this.state && this.state.tooltip;
     return (
       <div ref='graphContainer' className='graph-full-size'>
-        <Tooltip model={tooltipModel} />
+        <HoverPreview model={this.state.hoverModel} />
       </div>
     );
   }
@@ -16,16 +20,7 @@ export default class Scene extends React.Component {
     var container = React.findDOMNode(this.refs.graphContainer);
     var controller = scene.attach(container);
     controller.on('over', function (e) {
-      var visible = e.nodeIndex !== undefined;
-      var name = visible ? this.props.graphModel.getName(e.nodeIndex) : '';
-
-      var tooltip = {
-        visible: visible,
-        name: name,
-        x: e.x,
-        y: e.y
-      };
-      this.setState({ tooltip: tooltip });
+      this.setState({ hoverModel: e });
     }, this);
   }
 

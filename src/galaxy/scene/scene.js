@@ -8,9 +8,9 @@ sceneController.attach = attachScene;
 sceneController.detach = detachScene;
 
 function sceneController(container) {
-  var renderer, links, positions;
+  var renderer, positions, graphModel;
   appEvents.on('positions', setPositions);
-  appEvents.on('links', setLinks);
+  appEvents.on('graphModel', setGraphModel);
 
   var api = {
     destroy: destroy
@@ -18,6 +18,10 @@ function sceneController(container) {
 
   eventify(api);
   return api;
+
+  function setGraphModel(_graphModel) {
+    graphModel = _graphModel;
+  }
 
   function setPositions(_positions) {
     positions = _positions;
@@ -30,11 +34,20 @@ function sceneController(container) {
 
   function handleOver(indexes) {
     renderer.highlight(indexes, 0xff0000);
-    api.fire('over', indexes);
+    api.fire('over', getHighlightModel(indexes));
   }
 
-  function setLinks(_links) {
-    links = _links;
+  function getHighlightModel(indexes) {
+    return {
+      total: indexes.length,
+      snippet: indexes.slice(0, 20).map(toInfo),
+      indexes: indexes
+    };
+  }
+
+  function toInfo(x) {
+    if (!graphModel) return x;
+    return graphModel.getNodeInfo(x/3);
   }
 
   function destroy() {

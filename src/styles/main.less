@@ -1,5 +1,7 @@
 @import "~bootstrap/less/bootstrap";
 
+@background: 0x000000;
+
 body {
   background-color: #000;
   overflow: hidden;
@@ -19,12 +21,24 @@ h1, h2 {
 
 .loading {
   color: #ffffff;
-}
-
-.node-hover-tooltip {
   position: absolute;
   background: black;
+  z-index: 1;
+  padding: 10px;
+}
+
+.node-hover-list {
+  position: absolute;
+  background: black;
+  right: -20px;
+  bottom: 10px;
+  height: 150px;
   color: white;
   padding: 4px;
   pointer-events: none;
+  width: 220px;
+  overflow-y: scroll;
+  li {
+    list-style-type: none;
+  }
 }
