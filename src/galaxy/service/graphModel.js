@@ -22,7 +22,14 @@ function graphModel() {
 
   function getNodeInfo(idx) {
     if (!labels) return;
-    return labels[idx]
+    var outLinksCount = 0;
+    if (graphLinks[idx]) {
+      outLinksCount = graphLinks[idx].length;
+    }
+    return {
+      name: labels[idx],
+      out: outLinksCount
+    };
   }
 
   function getName(idx) {

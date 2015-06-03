@@ -17,5 +17,5 @@ export default class HoverPreview extends React.Component {
 }
 
 function toRecord(x) {
-  return <li>{x}</li>;
+  return <li>{x.name} -&gt; {x.out} </li>;
 }
