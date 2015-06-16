@@ -8,6 +8,7 @@ export default graphModel;
 function graphModel() {
   var positions, labels;
   var graphLinks = [];
+  var inDegree = [];
   var api = {
     load: load,
     getPositions: getPositions,
@@ -26,9 +27,12 @@ function graphModel() {
     if (graphLinks[idx]) {
       outLinksCount = graphLinks[idx].length;
     }
+    var inDegreeValue = inDegree[idx] || 0;
+
     return {
       name: labels[idx],
-      out: outLinksCount
+      out: outLinksCount,
+      in: inDegreeValue
     };
   }
 
@@ -105,7 +109,13 @@ function graphModel() {
           lastArray = graphLinks[srcIndex] = [];
         }
         else {
-          lastArray.push(links[i] - 1);
+          var toNode = links[i] - 1;
+          lastArray.push(toNode);
+          if (inDegree[toNode] === undefined) {
+            inDegree[toNode] = 1;
+          } else {
+            inDegree[toNode] += 1;
+          }
         }
       }
 
