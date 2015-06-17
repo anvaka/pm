@@ -45,6 +45,7 @@
     "file-loader": "^0.8.1",
     "less": "^2.5.0",
     "less-loader": "^2.2.0",
+    "maco": "^1.0.1",
     "ngraph.events": "0.0.3",
     "node-libs-browser": "^0.5.0",
     "react": "^0.13.3",
