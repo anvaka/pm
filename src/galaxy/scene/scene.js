@@ -32,10 +32,10 @@ function sceneController(container) {
     hitTest.on('over', handleOver);
   }
 
-  function handleOver(indexes, ray) {
+  function handleOver(indexes, ray, mouse) {
     var nearestIndex = nearest(30, ray);
-    renderer.highlight(nearestIndex, 0xff0000);
-    api.fire('over', getHighlightModel(nearestIndex));
+    renderer.highlight([nearestIndex], 0xff0000);
+    api.fire('over', getHighlightModel(nearestIndex, mouse));
 
     function nearest(maxRadius, ray) {
       if (indexes.length === 0) return indexes;
@@ -44,10 +44,10 @@ function sceneController(container) {
 
       var candidate = indexes[0];
       if (getDistance(candidate) < maxRadius) {
-        return [candidate];
+        return candidate;
       }
 
-      return [];
+      return;
 
       function byProximityToRay(x, y) {
         var distX = getDistance(x), distY = getDistance(y);
@@ -70,17 +70,13 @@ function sceneController(container) {
     }
   }
 
-  function getHighlightModel(indexes) {
+  function getHighlightModel(index,mouse) {
+    if (!index) return;
     return {
-      total: indexes.length,
-      snippet: indexes.slice(0, 20).map(toInfo),
-      indexes: indexes
+      node: graphModel.getNodeInfo(index/3),
+      x: mouse.x,
+      y: mouse.y
     };
-  }
-
-  function toInfo(x) {
-    if (!graphModel) return x;
-    return graphModel.getNodeInfo(x/3);
   }
 
   function destroy() {

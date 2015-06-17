@@ -1,6 +1,6 @@
 import React from 'react';
 import scene from './scene/scene.js';
-import HoverPreview from './hoverPreview.jsx';
+import Tooltip from './tooltip.jsx';
 
 export default class Scene extends React.Component {
   constructor(props) {
@@ -11,7 +11,7 @@ export default class Scene extends React.Component {
   render() {
     return (
       <div ref='graphContainer' className='graph-full-size'>
-        <HoverPreview model={this.state.hoverModel} />
+        <Tooltip model={this.state.hoverModel} />
       </div>
     );
   }
