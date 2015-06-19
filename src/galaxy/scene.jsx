@@ -1,31 +1,33 @@
 import React from 'react';
-import scene from './scene/scene.js';
 import Tooltip from './tooltip.jsx';
+import createSceneController from './scene/scene.js';
 
-export default class Scene extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { };
-  }
+module.exports = require('maco')(scene);
 
-  render() {
+function scene(x) {
+  var controller;
+  var hoverModel;
+
+  x.render = function() {
     return (
       <div ref='graphContainer' className='graph-full-size'>
-        <Tooltip model={this.state.hoverModel} />
+        <Tooltip model={hoverModel} />
       </div>
     );
-  }
+  };
 
-  componentDidMount() {
-    var container = React.findDOMNode(this.refs.graphContainer);
-    var controller = scene.attach(container);
-    controller.on('over', function (e) {
-      this.setState({ hoverModel: e });
-    }, this);
-  }
+  x.componentDidMount = function() {
+    var container = React.findDOMNode(x.refs.graphContainer);
+    controller = createSceneController(container);
+    controller.on('over', showTooltip);
+  };
 
-  componentWillUnmount() {
-    var container = React.findDOMNode(this.refs.graphContainer);
-    scene.detach(container);
+  x.componentWillUnmount = function() {
+    if (controller) controller.destroy();
+  };
+
+  function showTooltip(e) {
+    hoverModel = e;
+    x.forceUpdate();
   }
 }

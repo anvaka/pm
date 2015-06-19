@@ -8,6 +8,7 @@ export default class GalaxyPage extends React.Component {
     super(props);
     var model = createGraphModel();
     model.on('progress', this.updateState, this);
+    model.on('graphModel', this.hideProgress, this);
     model.load(this.getName());
     this.state = {
       loading: true,
@@ -19,7 +20,10 @@ export default class GalaxyPage extends React.Component {
   render() {
     return (
       <div>
-        <LoadingIndicator message={this.state.loadLog} />
+        if (this.state.loading) {
+          <LoadingIndicator message={this.state.loadLog} />
+        }
+
         <Scene graphModel={this.state.graphModel}/>
       </div>
     );
@@ -37,5 +41,9 @@ export default class GalaxyPage extends React.Component {
     this.setState({
       loadLog: `${progress.name}: ${progress.file} - ${progress.completed}`
     });
+  }
+
+  hideProgress() {
+    this.setState({ loading: false });
   }
 }

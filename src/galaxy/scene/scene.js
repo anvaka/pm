@@ -4,9 +4,6 @@ import appEvents from '../service/appEvents.js';
 
 export default sceneController;
 
-sceneController.attach = attachScene;
-sceneController.detach = detachScene;
-
 function sceneController(container) {
   var renderer, positions, graphModel;
   appEvents.on('positions', setPositions);
@@ -86,14 +83,4 @@ function sceneController(container) {
   }
 
   return api;
-}
-
-function detachScene(dom) {
-  if (!dom.__sceneController) return;
-  dom.__sceneController.destroy();
-}
-
-function attachScene(dom) {
-  dom.__sceneController = sceneController(dom);
-  return dom.__sceneController;
 }
