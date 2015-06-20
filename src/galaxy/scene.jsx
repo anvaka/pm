@@ -1,11 +1,11 @@
 import React from 'react';
 import Tooltip from './tooltip.jsx';
-import createSceneController from './scene/scene.js';
+import createNativeRenderer from './native/renderer.js';
 
 module.exports = require('maco')(scene);
 
 function scene(x) {
-  var controller;
+  var nativeRenderer;
   var hoverModel;
 
   x.render = function() {
@@ -18,16 +18,10 @@ function scene(x) {
 
   x.componentDidMount = function() {
     var container = React.findDOMNode(x.refs.graphContainer);
-    controller = createSceneController(container);
-    controller.on('over', showTooltip);
+    nativeRenderer = createNativeRenderer(container);
   };
 
   x.componentWillUnmount = function() {
-    if (controller) controller.destroy();
+    if (nativeRenderer) nativeRenderer.destroy();
   };
-
-  function showTooltip(e) {
-    hoverModel = e;
-    x.forceUpdate();
-  }
 }

@@ -6,7 +6,7 @@ import "./styles/main.less";
 import React from "react";
 import Router from "react-router";
 import WelcomePage from "./welcome";
-import GalaxyPage from "./galaxy/index";
+import GalaxyPage from "./galaxy/galaxyPage.jsx";
 
 var {Route, RouteHandler, DefaultRoute} = Router;
 

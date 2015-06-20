@@ -1,56 +1,42 @@
+/**
+ * Graph loader downloads graph from repository. Each graph consist of multiple
+ * files:
+ *
+ * manifest.json - declares where the last version of the graph is stored.
+ * positions.bin - a binary file of int32 trpilets. Each triplet defines
+ *   node position in 3d space. Index of triplet is considered as node id.
+ * links.bin - a sequence of edges. Read https://github.com/anvaka/ngraph.tobinary#linksbin-format
+ *   for more information about its structure.
+ * labels.json - array of node names. Position of a label in the array corresponds
+ *   to the triplet index.
+ *
+ * During download this downloader will report on global event bus its progress:
+ *  events.labelsDownloaded - labels file is downloaded;
+ *  events.linksDownloaded - links file is downloaded;
+ *  events.positionsDownloaded - positions file is downloaded;
+ */
+
 import appEvents from './appEvents.js';
 import config from '../../config.js';
 import request from './request.js';
-import eventify from 'ngraph.events';
+import createGraph from './graph.js';
+import events from './events.js';
 
-export default graphModel;
+export default graphLoader;
 
-function graphModel() {
+/**
+ * @param {progressCallback} progress notifies when download progress event is
+ * received
+ * @param {completeCallback} complete notifies when all graph files are downloaed
+ *
+ * @return {Function(name: string)} fuction which initiates graph loading.
+ */
+function graphLoader(progress, complete) {
   var positions, labels;
   var graphLinks = [];
   var inDegree = [];
-  var api = {
-    load: load,
-    getPositions: getPositions,
-    getLinks: getLinks,
-    getName: getName,
-    getNodeInfo: getNodeInfo
-  };
 
-  eventify(api);
-
-  return api;
-
-  function getNodeInfo(idx) {
-    if (!labels) return;
-    var outLinksCount = 0;
-    if (graphLinks[idx]) {
-      outLinksCount = graphLinks[idx].length;
-    }
-    var inDegreeValue = inDegree[idx] || 0;
-
-    return {
-      name: labels[idx],
-      out: outLinksCount,
-      in: inDegreeValue
-    };
-  }
-
-  function getName(idx) {
-    if (!labels) return '';
-    if (idx < 0 || idx > labels.length) {
-      throw new Error(idx + " is outside of labels.json range");
-    }
-    return labels[idx];
-  }
-
-  function getPositions() {
-    return positions;
-  }
-
-  function getLinks() {
-    return graphLinks;
-  }
+  return load;
 
   function load(name) {
     // todo: handle errors
@@ -62,10 +48,17 @@ function graphModel() {
       .then(loadPositions)
       .then(loadLinks)
       .then(loadLabels)
-      .then(declareModelIsReady);
+      .then(declareGraphLoaded);
 
-    function declareModelIsReady() {
-      appEvents.fire('graphModel', api);
+    function declareGraphLoaded() {
+      var graph = createGraph({
+        positions:positions,
+        labels: labels,
+        links: graphLinks,
+        inDegree: inDegree
+      });
+
+      complete(graph);
     }
 
     function loadManifest() {
@@ -88,7 +81,7 @@ function graphModel() {
 
     function setPositions(buffer) {
       positions = new Int32Array(buffer);
-      appEvents.fire('positions', positions);
+      appEvents.fire(events.positionsDownloaded, positions);
     }
 
     function loadLinks() {
@@ -119,7 +112,7 @@ function graphModel() {
         }
       }
 
-      appEvents.fire('links', graphLinks);
+      appEvents.fire(events.linksDownloaded, graphLinks);
     }
 
     function loadLabels() {
@@ -131,13 +124,13 @@ function graphModel() {
 
     function setLabels(data) {
       labels = data;
-      appEvents.fire('labels', labels);
+      appEvents.fire(events.labelsDownloaded, labels);
     }
   }
 
   function reportProgress(name, file) {
     return function (e) {
-      api.fire('progress', {
+      progress({
         name: name,
         file: file,
         completed: Math.round(e.percent * 100) + '%'
