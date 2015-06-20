@@ -1,3 +1,6 @@
+/**
+ * A very basic ajax client with promises and progress reporting.
+ */
 import Promise from 'bluebird';
 
 export default request;

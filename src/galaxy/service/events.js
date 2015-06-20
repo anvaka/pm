@@ -6,8 +6,9 @@
  * events.
  */
 import keymirror from 'keymirror';
+import appEvents from './appEvents.js';
 
-export default keymirror({
+export default activateEvents({
   /**
    * Fired when labels are downloaded
    */
@@ -21,5 +22,47 @@ export default keymirror({
   /**
    * Fired when links are downloaded
    */
-   linksDownloaded: null
+  linksDownloaded: null,
+
+  /**
+   * Fired when new galaxy page is opened and graph download is required
+   */
+  downloadGraphRequested: null,
+
+  /**
+   * Fired when user hover mouse over a node
+   */
+  nodeOver: null
 });
+
+function activateEvents(events) {
+  Object.keys(events).forEach(setActiveCommand);
+  return events;
+
+  function setActiveCommand(eventName, idx) {
+    events[eventName] = {
+      id: eventName,
+      fire: fire(eventName),
+      on: on(eventName),
+      off: off(eventName)
+    };
+  }
+}
+
+function fire(name) {
+  return function () {
+    appEvents.fire.apply(this, [name].concat(Array.prototype.slice.call(arguments)));
+  }
+}
+
+function on(name) {
+  return function (callback) {
+    appEvents.on(name, callback);
+  }
+}
+
+function off(name) {
+  return function (callback) {
+    appEvents.off(name, callback);
+  }
+}

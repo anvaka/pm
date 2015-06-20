@@ -11,12 +11,7 @@
  */
 import unrender from 'unrender';
 import eventify from 'ngraph.events';
-
-// TODO: I should probably rename events (constant definitions of event names)
-// and appEvents (global app event bus)
 import events from '../service/events.js';
-import appEvents from '../service/appEvents.js';
-
 import scene from '../store/scene.js';
 import getNearestIndex from './getNearestIndex.js';
 
@@ -26,7 +21,7 @@ function sceneRenderer(container) {
   var renderer, positions, graphModel;
   var hitTest;
 
-  scene.on(events.positionsDownloaded, setPositions);
+  events.positionsDownloaded.on(setPositions);
 
   var api = {
     destroy: destroy
@@ -57,7 +52,7 @@ function sceneRenderer(container) {
 
     highlightNode(nearestIndex);
 
-    appEvents.fire('nodeOver', {
+    events.nodeOver.fire({
       index: nearestIndex,
       mouse: mouse
     });

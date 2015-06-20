@@ -1,7 +1,9 @@
-import createGraphLoader from  '../service/graphLoader.js';
-import appEvents from '../service/appEvents.js';
+/**
+ * Manages graph model life cycle. The low-level rendering of the particles
+ * is handled by ../native/renderer.js
+ */
+import loadGraph from  '../service/graphLoader.js';
 import events from '../service/events.js';
-import proxyEvents from '../service/proxyEvents.js';
 
 import eventify from 'ngraph.events';
 
@@ -16,16 +18,9 @@ function sceneStore() {
     getGraph: getGraph
   };
 
-  appEvents.on('loadGraph', loadGraph);
+  events.downloadGraphRequested.on(downloadGraph);
 
   eventify(api);
-
-  // Just refire this event on behalf of the store:
-  proxyEvents(appEvents, api, [
-   events.labelsDownloaded,
-   events.linksDownloaded,
-   events.positionsDownloaded
-  ]);
 
   return api;
 
@@ -33,9 +28,8 @@ function sceneStore() {
     return loadInProgress;
   }
 
-  function loadGraph(graphName) {
-    var loadGraph = createGraphLoader(reportProgress, loadComplete);
-    loadGraph(graphName);
+  function downloadGraph(graphName) {
+    loadGraph(graphName, reportProgress).then(loadComplete);
   }
 
   function getGraph() {
