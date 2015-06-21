@@ -66,7 +66,7 @@ function sceneRenderer(container) {
 
   function highlightNode(nodeIndex) {
     if (nodeIndex !== undefined) {
-      renderer.highlight([nodeIndex], 0xff0000);
+      renderer.highlight([nodeIndex], 0xff0000, 3);
     } else {
       // reset old highlihgt:
       renderer.highlight(nodeIndex, 0xff0000);
