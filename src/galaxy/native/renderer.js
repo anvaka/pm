@@ -1,8 +1,8 @@
 /**
  * This is a bridge between ultrafast particle renderer and react world.
  *
- * It listens to Scene events and waits for a graph to be loaded. Once graph
- * positions are loaded it calls native renderer to show the positions.
+ * It listens to graph loading events. Once graph positions are loaded it calls
+ * native renderer to show the positions.
  *
  * It also listens to native renderer for user interaction. When user hovers
  * over a node or clicks on it - it reports user actions back to the global
@@ -11,7 +11,7 @@
  */
 import unrender from 'unrender';
 import eventify from 'ngraph.events';
-import events from '../service/events.js';
+import appEvents from '../service/appEvents.js';
 import scene from '../store/scene.js';
 import getNearestIndex from './getNearestIndex.js';
 
@@ -21,7 +21,7 @@ function sceneRenderer(container) {
   var renderer, positions, graphModel;
   var hitTest;
 
-  events.positionsDownloaded.on(setPositions);
+  appEvents.positionsDownloaded.on(setPositions);
 
   var api = {
     destroy: destroy
@@ -51,10 +51,16 @@ function sceneRenderer(container) {
     var nearestIndex = getNearestIndex(positions, indexes, ray, 30);
 
     highlightNode(nearestIndex);
+    var modelIndex;
+    if (nearestIndex !== undefined) {
+      // since each node represented as triplet we need to divide by 3 to
+      // get actual index:
+      modelIndex = nearestIndex/3
+    }
 
-    events.nodeOver.fire({
-      index: nearestIndex,
-      mouse: mouse
+    appEvents.nodeHover.fire({
+      nodeIndex: modelIndex,
+      mouseInfo: mouse
     });
   }
 

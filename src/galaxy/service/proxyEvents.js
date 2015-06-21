@@ -1,6 +1,8 @@
 /**
  * Simple wrapper to proxy events from source on behalf
  * of the target.
+ *
+ * TODO: Consider removing this, I'm not using it at the moment
  */
 export default proxyEvents;
 

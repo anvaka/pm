@@ -11,15 +11,15 @@
  *   to the triplet index.
  *
  * During download this downloader will report on global event bus its progress:
- *  events.labelsDownloaded - labels file is downloaded;
- *  events.linksDownloaded - links file is downloaded;
- *  events.positionsDownloaded - positions file is downloaded;
+ *  appEvents.labelsDownloaded - labels file is downloaded;
+ *  appEvents.linksDownloaded - links file is downloaded;
+ *  appEvents.positionsDownloaded - positions file is downloaded;
  */
 
 import config from '../../config.js';
 import request from './request.js';
 import createGraph from './graph.js';
-import events from './events.js';
+import appEvents from './appEvents.js';
 
 export default loadGraph;
 
@@ -75,7 +75,7 @@ function loadGraph(name, progress) {
 
   function setPositions(buffer) {
     positions = new Int32Array(buffer);
-    events.positionsDownloaded.fire(positions);
+    appEvents.positionsDownloaded.fire(positions);
   }
 
   function loadLinks() {
@@ -105,7 +105,7 @@ function loadGraph(name, progress) {
       }
     }
 
-    events.linksDownloaded.fire(graphLinks);
+    appEvents.linksDownloaded.fire(graphLinks);
   }
 
   function loadLabels() {
@@ -117,7 +117,7 @@ function loadGraph(name, progress) {
 
   function setLabels(data) {
     labels = data;
-    events.labelsDownloaded.fire(labels);
+    appEvents.labelsDownloaded.fire(labels);
   }
 
   function reportProgress(name, file) {

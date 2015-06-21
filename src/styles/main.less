@@ -29,15 +29,27 @@ h1, h2 {
 
 .node-hover-tooltip {
   position: absolute;
-  background: black;
+  background: rgba(0, 0, 0, 0.8);
   color: white;
-  padding: 4px;
+  padding: 4px 10px;;
   pointer-events: none;
-  .in-degree {
-    color: green;
+  min-width: 200px;
+  border: 1px solid white;
+  .label {
+    font-size: small;
   }
+  .label-value {
+    font-size: x-large;
+    margin-right: 7px;
+    margin-left: 10px;
+  }
+
+  .in-degree {
+    color: #90EE90;
+  }
+
   .out-degree {
-    color: red;
+    color: #F08080;
   }
 }
 
@@ -58,4 +70,10 @@ h1, h2 {
   li {
     list-style-type: none;
   }
+}
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
 }

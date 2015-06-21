@@ -16,7 +16,7 @@ function graph(rawGraphLoaderData) {
     if (!labels) return;
 
     var outLinksCount = 0;
-    if (graphLinks[id]) {
+    if (links[id]) {
       outLinksCount = links[id].length;
     }
     var inLinksCount = inDegree[id] || 0;
@@ -41,7 +41,6 @@ function graph(rawGraphLoaderData) {
   }
 
   function getLinks() {
-    return graphLinks;
+    return links;
   }
-
 }

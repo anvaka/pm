@@ -1,7 +1,7 @@
 import React from 'react';
 import LoadingIndicator from './loadingIndicator.jsx';
 import Scene from './scene.jsx';
-import events from './service/events.js';
+import appEvents from './service/appEvents.js';
 
 module.exports = require('maco')(galaxyPage);
 
@@ -23,7 +23,7 @@ function galaxyPage(x) {
     var routeChanged = x.props.params.name !== currentPath;
     if (routeChanged) {
       currentPath = x.props.params.name;
-      events.downloadGraphRequested.fire(currentPath);
+      appEvents.downloadGraphRequested.fire(currentPath);
     }
   }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import Tooltip from './tooltip.jsx';
+import HoverInfo from './hoverInfo.jsx';
 import createNativeRenderer from './native/renderer.js';
 
 module.exports = require('maco')(scene);
@@ -11,7 +11,7 @@ function scene(x) {
   x.render = function() {
     return (
       <div ref='graphContainer' className='graph-full-size'>
-        <Tooltip model={hoverModel} />
+        <HoverInfo />
       </div>
     );
   };
