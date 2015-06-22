@@ -46,9 +46,12 @@ function GoGraph(graphName) {
   PackagesGraph.call(this, graphName);
 
   this.getNodeName = function (currentName) {
-    // most of the go packages are on github, which results in huge name.
-    // Lets shorted it:
-    return currentName.replace('github.com/', '');
+    if (currentName) {
+      // most of the go packages are on github, which results in huge name.
+      // Lets shorted it:
+      return currentName.replace('github.com/', '');
+    }
+    return currentName;
   };
 }
 

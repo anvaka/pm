@@ -3,7 +3,7 @@ import eventify from 'ngraph.events';
 
 import appEvents from '../service/appEvents.js';
 import scene from './scene.js';
-import graphSpecificInfo from './graphSepcific/graphSpecificInfo.js';
+import getBaseNodeViewModel from './baseNodeViewModel.js';
 
 export default hoverStore();
 
@@ -30,18 +30,11 @@ function hoverStore() {
   function createViewModel(model, graphName) {
     if (model === null) throw new Error('Model is not expected to be null');
 
-    var specialInfo = graphSpecificInfo(graphName);
-    var nodeInfo = scene.getNodeInfo(model.nodeIndex)
+    var hoverViewModel = getBaseNodeViewModel(model.nodeIndex, graphName);
+    hoverViewModel.left = model.mouseInfo.x;
+    hoverViewModel.top = model.mouseInfo.y;
 
-    return {
-      name: specialInfo.getNodeName(nodeInfo.name),
-      inDegree: nodeInfo.in,
-      inDegreeLabel: specialInfo.getInDegreeLabel(nodeInfo.in),
-      outDegree: nodeInfo.out,
-      outDegreeLabel: specialInfo.getOutDegreeLabel(nodeInfo.out),
-      left: model.mouseInfo.x,
-      top: model.mouseInfo.y
-    };
+    return hoverViewModel;
   }
 }
 
