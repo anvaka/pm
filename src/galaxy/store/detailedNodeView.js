@@ -38,8 +38,4 @@ function detailedNodeView() {
   function getNodes(type) {
     return scene.getConnected(currentNodeId, type);
   }
-
-  function empty() {
-    return 'Nothing found';
-  }
 }
