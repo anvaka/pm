@@ -1,9 +1,9 @@
+import React from 'react';
+import eventify from 'ngraph.events';
+
 import appEvents from '../service/appEvents.js';
 import scene from './scene.js';
-import specificViewModelTransform from './graphSepcificHover/specificViewModelTransform.js';
-import createDefaultTemplate from './graphSepcificHover/defaultTemplate.jsx';
-
-import eventify from 'ngraph.events';
+import graphSpecificInfo from './graphSepcific/graphSpecificInfo.js';
 
 export default hoverStore();
 
@@ -18,10 +18,8 @@ function hoverStore() {
   function prepareViewModelAndNotifyConsumers(hoverDetails) {
     var hoverTemplate = null;
     if (hoverDetails.nodeIndex !== undefined) {
-      var viewModel = createViewModel(hoverDetails);
-
       var currentGraphName = scene.getGraphName();
-      viewModel = specificViewModelTransform(currentGraphName, viewModel);
+      var viewModel = createViewModel(hoverDetails, currentGraphName);
 
       hoverTemplate = createDefaultTemplate(viewModel);
     }
@@ -29,19 +27,41 @@ function hoverStore() {
     store.fire('changed', hoverTemplate);
   }
 
-  function createViewModel(model) {
+  function createViewModel(model, graphName) {
     if (model === null) throw new Error('Model is not expected to be null');
 
+    var specialInfo = graphSpecificInfo(graphName);
     var nodeInfo = scene.getNodeInfo(model.nodeIndex)
 
     return {
-      name: nodeInfo.name,
+      name: specialInfo.getNodeName(nodeInfo.name),
       inDegree: nodeInfo.in,
-      inDegreeLabel: ' in degree',
+      inDegreeLabel: specialInfo.getInDegreeLabel(nodeInfo.in),
       outDegree: nodeInfo.out,
-      outDegreeLabel: ' out degree',
+      outDegreeLabel: specialInfo.getOutDegreeLabel(nodeInfo.out),
       left: model.mouseInfo.x,
       top: model.mouseInfo.y
     };
   }
+}
+
+function createDefaultTemplate(viewModel) {
+  var style = {
+    left: viewModel.left + 20,
+    top: viewModel.top - 35
+  };
+
+  return (
+      <div style={style} className='node-hover-tooltip'>
+        <h5>{viewModel.name}</h5>
+        <div className='in-degree'>
+          <span className='label-value vcenter'>{viewModel.inDegree}  </span>
+          <span className='label-text vcenter'> {viewModel.inDegreeLabel}</span>
+        </div>
+        <div className='out-degree'>
+          <span className='label-value vcenter'>{viewModel.outDegree}  </span>
+          <span className='label-text vcenter'> {viewModel.outDegreeLabel}</span>
+        </div>
+      </div>
+    );
 }
