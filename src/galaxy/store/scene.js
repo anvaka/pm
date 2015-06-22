@@ -16,13 +16,15 @@ function sceneStore() {
     inDegree: '?',
     outDegree: '?'
   }
+
   var graph;
 
   var api = {
     isLoading: isLoading,
     getGraph: getGraph,
     getGraphName: getGraphName,
-    getNodeInfo: getNodeInfo
+    getNodeInfo: getNodeInfo,
+    getConnected: getConnected
   };
 
   appEvents.downloadGraphRequested.on(downloadGraph);
@@ -48,13 +50,20 @@ function sceneStore() {
     return currentGraphName;
   }
 
-  function getNodeInfo(nodeIndex) {
+  function getNodeInfo(nodeId) {
     if (!graph) {
-      unknownNodeInfo.name = nodeIndex;
+      unknownNodeInfo.name = nodeId;
       return unknownNodeInfo;
     }
 
-    return graph.getNodeInfo(nodeIndex);
+    return graph.getNodeInfo(nodeId);
+  }
+
+  function getConnected(nodeId, connectionType) {
+    if (!graph) {
+      return [];
+    }
+    return graph.getConnected(nodeId, connectionType);
   }
 
   function reportProgress(progress) {

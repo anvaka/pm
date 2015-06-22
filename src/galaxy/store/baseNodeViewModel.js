@@ -3,7 +3,8 @@ import scene from './scene.js';
 
 export default getBaseNodeViewModel;
 
-function getBaseNodeViewModel(nodeId, graphName) {
+function getBaseNodeViewModel(nodeId) {
+  var graphName = scene.getGraphName();
   var graphSpecificInfo = getGraphSpecificInfo(graphName);
   var nodeInfo = scene.getNodeInfo(nodeId)
 

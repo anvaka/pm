@@ -32,8 +32,8 @@ export default loadGraph;
  */
 function loadGraph(name, progress) {
   var positions, labels;
-  var graphLinks = [];
-  var inDegree = [];
+  var outLinks = [];
+  var inLinks = [];
 
   // todo: handle errors
   var galaxyEndpoint = config.dataUrl + name;
@@ -50,8 +50,8 @@ function loadGraph(name, progress) {
     return createGraph({
       positions: positions,
       labels: labels,
-      links: graphLinks,
-      inDegree: inDegree
+      outLinks: outLinks,
+      inLinks: inLinks
     });
   }
 
@@ -88,24 +88,24 @@ function loadGraph(name, progress) {
   function setLinks(buffer) {
     var links = new Int32Array(buffer);
     var lastArray = [];
-    graphLinks[0] = lastArray;
+    outLinks[0] = lastArray;
 
     for (var i = 0; i < links.length; ++i) {
       if (links[i] < 0) {
         var srcIndex = -(links[i]) - 1;
-        lastArray = graphLinks[srcIndex] = [];
+        lastArray = outLinks[srcIndex] = [];
       } else {
         var toNode = links[i] - 1;
         lastArray.push(toNode);
-        if (inDegree[toNode] === undefined) {
-          inDegree[toNode] = 1;
+        if (inLinks[toNode] === undefined) {
+          inLinks[toNode] = [srcIndex];
         } else {
-          inDegree[toNode] += 1;
+          inLinks[toNode].push(srcIndex);
         }
       }
     }
 
-    appEvents.linksDownloaded.fire(graphLinks);
+    appEvents.linksDownloaded.fire(outLinks);
   }
 
   function loadLabels() {

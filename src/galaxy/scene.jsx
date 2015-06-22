@@ -1,5 +1,6 @@
 import React from 'react';
 import HoverInfo from './hoverInfo.jsx';
+import NodeDetails from './detailedNodeView.jsx';
 import createNativeRenderer from './native/renderer.js';
 
 module.exports = require('maco')(scene);
@@ -10,8 +11,10 @@ function scene(x) {
 
   x.render = function() {
     return (
-      <div ref='graphContainer' className='graph-full-size'>
+      <div>
+        <div ref='graphContainer' className='graph-full-size'/>
         <HoverInfo />
+        <NodeDetails />
       </div>
     );
   };

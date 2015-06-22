@@ -33,7 +33,7 @@
     "express": "^4.12.3",
     "ngraph.generators": "0.0.15",
     "react-hot-loader": "^1.2.7",
-    "webpack-dev-server": "^1.8.2"
+    "webpack-dev-server": "^1.9.0"
   },
   "dependencies": {
     "babel-core": "^5.2.17",
@@ -50,10 +50,12 @@
     "ngraph.events": "0.0.3",
     "node-libs-browser": "^0.5.0",
     "react": "^0.13.3",
+    "react-bootstrap": "^0.23.4",
+    "react-list": "^0.6.0",
     "react-router": "^0.13.3",
     "style-loader": "^0.12.2",
     "unrender": "git+https://github.com/anvaka/unrender.git",
     "url-loader": "^0.5.5",
-    "webpack": "^1.9.4"
+    "webpack": "^1.9.11"
   }
 }

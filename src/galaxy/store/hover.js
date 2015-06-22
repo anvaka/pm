@@ -18,19 +18,17 @@ function hoverStore() {
   function prepareViewModelAndNotifyConsumers(hoverDetails) {
     var hoverTemplate = null;
     if (hoverDetails.nodeIndex !== undefined) {
-      var currentGraphName = scene.getGraphName();
-      var viewModel = createViewModel(hoverDetails, currentGraphName);
-
+      var viewModel = createViewModel(hoverDetails);
       hoverTemplate = createDefaultTemplate(viewModel);
     }
 
     store.fire('changed', hoverTemplate);
   }
 
-  function createViewModel(model, graphName) {
+  function createViewModel(model) {
     if (model === null) throw new Error('Model is not expected to be null');
 
-    var hoverViewModel = getBaseNodeViewModel(model.nodeIndex, graphName);
+    var hoverViewModel = getBaseNodeViewModel(model.nodeIndex);
     hoverViewModel.left = model.mouseInfo.x;
     hoverViewModel.top = model.mouseInfo.y;
 
