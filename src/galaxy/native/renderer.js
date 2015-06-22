@@ -40,6 +40,7 @@ function sceneRenderer(container) {
 
     hitTest = renderer.hitTest();
     hitTest.on('over', handleOver);
+    hitTest.on('click', handleClick);
   }
 
   function destroyHitTest() {
@@ -47,20 +48,22 @@ function sceneRenderer(container) {
     hitTest.off('over', handleOver);
   }
 
-  function handleOver(indexes, ray, mouse) {
-    var nearestIndex = getNearestIndex(positions, indexes, ray, 30);
+  function handleClick(e) {
+    var nearestIndex = getNearestIndex(positions, e.indexes, e.ray, 30);
+
+    appEvents.nodeClick.fire({
+      nodeIndex: getModelIndex(nearestIndex)
+    });
+  }
+
+
+  function handleOver(e) {
+    var nearestIndex = getNearestIndex(positions, e.indexes, e.ray, 30);
 
     highlightNode(nearestIndex);
-    var modelIndex;
-    if (nearestIndex !== undefined) {
-      // since each node represented as triplet we need to divide by 3 to
-      // get actual index:
-      modelIndex = nearestIndex/3
-    }
-
     appEvents.nodeHover.fire({
-      nodeIndex: modelIndex,
-      mouseInfo: mouse
+      nodeIndex: getModelIndex(nearestIndex),
+      mouseInfo: e
     });
   }
 
@@ -70,6 +73,14 @@ function sceneRenderer(container) {
     } else {
       // reset old highlihgt:
       renderer.highlight(nodeIndex, 0xff0000);
+    }
+  }
+
+  function getModelIndex(nearestIndex) {
+    if (nearestIndex !== undefined) {
+      // since each node represented as triplet we need to divide by 3 to
+      // get actual index:
+      return nearestIndex/3
     }
   }
 

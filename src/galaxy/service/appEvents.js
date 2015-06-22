@@ -34,6 +34,11 @@ export default eventMirror([
   /**
    * Fired when user hover mouse over a node
    */
-  'nodeHover'
+  'nodeHover',
+
+  /**
+   * Fired when user clicks a node
+   */
+  'nodeClick'
 ], appEvents);
 
