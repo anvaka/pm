@@ -37,8 +37,8 @@ export default eventMirror([
   'nodeHover',
 
   /**
-   * Fired when user clicks a node
+   * Fired when user wants to select a node
    */
-  'nodeClick'
+  'selectNode'
 ], appEvents);
 

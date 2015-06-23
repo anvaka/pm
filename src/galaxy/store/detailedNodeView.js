@@ -9,20 +9,19 @@ export default detailedNodeView();
 function detailedNodeView() {
   var api = {
     getViewModel: getViewModel,
-    getNodes: getNodes,
-    empty: empty
+    getNodes: getNodes
   };
 
   var currentNodeId;
 
-  appEvents.nodeClick.on(updateDetails);
+  appEvents.selectNode.on(updateDetails);
 
   eventify(api);
 
   return api;
 
-  function updateDetails(e) {
-    currentNodeId = e.nodeIndex;
+  function updateDetails(nodeId) {
+    currentNodeId = nodeId;
     api.fire('changed');
   }
 

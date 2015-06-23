@@ -51,9 +51,7 @@ function sceneRenderer(container) {
   function handleClick(e) {
     var nearestIndex = getNearestIndex(positions, e.indexes, e.ray, 30);
 
-    appEvents.nodeClick.fire({
-      nodeIndex: getModelIndex(nearestIndex)
-    });
+    appEvents.selectNode.fire(getModelIndex(nearestIndex));
   }
 
 
