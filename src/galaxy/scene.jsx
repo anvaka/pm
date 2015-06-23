@@ -2,6 +2,7 @@ import React from 'react';
 import HoverInfo from './hoverInfo.jsx';
 import NodeDetails from './detailedNodeView.jsx';
 import SteeringIndicator from './steeringIndicator.jsx';
+import SearchBar from './searchBar.jsx';
 import createNativeRenderer from './native/renderer.js';
 import createKeyboardBindings from './native/sceneKeyboardBinding.js';
 
@@ -18,6 +19,7 @@ function scene(x) {
         <HoverInfo />
         <NodeDetails />
         <SteeringIndicator />
+        <SearchBar />
       </div>
     );
   };

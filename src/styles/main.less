@@ -1,11 +1,12 @@
 @import "~bootstrap/less/bootstrap";
+@import "./variables.less";
 @import "./steering.less";
 @import "./nodeDetails.less";
+@import "./search.less";
 
-@background: 0x000000;
 
 body {
-  background-color: #000;
+  background-color: @background;
   overflow: hidden;
 }
 
@@ -24,7 +25,7 @@ h1, h2 {
 .loading {
   color: #ffffff;
   position: absolute;
-  background: black;
+  background: @background;
   z-index: 1;
   padding: 10px;
 }
@@ -36,7 +37,7 @@ h1, h2 {
   padding: 4px 10px;;
   pointer-events: none;
   min-width: 200px;
-  border: 1px solid white;
+  border: 1px solid @border-color;
 
   span {
     margin: 0 5px;
@@ -53,7 +54,7 @@ h1, h2 {
 
 .node-hover-list {
   position: absolute;
-  background: black;
+  background: @background;
   right: -20px;
   bottom: 10px;
   height: 150px;
