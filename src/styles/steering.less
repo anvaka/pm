@@ -1,0 +1,36 @@
+@crosshair-r: 100px;
+
+.steering {
+  position: absolute;
+  pointer-events: none;
+  width: 2 * @crosshair-r;
+  height: 2 * @crosshair-r;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  margin-left: -@crosshair-r;
+  margin-top: -@crosshair-r;
+  border-radius: 2 * @crosshair-r;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  .inner {
+    position: absolute;
+    width: @crosshair-r;
+    height: @crosshair-r;
+    top: 50%;
+    left: 50%;
+    margin-left: -@crosshair-r/2;
+    margin-top: -@crosshair-r/2;
+    border-radius: @crosshair-r;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .steering-help {
+    position: fixed;
+    color: rgba(255,255,255,0.9);
+    bottom: 12px;
+    font-family: 'PT Sans', sans-serif;
+    font-size: large;
+    left: 50%;
+    margin-left: -187px;
+  }
+}

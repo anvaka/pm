@@ -22,6 +22,7 @@ function sceneRenderer(container) {
   var hitTest;
 
   appEvents.positionsDownloaded.on(setPositions);
+  appEvents.toggleSteering.on(toggleSteering);
 
   var api = {
     destroy: destroy
@@ -29,6 +30,17 @@ function sceneRenderer(container) {
 
   eventify(api);
   return api;
+
+  function toggleSteering() {
+    if (!renderer) return;
+
+    var input = renderer.input();
+    var isDragToLookEnabled = input.toggleDragToLook();
+
+    // steering does not require "drag":
+    var isSteering = !isDragToLookEnabled;
+    appEvents.showSteeringMode.fire(isSteering);
+  }
 
   function setPositions(_positions) {
     destroyHitTest();

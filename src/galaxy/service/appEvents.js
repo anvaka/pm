@@ -39,6 +39,18 @@ export default eventMirror([
   /**
    * Fired when user wants to select a node
    */
-  'selectNode'
+  'selectNode',
+
+  /**
+   * Fired when user wants to toggle camera steering mode. In steering
+   * mode camera will always try to focus on mouse position. Thus
+   * middle point of the screen is the only stable point.
+   */
+  'toggleSteering',
+
+  /**
+   * Requests the application to show "Steering mode" indicator.
+   */
+  'showSteeringMode'
 ], appEvents);
 
