@@ -1,0 +1,56 @@
+.node-details {
+  width: 350px;
+  left: 12px;
+  bottom: 12px;
+  padding: 12px;
+  position: absolute;
+  z-index: 1;
+
+  font-family: 'PT Sans', sans-serif;
+
+  background: rgba(0, 0, 0, 0.85);
+  border: 1px solid white;
+  color: white;
+
+  h4 {
+    margin: 0;
+    font-family: 'PT Sans', sans-serif;
+    overflow: hidden;
+    color: inherit;
+    text-overflow: ellipsis;
+  }
+  h2 {
+    margin: 0;
+    color: inherit;
+    text-align: center;
+    font-family: 'PT Sans', sans-serif;
+  }
+  .small {
+    text-align: center;
+    color: #999;
+  }
+
+  @media (max-width: @screen-sm-min) {
+    right: 12px;
+    width: inherit;
+    .info-block {
+      padding-left: 0;
+      a {
+        display: inline-block;
+        margin: 0 7px;
+      }
+    }
+  }
+  .info-block {
+    a {
+      font-size: 18px;
+    }
+  }
+}
+
+.github-avatar-detail {
+  width: 50px;
+  margin-left: -16px;
+  margin-right: 8px;
+  float: left;
+}

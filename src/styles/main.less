@@ -1,5 +1,6 @@
 @import "~bootstrap/less/bootstrap";
 @import "./steering.less";
+@import "./nodeDetails.less";
 
 @background: 0x000000;
 
@@ -8,24 +9,6 @@ body {
   overflow: hidden;
 }
 
-.node-details {
-  bottom: 0;
-  left: 0;
-  width: 320px;
-  height: 240px;
-  position: absolute;
-  z-index: 1;
-  background: black;
-  border: 1px solid white;
-  padding: 4px 7px;
-  h5 {
-    color: white;
-  }
-  .dependency-list {
-    overflow: auto;
-    height: 220px;
-  }
-}
 .graph-full-size {
   top: 0;
   left: 0;
@@ -54,22 +37,18 @@ h1, h2 {
   pointer-events: none;
   min-width: 200px;
   border: 1px solid white;
-  .label {
-    font-size: small;
-  }
-  .label-value {
-    font-size: x-large;
-    margin-right: 7px;
-    margin-left: 10px;
-  }
 
-  .in-degree {
-    color: #90EE90;
+  span {
+    margin: 0 5px;
   }
+}
 
-  .out-degree {
-    color: #F08080;
-  }
+.in-degree {
+  color: #90EE90;
+}
+
+.out-degree {
+  color: #F08080;
 }
 
 .node-hover-list {

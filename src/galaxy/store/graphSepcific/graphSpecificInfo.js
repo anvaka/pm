@@ -16,7 +16,8 @@ function graphSpecificInfo(graphName) {
   return new DefaultGraph(graphName);
 }
 
-function DefaultGraph() {
+function DefaultGraph(graphName) {
+  this.graphName = graphName;
   this.getInDegreeLabel = function getInDegreeLabel(inDegreeValue) {
     return 'in-degree';
   };
@@ -24,10 +25,6 @@ function DefaultGraph() {
   this.getOutDegreeLabel = function getInDegreeLabel(outDegreeValue) {
     return 'out-degree';
   };
-
-  this.getNodeName = function getNodeName(currentName) {
-    return currentName;
-  }
 }
 
 function PackagesGraph(graphName) {
@@ -44,15 +41,6 @@ function PackagesGraph(graphName) {
 
 function GoGraph(graphName) {
   PackagesGraph.call(this, graphName);
-
-  this.getNodeName = function (currentName) {
-    if (typeof currentName === 'string') {
-      // most of the go packages are on github, which results in huge name.
-      // Lets shorted it:
-      return currentName.replace('github.com/', '');
-    }
-    return currentName;
-  };
 }
 
 function FollowersGraph(graphName) {

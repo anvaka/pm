@@ -9,7 +9,7 @@ function getBaseNodeViewModel(nodeId) {
   var nodeInfo = scene.getNodeInfo(nodeId)
 
   return {
-    name: graphSpecificInfo.getNodeName(nodeInfo.name),
+    name: nodeInfo.name,
 
     inDegree: nodeInfo.in,
     inDegreeLabel: graphSpecificInfo.getInDegreeLabel(nodeInfo.in),

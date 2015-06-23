@@ -1,5 +1,9 @@
+/**
+ * Prepares data for selected node details
+ */
 import appEvents from '../service/appEvents.js';
 import scene from './scene.js';
+
 import getBaseNodeViewModel from './baseNodeViewModel.js';
 
 import eventify from 'ngraph.events';
@@ -8,8 +12,7 @@ export default detailedNodeView();
 
 function detailedNodeView() {
   var api = {
-    getViewModel: getViewModel,
-    getNodes: getNodes
+    getViewModel: getViewModel
   };
 
   var currentNodeId;
@@ -29,12 +32,6 @@ function detailedNodeView() {
     if (currentNodeId === undefined) return;
 
     var viewModel = getBaseNodeViewModel(currentNodeId);
-    viewModel.inDegreeLabel = viewModel.inDegree + ' ' + viewModel.inDegreeLabel;
-    viewModel.outDegreeLabel = viewModel.outDegree + ' ' + viewModel.outDegreeLabel;
     return viewModel;
-  }
-
-  function getNodes(type) {
-    return scene.getConnected(currentNodeId, type);
   }
 }
