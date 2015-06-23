@@ -6,7 +6,7 @@
 export default getNearestIndex;
 
 function getNearestIndex(allPoints, intersectedIndexes, ray, maxDistanceFromRay) {
-  if (intersectedIndexes.length === 0) return intersectedIndexes;
+  if (intersectedIndexes.length === 0) return;
 
   // This is not necessary the fastest solution, but in practice it is very fast
   intersectedIndexes.sort(byProximityToRay);
