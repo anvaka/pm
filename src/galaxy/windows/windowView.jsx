@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactList from 'react-list';
+import WindowTitle from './windowTitle.jsx';
+import NodeInfoRow from './nodeInfoRow.jsx';
 
 module.exports = require('maco').template(windowView);
 
@@ -15,18 +17,18 @@ function windowView(props) {
 
   return (
     <div className={className}>
-      <div className='window-title'>
-        {windowViewModel.title}
+      <WindowTitle text={windowViewModel.title} />
+      <div className='window-list-content'>
+        <ReactList itemRenderer={renderItem}
+                   length={items.length}
+                   type='uniform' />
       </div>
-      <div style={{overflow: 'auto', maxHeight: 400}}>
-        <ReactList itemRenderer={renderItem} length={items.length} type='uniform' />
-      </div>
-      <div className='listActions'>
+      <div className='list-actions'>
       </div>
     </div>
   );
 
   function renderItem(idx) {
-    return <div>{items[idx].name}</div>;
+    return <NodeInfoRow key={idx} viewModel={items[idx]} />
   }
 }

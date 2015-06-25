@@ -8,6 +8,7 @@
 body {
   background-color: @background;
   overflow: hidden;
+  font-family: 'Roboto', sans-serif;
 }
 
 .graph-full-size {
@@ -22,9 +23,19 @@ h1, h2 {
   color: #efefef;
 }
 
+h4 {
+  font-family: 'PT Sans', sans-serif;
+}
+
 .window-container {
-  background-color: @background;
+  background-color: rgba(0,0,0, 0.8);
+  color: #7F7F7F;
   position: absolute;
+}
+
+.window-list-content {
+  overflow: auto;
+  max-height: 300px;
 }
 
 .search-results-window {
@@ -32,6 +43,14 @@ h1, h2 {
   top: 47px;
   padding: 10px;
   width: 395px;
+}
+
+.window-title {
+  strong {
+    color: white;
+    font-weight: normal;
+    font-size: 1.2em;
+  }
 }
 
 .loading {
