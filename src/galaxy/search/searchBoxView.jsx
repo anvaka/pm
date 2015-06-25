@@ -1,6 +1,5 @@
 import React from 'react';
-import SearchResults from './searchResults.jsx';
-import events from './service/appEvents.js';
+import searchBoxModel from './searchBoxModel.js';
 
 module.exports = require('maco')(searchBar);
 
@@ -12,23 +11,21 @@ function searchBar(x) {
           <form className='search-form' role='search'>
             <div className='input-group'>
               <input type='text'
-                className='form-control no-shadow' placeholder='type :help() or enter a search term'
+                className='form-control no-shadow' placeholder='enter a search term'
                 onChange={runSearch}/>
                 <span className='input-group-btn'>
-                  <button className='btn' tabindex='-1' type='button'>
+                  <button className='btn' tabIndex='-1' type='button'>
                     <span className='glyphicon glyphicon-search'></span>
                   </button>
                 </span>
             </div>
           </form>
-
-          <SearchResults />
         </div>
       </div>
     );
   }
 
   function runSearch(e) {
-    events.commandBarChanged.fire(e.target.value);
+    searchBoxModel.search(e.target.value);
   }
 }

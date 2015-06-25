@@ -1,10 +1,10 @@
 import appEvents from '../service/appEvents.js';
-import React from 'react';
 import eventify from 'ngraph.events';
 
-export default windowStore();
+export default windowCollectionModel();
 
-function windowStore() {
+function windowCollectionModel() {
+
   appEvents.showPackageListWindow.on(showWindow);
   appEvents.hidePackageListWindow.on(hideWindow);
 
@@ -39,8 +39,8 @@ function windowStore() {
     if (windowIndex !== undefined) {
       delete registeredWindows[windowId];
       allWindows.splice(windowIndex, 1);
+
       api.fire('changed', windowIndex);
     }
   }
 }
-

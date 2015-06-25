@@ -2,8 +2,8 @@ import React from 'react';
 import HoverInfo from './hoverInfo.jsx';
 import NodeDetails from './detailedNodeView.jsx';
 import SteeringIndicator from './steeringIndicator.jsx';
-import SearchBar from './searchBar.jsx';
-import WindowManager from './windowManager.jsx';
+import SearchBox from './search/searchBoxView.jsx';
+import WindowCollection from './windows/windowCollectionView.jsx';
 import createNativeRenderer from './native/renderer.js';
 import createKeyboardBindings from './native/sceneKeyboardBinding.js';
 
@@ -20,8 +20,8 @@ function scene(x) {
         <HoverInfo />
         <NodeDetails />
         <SteeringIndicator />
-        <SearchBar />
-        <WindowManager />
+        <SearchBox />
+        <WindowCollection />
       </div>
     );
   };
