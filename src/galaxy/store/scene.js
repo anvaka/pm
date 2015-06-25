@@ -24,7 +24,8 @@ function sceneStore() {
     getGraph: getGraph,
     getGraphName: getGraphName,
     getNodeInfo: getNodeInfo,
-    getConnected: getConnected
+    getConnected: getConnected,
+    find: find
   };
 
   appEvents.downloadGraphRequested.on(downloadGraph);
@@ -32,6 +33,10 @@ function sceneStore() {
   eventify(api);
 
   return api;
+
+  function find(query) {
+    return graph.find(query);
+  }
 
   function isLoading() {
     return loadInProgress;

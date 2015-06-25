@@ -51,6 +51,15 @@ export default eventMirror([
   /**
    * Requests the application to show "Steering mode" indicator.
    */
-  'showSteeringMode'
+  'showSteeringMode',
+
+  /**
+   * fired when user inputs a text into the search bar
+   */
+  'commandBarChanged',
+
+   'showPackageListWindow',
+
+   'hidePackageListWindow'
 ], appEvents);
 

@@ -9,10 +9,35 @@ function graph(rawGraphLoaderData) {
 
   var api = {
     getNodeInfo: getNodeInfo,
-    getConnected: getConnected
+    getConnected: getConnected,
+    find: find
   };
 
   return api;
+
+
+  function find(query) {
+    var result = [];
+    var regex = compileRegex(query);
+
+    if (!regex || !labels || !query) return result;
+
+    for (var i = 0; i < labels.length; ++i) {
+      if (labels[i].match(regex)) {
+        result.push(getNodeInfo(i));
+      }
+    }
+
+    return result;
+  }
+
+  function compileRegex(pattern) {
+    try {
+      return new RegExp(pattern, 'ig');
+    } catch (e) {
+      // this cannot be compiled. Ignore it.
+    }
+  }
 
   function getConnected(startId, connectionType) {
     if (connectionType === 'out') {
