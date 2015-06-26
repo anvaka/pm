@@ -16,12 +16,39 @@ function DegreeWindowViewModel(name, list, connectionType) {
   this.className = 'degree-results-window';
   this.list = list;
   this.nodeName = name;
-  this.dependenciesNumber = formatNumber(list.length);
-  if (connectionType === 'in') {
-    this.connectionClassName = 'in-degree';
-    this.dependenciesKindName = 'dependents';
-  } else {
-    this.connectionClassName = 'out-degree';
-    this.dependenciesKindName = 'dependencies';
+  this.degreeNumber = formatNumber(list.length);
+  this.connectionType = connectionType;
+  this.degreeKindName = getDegreeName(connectionType, list.length);
+}
+
+// TODO: This is a dupe.
+function getDegreeName(connectionType, count) {
+  var graphName = scene.getGraphName();
+  switch (graphName) {
+    case 'npm':
+    case 'bower':
+    case 'cpan':
+    case 'composer':
+    case 'rubygems':
+    case 'gosearch':
+      return dependencyName(connectionType, count);
+    case 'github':
+      return followerName(connectionType, count);
   }
+  return connectionType === 'in' ? 'indegree' : 'outdegree';
+}
+
+function dependencyName(connectionType, count) {
+  if (connectionType === 'in') {
+    return count === 1 ? 'dependent' : 'dependents';
+  }
+  return count === 1 ? 'dependency' : 'dependencies';
+}
+
+function followerName(connectionType, count) {
+  if (connectionType === 'out') {
+    return count === 1 ? 'follower' : 'followers';
+  }
+
+  return 'following';
 }

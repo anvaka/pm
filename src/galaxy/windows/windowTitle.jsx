@@ -44,9 +44,9 @@ function registerDataTemplates() {
       <h4 className='window-title'>
         <span className='node-name'>{ctx.nodeName}</span>
         <span> has </span>
-        <strong> {ctx.dependenciesNumber} </strong>
-        <span className={ctx.connectionClassName}>
-          {ctx.dependenciesKindName}
+        <strong> {ctx.degreeNumber} </strong>
+        <span className={ctx.connectionClassName === 'in' ? 'window-indegree' : 'window-outdgree'}>
+          {ctx.degreeKindName}
         </span>
       </h4>
     );

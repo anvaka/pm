@@ -8,13 +8,13 @@ function windowTitle(props) {
 
   return (
       <div className='row'>
-        <div className='col-md-8'>
+        <div className='col-md-6'>
          {item.name}
         </div>
-        <div id={item.id} className='in-degree col-md-2'>
+        <div id={item.id} className='in-degree col-md-3'>
          {formatNumber(item.in)}
         </div>
-        <div id={item.id} className='out-degree col-md-2'>
+        <div id={item.id} className='out-degree col-md-3'>
          {formatNumber(item.out)}
         </div>
       </div>
