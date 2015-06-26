@@ -10,6 +10,7 @@ function getBaseNodeViewModel(nodeId) {
 
   return {
     name: nodeInfo.name,
+    id: nodeInfo.id,
 
     inDegree: nodeInfo.in,
     inDegreeLabel: graphSpecificInfo.getInDegreeLabel(nodeInfo.in),

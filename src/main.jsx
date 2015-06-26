@@ -27,5 +27,5 @@ var routes = (
 
 // Start the router
 Router.run(routes, Router.HashLocation, (Root) => {
-  React.render(<Root/>, document.body);
+  React.render(<Root/>, document.getElementById('app'));
 });

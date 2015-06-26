@@ -11,10 +11,10 @@ function windowTitle(props) {
         <div className='col-md-8'>
          {item.name}
         </div>
-        <div className='in-degree col-md-2'>
+        <div id={item.id} className='in-degree col-md-2'>
          {formatNumber(item.in)}
         </div>
-        <div className='out-degree col-md-2'>
+        <div id={item.id} className='out-degree col-md-2'>
          {formatNumber(item.out)}
         </div>
       </div>

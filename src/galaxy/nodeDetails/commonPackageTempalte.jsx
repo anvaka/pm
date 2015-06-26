@@ -12,17 +12,13 @@ function commonPackageTemplate(model, link, linkText) {
         </div>
         <div className="col-xs-3">
           <div className="row">
-            <a href='#' className='in-degree'>
-              <h2>{model.inDegree}</h2>
-            </a>
+            <h2 id={model.id} className='in-degree'>{model.inDegree}</h2>
           </div>
           <div className="row small">{model.inDegreeLabel}</div>
         </div>
         <div className="col-xs-3">
           <div className="row">
-            <a href='#' className='out-degree'>
-              <h2>{model.outDegree}</h2>
-            </a>
+            <h2 id={model.id} className='out-degree'>{model.outDegree}</h2>
           </div>
           <div className="row small">{model.outDegreeLabel}</div>
         </div>
@@ -30,9 +26,9 @@ function commonPackageTemplate(model, link, linkText) {
       <div className='visible-xs-block'>
         <div className='col-xs-12 info-block'>
           <a href={link} target="_blank">{linkText}</a>
-          has <a href='#' className='in-degree'>{model.inDegree}</a>
+          has <span id={model.id} className='in-degree'>{model.inDegree}</span>
           {model.inDegreeLabel}, and
-          <a href='#' className='out-degree'>{model.outDegree}</a>
+          <span id={model.id} className='out-degree'>{model.outDegree}</span>
           {model.outDegreeLabel}
         </div>
       </div>

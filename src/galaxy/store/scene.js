@@ -68,7 +68,7 @@ function sceneStore() {
     if (!graph) {
       return [];
     }
-    return graph.getConnected(nodeId, connectionType);
+    return graph.getConnected(nodeId, connectionType).map(getNodeInfo);
   }
 
   function reportProgress(progress) {

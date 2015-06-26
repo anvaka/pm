@@ -3,32 +3,48 @@ import ReactList from 'react-list';
 import WindowTitle from './windowTitle.jsx';
 import NodeInfoRow from './nodeInfoRow.jsx';
 
-module.exports = require('maco').template(windowView);
+module.exports = require('maco')(windowView);
+var windowId = 0;
 
-function windowView(props) {
-  var windowViewModel = props.viewModel;
+function windowView(x) {
   var className = 'window-container';
+  windowId += 1;
 
-  if (windowViewModel.className) {
-    className += ' ' + windowViewModel.className;
-  }
+  x.render = function () {
+    var windowViewModel = x.props.viewModel;
 
-  var items = windowViewModel.list;
+    if (windowViewModel.className) {
+      className += ' ' + windowViewModel.className;
+    }
 
-  return (
-    <div className={className}>
-      <WindowTitle text={windowViewModel.title} />
-      <div className='window-list-content'>
-        <ReactList itemRenderer={renderItem}
-                   length={items.length}
-                   type='uniform' />
+    var items = windowViewModel.list;
+    var id = windowId + windowViewModel.className + items.length;
+
+    return (
+      <div className={className} key={windowId}>
+        <WindowTitle text={windowViewModel.title} />
+        <div className='window-list-content'>
+          {content(items)}
+        </div>
+        <div className='list-actions'>
+        </div>
       </div>
-      <div className='list-actions'>
-      </div>
-    </div>
-  );
+    );
 
-  function renderItem(idx) {
-    return <NodeInfoRow key={idx} viewModel={items[idx]} />
+    function renderItem(idx, key) {
+      var vm = items[idx];
+      return <NodeInfoRow key={key} viewModel={vm} />
+    }
+
+    function content(items) {
+      if (items.length > 0) {
+          return <ReactList itemRenderer={renderItem}
+                    length={items.length}
+                    type='simple'
+                    key={id}/>
+      } else {
+        return null;
+      }
+    }
   }
 }

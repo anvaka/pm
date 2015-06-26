@@ -5,13 +5,20 @@ import windowCollectionModel from './windowCollectionModel.js';
 module.exports = require('maco')(windowCollectionView);
 
 function windowCollectionView(x) {
-  windowCollectionModel.on('changed', update);
-
   x.render = function () {
     var windows = windowCollectionModel.getWindows();
     if (windows.length === 0) return null;
 
     return <div>{windows.map(toWindowView)}</div>;
+  }
+
+  x.componentDidMount = function () {
+    windowCollectionModel.on('changed', update);
+  };
+
+  x.componentWillUnmount = function() {
+    isUnmounted = true;
+    windowCollectionModel.off('changed', update);
   }
 
   function toWindowView(windowViewModel, idx) {

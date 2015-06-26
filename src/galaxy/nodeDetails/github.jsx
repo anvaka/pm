@@ -21,17 +21,13 @@ function github(props) {
         </div>
         <div className="col-xs-3">
           <div className="row">
-            <a href='#' className='in-degree'>
-              <h2>{model.inDegree}</h2>
-            </a>
+            <h2 className='in-degree'>{model.inDegree}</h2>
           </div>
           <div className="row small">{model.inDegreeLabel}</div>
         </div>
         <div className="col-xs-3">
           <div className="row">
-            <a href='#' className='out-degree'>
-              <h2>{model.outDegree}</h2>
-            </a>
+            <h2 className='out-degree'>{model.outDegree}</h2>
           </div>
           <div className="row small">{model.outDegreeLabel}</div>
         </div>
@@ -40,10 +36,10 @@ function github(props) {
         <div className='col-xs-12 info-block'>
           <a href={link} target="_blank">{linkText}</a>
           has
-          <a href='#'>{model.outDegree}</a>
-          {model.outDegreeLabel}, and
-          <a href='#'>{model.inDegree}</a>
-          {model.inDegreeLabel}
+          <span className='in-degree'>{model.inDegree}</span>
+          {model.inDegreeLabel}, and
+          <span className='out-degree'>{model.outDegree}</span>
+          {model.outDegreeLabel}
         </div>
       </div>
     </div>

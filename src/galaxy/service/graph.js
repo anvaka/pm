@@ -62,6 +62,7 @@ function graph(rawGraphLoaderData) {
     }
 
     return {
+      id: id,
       name: labels[id],
       out: outLinksCount,
       in : inLinksCount
