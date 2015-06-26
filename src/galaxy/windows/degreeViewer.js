@@ -15,5 +15,13 @@ function showDegree(id, connectionType) {
 function DegreeWindowViewModel(name, list, connectionType) {
   this.className = 'degree-results-window';
   this.list = list;
-  this.title = name + ' ' + connectionType + ' is *' + formatNumber(list.length) + '*';
+  this.nodeName = name;
+  this.dependenciesNumber = formatNumber(list.length);
+  if (connectionType === 'in') {
+    this.connectionClassName = 'in-degree';
+    this.dependenciesKindName = 'dependents';
+  } else {
+    this.connectionClassName = 'out-degree';
+    this.dependenciesKindName = 'dependencies';
+  }
 }

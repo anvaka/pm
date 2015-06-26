@@ -7,11 +7,11 @@ module.exports = require('maco')(windowView);
 var windowId = 0;
 
 function windowView(x) {
-  var className = 'window-container';
   windowId += 1;
 
   x.render = function () {
     var windowViewModel = x.props.viewModel;
+    var className = 'window-container';
 
     if (windowViewModel.className) {
       className += ' ' + windowViewModel.className;
@@ -21,8 +21,8 @@ function windowView(x) {
     var id = windowId + windowViewModel.className + items.length;
 
     return (
-      <div className={className} key={windowId}>
-        <WindowTitle text={windowViewModel.title} />
+      <div className={className}>
+        <WindowTitle viewModel={windowViewModel} />
         <div className='window-list-content'>
           {content(items)}
         </div>
