@@ -1,12 +1,13 @@
 import React from 'react';
 import HoverInfo from './hoverInfo.jsx';
-import NodeDetails from './detailedNodeView.jsx';
+import NodeDetails from './nodeDetails/detailedNodeView.jsx';
+import showDeree from './nodeDetails/degreeViewer.js';
+
 import SteeringIndicator from './steeringIndicator.jsx';
 import SearchBox from './search/searchBoxView.jsx';
 import WindowCollection from './windows/windowCollectionView.jsx';
 import createNativeRenderer from './native/renderer.js';
 import createKeyboardBindings from './native/sceneKeyboardBinding.js';
-import showDeree from './windows/degreeViewer.js';
 
 module.exports = require('maco')(scene);
 

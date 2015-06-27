@@ -1,8 +1,8 @@
-import detailModel from './store/detailModel.js';
+import detailModel from './detailModel.js';
 
 import React from 'react';
-import specialNodeDetails from './nodeDetails/all.js';
-import scene from './store/scene.js';
+import specialNodeDetails from './all.js';
+import scene from '../store/scene.js';
 
 module.exports = require('maco')(detailedNodeView);
 

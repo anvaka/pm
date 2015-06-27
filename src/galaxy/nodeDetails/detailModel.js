@@ -2,9 +2,9 @@
  * Prepares data for selected node details
  */
 import appEvents from '../service/appEvents.js';
-import scene from './scene.js';
+import scene from '../store/scene.js';
 
-import getBaseNodeViewModel from './baseNodeViewModel.js';
+import getBaseNodeViewModel from '../store/baseNodeViewModel.js';
 
 import eventify from 'ngraph.events';
 
