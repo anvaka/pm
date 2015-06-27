@@ -59,6 +59,7 @@ export default eventMirror([
   'commandBarChanged',
 
    'showPackageListWindow',
+   'showDegree',
 
    'hidePackageListWindow'
 ], appEvents);

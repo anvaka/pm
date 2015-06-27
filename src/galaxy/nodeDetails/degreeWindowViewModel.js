@@ -1,18 +1,7 @@
-import appEvents from '../service/appEvents.js';
 import scene from '../store/scene.js';
 import formatNumber from '../utils/formatNumber.js';
 
-export default showDegree;
-
-function showDegree(id, connectionType) {
-  var rootInfo = scene.getNodeInfo(id);
-  var conenctions = scene.getConnected(id, connectionType);
-
-  var viewModel = new DegreeWindowViewModel(rootInfo.name, conenctions, connectionType);
-
-  appEvents.showPackageListWindow.fire(viewModel, 'degree');
-  appEvents.selectNode.fire(id);
-}
+export default DegreeWindowViewModel;
 
 function DegreeWindowViewModel(name, list, connectionType) {
   this.className = 'degree-results-window';
@@ -49,8 +38,8 @@ function dependencyName(connectionType, count) {
 
 function followerName(connectionType, count) {
   if (connectionType === 'out') {
-    return count === 1 ? 'follower' : 'followers';
+    return 'following'
   }
 
-  return 'following';
+  return count === 1 ? 'follower' : 'followers';
 }

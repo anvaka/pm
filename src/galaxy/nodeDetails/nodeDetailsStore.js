@@ -3,6 +3,7 @@
  */
 import appEvents from '../service/appEvents.js';
 import scene from '../store/scene.js';
+import DegreeWindowViewModel from './degreeWindowViewModel.js';
 
 import getBaseNodeViewModel from '../store/baseNodeViewModel.js';
 
@@ -15,9 +16,11 @@ function nodeDetailsStore() {
     getSelectedNode: getSelectedNode
   };
 
-  var currentNodeId;
+  var currentNodeId, degreeVisible = false,
+      currentConnectionType;
 
   appEvents.selectNode.on(updateDetails);
+  appEvents.showDegree.on(showDegree);
 
   eventify(api);
 
@@ -25,6 +28,24 @@ function nodeDetailsStore() {
 
   function updateDetails(nodeId) {
     currentNodeId = nodeId;
+    if (degreeVisible) {
+      showDegree(currentNodeId, currentConnectionType);
+    } else {
+      api.fire('changed');
+    }
+  }
+
+  function showDegree(id, connectionType) {
+    currentNodeId = id;
+    currentConnectionType = connectionType;
+
+    degreeVisible = true;
+    var rootInfo = scene.getNodeInfo(id);
+    var conenctions = scene.getConnected(id, connectionType);
+
+    var viewModel = new DegreeWindowViewModel(rootInfo.name, conenctions, connectionType);
+
+    appEvents.showPackageListWindow.fire(viewModel, 'degree');
     api.fire('changed');
   }
 
