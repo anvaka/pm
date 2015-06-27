@@ -26,8 +26,6 @@ function windowView(x) {
         <div className='window-list-content'>
           {content(items)}
         </div>
-        <div className='list-actions'>
-        </div>
       </div>
     );
 

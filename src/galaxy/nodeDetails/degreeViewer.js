@@ -7,9 +7,11 @@ export default showDegree;
 function showDegree(id, connectionType) {
   var rootInfo = scene.getNodeInfo(id);
   var conenctions = scene.getConnected(id, connectionType);
+
   var viewModel = new DegreeWindowViewModel(rootInfo.name, conenctions, connectionType);
 
   appEvents.showPackageListWindow.fire(viewModel, 'degree');
+  appEvents.selectNode.fire(id);
 }
 
 function DegreeWindowViewModel(name, list, connectionType) {
