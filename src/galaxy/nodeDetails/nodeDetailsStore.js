@@ -43,7 +43,7 @@ function nodeDetailsStore() {
     var rootInfo = scene.getNodeInfo(id);
     var conenctions = scene.getConnected(id, connectionType);
 
-    var viewModel = new DegreeWindowViewModel(rootInfo.name, conenctions, connectionType);
+    var viewModel = new DegreeWindowViewModel(rootInfo.name, conenctions, connectionType, id);
 
     appEvents.showPackageListWindow.fire(viewModel, 'degree');
     api.fire('changed');

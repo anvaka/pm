@@ -8,7 +8,7 @@ function windowTitle(props) {
 
   return (
       <div className='row'>
-        <div className='col-md-6'>
+        <div id={item.id} className='node-focus col-md-6'>
          {item.name}
         </div>
         <div id={item.id} className='in-degree col-md-3'>

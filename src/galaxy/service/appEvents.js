@@ -60,6 +60,7 @@ export default eventMirror([
 
    'showPackageListWindow',
    'showDegree',
+   'focusOnNode',
 
    'hidePackageListWindow'
 ], appEvents);

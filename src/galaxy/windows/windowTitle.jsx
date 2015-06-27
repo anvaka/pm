@@ -42,7 +42,7 @@ function registerDataTemplates() {
   resource.add('DegreeWindowViewModel', maco.template(ctx => {
     return (
       <h4 className='window-title'>
-        <span className='node-name'>{ctx.nodeName}</span>
+        <span className='node-name node-focus' id={ctx.id}>{ctx.nodeName}</span>
         <span> has </span>
         <strong> {ctx.degreeNumber} </strong>
         <span className={ctx.connectionClassName === 'in' ? 'window-indegree' : 'window-outdgree'}>

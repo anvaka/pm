@@ -23,6 +23,7 @@ function sceneRenderer(container) {
 
   appEvents.positionsDownloaded.on(setPositions);
   appEvents.toggleSteering.on(toggleSteering);
+  appEvents.focusOnNode.on(focusOnNode);
 
   var api = {
     destroy: destroy
@@ -41,6 +42,17 @@ function sceneRenderer(container) {
     var isSteering = !isDragToLookEnabled;
     appEvents.showSteeringMode.fire(isSteering);
   }
+
+  function focusOnNode(nodeId) {
+    if (!renderer) return;
+
+    renderer.lookAt(nodeId * 3, highlightFocused);
+
+    function highlightFocused() {
+      appEvents.selectNode.fire(nodeId);
+    }
+  }
+
 
   function setPositions(_positions) {
     destroyHitTest();

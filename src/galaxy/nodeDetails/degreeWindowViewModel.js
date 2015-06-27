@@ -3,7 +3,8 @@ import formatNumber from '../utils/formatNumber.js';
 
 export default DegreeWindowViewModel;
 
-function DegreeWindowViewModel(name, list, connectionType) {
+function DegreeWindowViewModel(name, list, connectionType, id) {
+  this.id = id;
   this.className = 'degree-results-window';
   this.list = list;
   this.nodeName = name;

@@ -14,7 +14,7 @@ module.exports = require('maco')(scene);
 
 function scene(x) {
   var nativeRenderer, keyboard;
-  var hoverModel, degreeClickDelegator;
+  var hoverModel, delegateClickHandler;
 
   x.render = function() {
     return (
@@ -33,28 +33,34 @@ function scene(x) {
     var container = React.findDOMNode(x.refs.graphContainer);
     nativeRenderer = createNativeRenderer(container);
     keyboard = createKeyboardBindings(container);
-    degreeClickDelegator = container.parentNode;
-    degreeClickDelegator.addEventListener('click', handleDegreeClick);
+    delegateClickHandler = container.parentNode;
+    delegateClickHandler.addEventListener('click', handleDelegateClick);
   };
 
   x.componentWillUnmount = function() {
     if (nativeRenderer) nativeRenderer.destroy();
     if (keyboard) keyboard.destroy();
-    if (degreeClickDelegator) degreeClickDelegator.removeEventListener('click', handleDegreeClick);
+    if (delegateClickHandler) delegateClickHandler.removeEventListener('click', handleDelegateClick);
   };
 
-  function handleDegreeClick(e) {
+  function handleDelegateClick(e) {
       var clickedEl = e.target;
 
       // since we are handling all clicks, we should avoid excessive work and
       // talk with DOM only when absolutely necessary:
-      var isInDegree = clickedEl.classList.contains('in-degree');
-      var isOutDegree = !isInDegree && clickedEl.classList.contains('out-degree');
+      var classList = clickedEl.classList;
+      var isInDegree = classList.contains('in-degree');
+      var isOutDegree = !isInDegree && classList.contains('out-degree');
+      var nodeId;
       if (isInDegree || isOutDegree) {
-        var nodeId = parseInt(clickedEl.id, 10);
+        nodeId = parseInt(clickedEl.id, 10);
         var connectionType = isInDegree ? 'in' : 'out';
 
         appEvents.showDegree.fire(nodeId, connectionType);
+      }
+      if (classList.contains('node-focus')) {
+        nodeId = parseInt(clickedEl.id, 10);
+        appEvents.focusOnNode.fire(nodeId);
       }
     }
 }
