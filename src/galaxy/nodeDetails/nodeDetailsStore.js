@@ -8,11 +8,11 @@ import getBaseNodeViewModel from '../store/baseNodeViewModel.js';
 
 import eventify from 'ngraph.events';
 
-export default detailedNodeView();
+export default nodeDetailsStore();
 
-function detailedNodeView() {
+function nodeDetailsStore() {
   var api = {
-    getViewModel: getViewModel
+    getSelectedNode: getSelectedNode
   };
 
   var currentNodeId;
@@ -28,10 +28,9 @@ function detailedNodeView() {
     api.fire('changed');
   }
 
-  function getViewModel() {
+  function getSelectedNode() {
     if (currentNodeId === undefined) return;
 
-    var viewModel = getBaseNodeViewModel(currentNodeId);
-    return viewModel;
+    return getBaseNodeViewModel(currentNodeId);
   }
 }

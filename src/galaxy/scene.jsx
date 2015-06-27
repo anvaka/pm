@@ -1,6 +1,6 @@
 import React from 'react';
 import HoverInfo from './hoverInfo.jsx';
-import NodeDetails from './nodeDetails/detailedNodeView.jsx';
+import NodeDetails from './nodeDetails/nodeDetailsView.jsx';
 import showDeree from './nodeDetails/degreeViewer.js';
 
 import SteeringIndicator from './steeringIndicator.jsx';

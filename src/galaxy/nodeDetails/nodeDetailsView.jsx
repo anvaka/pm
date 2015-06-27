@@ -1,20 +1,20 @@
-import detailModel from './detailModel.js';
+import detailModel from './nodeDetailsStore.js';
 
 import React from 'react';
-import specialNodeDetails from './all.js';
+import specialNodeDetails from './templates/all.js';
 import scene from '../store/scene.js';
 
 module.exports = require('maco')(detailedNodeView);
 
 function detailedNodeView(x) {
   x.render = function () {
-    var viewModel = detailModel.getViewModel();
-    if (!viewModel) return null;
-    var NodeDetails = getNodeDetails(viewModel);
+    var selectedNode = detailModel.getSelectedNode();
+    if (!selectedNode) return null;
+    var NodeDetails = getNodeDetails(selectedNode);
 
     return (
       <div className='node-details'>
-        <NodeDetails model={viewModel} />
+        <NodeDetails model={selectedNode} />
       </div>
     );
   }
