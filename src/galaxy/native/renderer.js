@@ -53,7 +53,6 @@ function sceneRenderer(container) {
     }
   }
 
-
   function setPositions(_positions) {
     destroyHitTest();
 
@@ -65,17 +64,27 @@ function sceneRenderer(container) {
     hitTest = renderer.hitTest();
     hitTest.on('over', handleOver);
     hitTest.on('click', handleClick);
+    hitTest.on('dblclick', handleDblClick);
   }
 
   function destroyHitTest() {
     if (!hitTest) return; // nothing to destroy
     hitTest.off('over', handleOver);
+    hitTest.off('click', handleClick);
+    hitTest.off('dblclick', handleDblClick);
   }
 
   function handleClick(e) {
     var nearestIndex = getNearestIndex(positions, e.indexes, e.ray, 30);
 
     appEvents.selectNode.fire(getModelIndex(nearestIndex));
+  }
+
+  function handleDblClick(e) {
+    var nearestIndex = getNearestIndex(positions, e.indexes, e.ray, 30);
+    if (nearestIndex !== undefined) {
+      focusOnNode(nearestIndex/3);
+    }
   }
 
 
