@@ -19,11 +19,14 @@ export default sceneRenderer;
 
 function sceneRenderer(container) {
   var renderer, positions, graphModel;
-  var hitTest;
+  var hitTest, hoveredHighlight;
+  var registeredHighlights = Object.create(null);
 
   appEvents.positionsDownloaded.on(setPositions);
   appEvents.toggleSteering.on(toggleSteering);
   appEvents.focusOnNode.on(focusOnNode);
+  appEvents.highlightQuery.on(highlightQuery);
+  appEvents.cls.on(cls);
 
   var api = {
     destroy: destroy
@@ -58,7 +61,11 @@ function sceneRenderer(container) {
 
     positions = _positions;
 
-    if (!renderer) renderer = unrender(container);
+    if (!renderer) {
+      renderer = unrender(container);
+      hoveredHighlight = renderer.createHighlight();
+    }
+
     renderer.particles(positions);
 
     hitTest = renderer.hitTest();
@@ -69,6 +76,7 @@ function sceneRenderer(container) {
 
   function destroyHitTest() {
     if (!hitTest) return; // nothing to destroy
+
     hitTest.off('over', handleOver);
     hitTest.off('click', handleClick);
     hitTest.off('dblclick', handleDblClick);
@@ -99,12 +107,36 @@ function sceneRenderer(container) {
   }
 
   function highlightNode(nodeIndex) {
-    if (nodeIndex !== undefined) {
-      renderer.highlight([nodeIndex], 0xff0000, 3);
-    } else {
+    if (nodeIndex === undefined) {
       // reset old highlihgt:
-      renderer.highlight(nodeIndex, 0xff0000);
+      hoveredHighlight.clear();
+    } else {
+      hoveredHighlight.show([nodeIndex], 0xff0000, 3);
     }
+  }
+
+  function highlightQuery(query, color, scale) {
+    var highlight = registeredHighlights[query.request];
+    if (!highlight) {
+      highlight = registeredHighlights[query.request] = renderer.createHighlight(query.request);
+    }
+    var nodeIds = query.results.map(toNativeIndex);
+    highlight.show(nodeIds, color, scale);
+    appEvents.queryHighlighted.fire(query, color);
+  }
+
+  function cls() {
+    Object.keys(registeredHighlights).forEach(removeHighlight);
+  }
+
+  function removeHighlight(key) {
+    var highlight = registeredHighlights[key];
+    renderer.destroyHighlight(highlight);
+    delete registeredHighlights[key];
+  }
+
+  function toNativeIndex(i) {
+    return i.id * 3;
   }
 
   function getModelIndex(nearestIndex) {
@@ -119,5 +151,6 @@ function sceneRenderer(container) {
     renderer.destroy();
     scene.off('positions', setPositions);
     renderer = null;
+    // todo: app events?
   }
 }

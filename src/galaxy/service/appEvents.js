@@ -62,6 +62,8 @@ export default eventMirror([
    'hideNodeListWindow',
    'showDegree',
    'focusOnNode',
-
+   'highlightQuery',
+   'queryHighlighted',
+   'cls'
 ], appEvents);
 
