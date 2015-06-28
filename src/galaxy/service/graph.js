@@ -18,18 +18,33 @@ function graph(rawGraphLoaderData) {
 
   function find(query) {
     var result = [];
-    var regex = compileRegex(query);
+    if (!labels) return result;
 
-    if (!regex || !labels || !query) return result;
+    if (typeof query === 'string') {
+      // short circuit if it's blank string - no results
+      if (!query) return result;
+      query = regexMatcher(query);
+    }
 
     for (var i = 0; i < labels.length; ++i) {
-      if (labels[i].match(regex)) {
+      if (query(i, labels, outLinks, inLinks, positions)) {
         result.push(getNodeInfo(i));
       }
     }
 
     return result;
   }
+
+  function regexMatcher(str) {
+    var regex = compileRegex(str);
+    if (!regex) return no;
+
+    return function (i, labels, outLinks, inLinks, pos) {
+      return labels[i].match(regex);
+    }
+  }
+
+  function no() { return false; }
 
   function compileRegex(pattern) {
     try {
