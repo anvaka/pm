@@ -5,8 +5,8 @@ export default windowCollectionModel();
 
 function windowCollectionModel() {
 
-  appEvents.showPackageListWindow.on(showWindow);
-  appEvents.hidePackageListWindow.on(hideWindow);
+  appEvents.showNodeListWindow.on(showWindow);
+  appEvents.hideNodeListWindow.on(hideWindow);
 
   var api = {
     getWindows: getWindows

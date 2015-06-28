@@ -20,7 +20,7 @@ function nodeDetailsStore() {
       currentConnectionType;
 
   appEvents.selectNode.on(updateDetails);
-  appEvents.showDegree.on(showDegree);
+  appEvents.showDegree.on(updateDegreeDetails);
 
   eventify(api);
 
@@ -28,24 +28,24 @@ function nodeDetailsStore() {
 
   function updateDetails(nodeId) {
     currentNodeId = nodeId;
-    if (degreeVisible) {
-      showDegree(currentNodeId, currentConnectionType);
-    } else {
-      api.fire('changed');
-    }
+    updateDegreeDetails(currentNodeId, currentConnectionType);
   }
 
-  function showDegree(id, connectionType) {
+  function updateDegreeDetails(id, connectionType) {
     currentNodeId = id;
-    currentConnectionType = connectionType;
 
-    degreeVisible = true;
-    var rootInfo = scene.getNodeInfo(id);
-    var conenctions = scene.getConnected(id, connectionType);
+    degreeVisible = currentNodeId !== undefined;
+    if (degreeVisible) {
+      currentConnectionType = connectionType;
+      var rootInfo = scene.getNodeInfo(id);
+      var conenctions = scene.getConnected(id, connectionType);
 
-    var viewModel = new DegreeWindowViewModel(rootInfo.name, conenctions, connectionType, id);
+      var viewModel = new DegreeWindowViewModel(rootInfo.name, conenctions, connectionType, id);
 
-    appEvents.showPackageListWindow.fire(viewModel, 'degree');
+      appEvents.showNodeListWindow.fire(viewModel, 'degree');
+    } else {
+      appEvents.hideNodeListWindow.fire('degree');
+    }
     api.fire('changed');
   }
 

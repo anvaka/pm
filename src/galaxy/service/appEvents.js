@@ -58,10 +58,10 @@ export default eventMirror([
    */
   'commandBarChanged',
 
-   'showPackageListWindow',
+   'showNodeListWindow',
+   'hideNodeListWindow',
    'showDegree',
    'focusOnNode',
 
-   'hidePackageListWindow'
 ], appEvents);
 
