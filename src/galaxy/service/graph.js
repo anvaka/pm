@@ -1,6 +1,7 @@
 /**
  * Wrapper on top of graph data. Not sure where it will go yet.
  */
+import linkFinder from './edgeFinder.js';
 export default graph;
 
 function graph(rawGraphLoaderData) {
@@ -10,11 +11,15 @@ function graph(rawGraphLoaderData) {
   var api = {
     getNodeInfo: getNodeInfo,
     getConnected: getConnected,
-    find: find
+    find: find,
+    findLinks: findLinks
   };
 
   return api;
 
+  function findLinks(from, to) {
+    return linkFinder(from, to, outLinks, inLinks, labels);
+  }
 
   function find(query) {
     var result = [];

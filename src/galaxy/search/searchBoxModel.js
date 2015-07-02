@@ -19,7 +19,7 @@ function searchBoxModel() {
   function search(newText) {
     if (newText && newText[0] === ':') return; // processed in submit
 
-    var searchResults = scene.find(newText)
+    var searchResults = scene.find(newText);
     var searchResultWindowViewModel = new SearchResultWindowViewModel(searchResults);
 
     if (searchResults.length) {

@@ -64,6 +64,7 @@ export default eventMirror([
    'focusOnNode',
    'highlightQuery',
    'queryHighlighted',
+   'highlightLinks',
    'cls'
 ], appEvents);
 

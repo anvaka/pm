@@ -26,6 +26,7 @@ function sceneRenderer(container) {
   appEvents.toggleSteering.on(toggleSteering);
   appEvents.focusOnNode.on(focusOnNode);
   appEvents.highlightQuery.on(highlightQuery);
+  appEvents.highlightLinks.on(highlightLinks);
   appEvents.cls.on(cls);
 
   var api = {
@@ -123,6 +124,17 @@ function sceneRenderer(container) {
     var nodeIds = query.results.map(toNativeIndex);
     highlight.show(nodeIds, color, scale);
     appEvents.queryHighlighted.fire(query, color);
+  }
+
+  function highlightLinks(links, color) {
+    var lines = new Float32Array(links.length * 3);
+    for (var i = 0; i < links.length; ++i) {
+      var i3 = links[i] * 3;
+      lines[i * 3] = positions[i3];
+      lines[i * 3 + 1] = positions[i3 + 1];
+      lines[i * 3 + 2] = positions[i3 + 2];
+    }
+    renderer.lines(lines, color);
   }
 
   function cls() {
