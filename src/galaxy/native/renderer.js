@@ -10,15 +10,18 @@
  * UI feedback
  */
 import unrender from 'unrender';
+window.THREE = unrender.THREE;
+
 import eventify from 'ngraph.events';
 import appEvents from '../service/appEvents.js';
 import scene from '../store/scene.js';
 import getNearestIndex from './getNearestIndex.js';
+import createTouchControl from './touchControl.js';
 
 export default sceneRenderer;
 
 function sceneRenderer(container) {
-  var renderer, positions, graphModel;
+  var renderer, positions, graphModel, touchControl;
   var hitTest, hoveredHighlight;
   var registeredHighlights = Object.create(null);
 
@@ -34,6 +37,7 @@ function sceneRenderer(container) {
   };
 
   eventify(api);
+
   return api;
 
   function toggleSteering() {
@@ -65,6 +69,7 @@ function sceneRenderer(container) {
     if (!renderer) {
       renderer = unrender(container);
       hoveredHighlight = renderer.createHighlight();
+      touchControl = createTouchControl(renderer);
     }
 
     renderer.particles(positions);
@@ -162,6 +167,7 @@ function sceneRenderer(container) {
   function destroy() {
     renderer.destroy();
     scene.off('positions', setPositions);
+    if (touchControl) touchControl.destroy();
     renderer = null;
     // todo: app events?
   }

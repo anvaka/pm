@@ -16,7 +16,7 @@ new WebpackDevServer(compiler, {
   stats: { colors: true },
   noInfo: false,
   historyApiFallback: true
-}).listen(devConfig.port, 'localhost', function (err) {
+}).listen(devConfig.port, '0.0.0.0', function (err) {
   if (err) {
     console.log(err);
   } else {

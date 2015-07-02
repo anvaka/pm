@@ -54,6 +54,7 @@
     "react-list": "^0.6.0",
     "react-router": "^0.13.3",
     "style-loader": "^0.12.2",
+    "three.orientation": "^1.1.0",
     "unrender": "git+https://github.com/anvaka/unrender.git",
     "url-loader": "^0.5.5",
     "webpack": "^1.9.11"
