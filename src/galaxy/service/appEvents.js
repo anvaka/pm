@@ -48,6 +48,8 @@ export default eventMirror([
    */
   'toggleSteering',
 
+  'toggleLinks',
+
   /**
    * Requests the application to show "Steering mode" indicator.
    */

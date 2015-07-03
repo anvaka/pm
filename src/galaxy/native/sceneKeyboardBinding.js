@@ -22,6 +22,8 @@ function sceneKeyboardBinding(container) {
   function keydown(e) {
     if (e.which === 32) { // spacebar
       events.toggleSteering.fire();
+    } else if (e.which === 76) { // L - toggle links
+      events.toggleLinks.fire();
     }
   }
 }

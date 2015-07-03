@@ -17,19 +17,24 @@ import appEvents from '../service/appEvents.js';
 import scene from '../store/scene.js';
 import getNearestIndex from './getNearestIndex.js';
 import createTouchControl from './touchControl.js';
+import createLineView from './lineView.js';
 
 export default sceneRenderer;
 
 function sceneRenderer(container) {
   var renderer, positions, graphModel, touchControl;
   var hitTest, hoveredHighlight;
+  var lineView;
   var registeredHighlights = Object.create(null);
 
   appEvents.positionsDownloaded.on(setPositions);
+  appEvents.linksDownloaded.on(setLinks);
   appEvents.toggleSteering.on(toggleSteering);
   appEvents.focusOnNode.on(focusOnNode);
   appEvents.highlightQuery.on(highlightQuery);
   appEvents.highlightLinks.on(highlightLinks);
+  appEvents.toggleLinks.on(toggleLinks);
+
   appEvents.cls.on(cls);
 
   var api = {
@@ -78,6 +83,21 @@ function sceneRenderer(container) {
     hitTest.on('over', handleOver);
     hitTest.on('click', handleClick);
     hitTest.on('dblclick', handleDblClick);
+  }
+
+  function setLinks(links, totalLinks) {
+    if (links.length > 200000) return; // too much for now, will freeze/crash computer
+
+    if (!lineView) {
+      lineView = createLineView(renderer.scene(), unrender.THREE);
+    }
+    lineView.render(links, positions, totalLinks)
+  }
+
+  function toggleLinks() {
+    if (lineView) {
+      lineView.toggleLinks();
+    }
   }
 
   function destroyHitTest() {
@@ -166,7 +186,9 @@ function sceneRenderer(container) {
 
   function destroy() {
     renderer.destroy();
-    scene.off('positions', setPositions);
+    appEvents.positionsDownloaded.off(setPositions);
+    appEvents.linksDownloaded.off(setLinks);
+
     if (touchControl) touchControl.destroy();
     renderer = null;
     // todo: app events?
