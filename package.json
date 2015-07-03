@@ -49,6 +49,7 @@
     "maco": "^1.0.1",
     "ngraph.events": "0.0.3",
     "node-libs-browser": "^0.5.0",
+    "qs": "^4.0.0",
     "react": "^0.13.3",
     "react-bootstrap": "^0.23.4",
     "react-list": "^0.6.0",
