@@ -68,6 +68,6 @@ export default eventMirror([
    'queryHighlighted',
    'highlightLinks',
    'cls',
-   'moveCamera'
+   'queryChanged'
 ], appEvents);
 

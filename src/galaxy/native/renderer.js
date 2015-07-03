@@ -19,6 +19,8 @@ import getNearestIndex from './getNearestIndex.js';
 import createTouchControl from './touchControl.js';
 import createLineView from './lineView.js';
 import cameraService from './cameraService.js';
+import qs from 'qs';
+
 
 export default sceneRenderer;
 
@@ -27,6 +29,7 @@ function sceneRenderer(container) {
   var hitTest, hoveredHighlight, cameraPosition;
   var lineView;
   var registeredHighlights = Object.create(null);
+  var queryUpdateId = setInterval(updateQuery, 300);
 
   appEvents.positionsDownloaded.on(setPositions);
   appEvents.linksDownloaded.on(setLinks);
@@ -35,9 +38,9 @@ function sceneRenderer(container) {
   appEvents.highlightQuery.on(highlightQuery);
   appEvents.highlightLinks.on(highlightLinks);
   appEvents.toggleLinks.on(toggleLinks);
-  cameraService.on('move', moveCamera);
-
   appEvents.cls.on(cls);
+
+  cameraService.on('changed', moveCamera);
 
   var api = {
     destroy: destroy
@@ -46,6 +49,16 @@ function sceneRenderer(container) {
   eventify(api);
 
   return api;
+
+  function updateQuery() {
+    if (!renderer) return;
+    var camera = renderer.camera();
+
+    // var lookAt = new unrender.THREE.Vector3( 0, 0, -1 );
+    // lookAt.applyMatrix4( camera.matrixWorld );
+
+    cameraService.set(camera.position, camera.quaternion)
+  }
 
   function toggleSteering() {
     if (!renderer) return;
@@ -103,17 +116,22 @@ function sceneRenderer(container) {
     }
   }
 
-  function moveCamera(_pos) {
+  function moveCamera() {
     moveCameraInternal();
   }
 
   function moveCameraInternal() {
     if (!renderer) return;
 
+    var camera = renderer.camera();
     var pos = cameraService.getCameraPosition();
-    if (!pos) return;
-
-    renderer.camera().position.set(pos.x, pos.y, pos.z);
+    if (pos) {
+      camera.position.set(pos.x, pos.y, pos.z);
+    }
+    var lookAt = cameraService.getCameraLookAt();
+    if (lookAt) {
+      camera.quaternion.set(lookAt.x, lookAt.y, lookAt.z, lookAt.w);
+    }
   }
 
   function destroyHitTest() {
@@ -208,6 +226,7 @@ function sceneRenderer(container) {
     if (touchControl) touchControl.destroy();
     renderer = null;
 
+    clearInterval(queryUpdateId);
     cameraService.off('move', moveCamera);
     // todo: app events?
   }
