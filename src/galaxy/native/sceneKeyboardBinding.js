@@ -23,7 +23,9 @@ function sceneKeyboardBinding(container) {
     if (e.which === 32) { // spacebar
       events.toggleSteering.fire();
     } else if (e.which === 76) { // L - toggle links
-      events.toggleLinks.fire();
+      if (!e.ctrlKey && !e.metaKey) {
+        events.toggleLinks.fire();
+      }
     }
   }
 }
