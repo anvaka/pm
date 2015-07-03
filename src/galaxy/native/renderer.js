@@ -18,12 +18,13 @@ import scene from '../store/scene.js';
 import getNearestIndex from './getNearestIndex.js';
 import createTouchControl from './touchControl.js';
 import createLineView from './lineView.js';
+import cameraService from './cameraService.js';
 
 export default sceneRenderer;
 
 function sceneRenderer(container) {
   var renderer, positions, graphModel, touchControl;
-  var hitTest, hoveredHighlight;
+  var hitTest, hoveredHighlight, cameraPosition;
   var lineView;
   var registeredHighlights = Object.create(null);
 
@@ -34,6 +35,7 @@ function sceneRenderer(container) {
   appEvents.highlightQuery.on(highlightQuery);
   appEvents.highlightLinks.on(highlightLinks);
   appEvents.toggleLinks.on(toggleLinks);
+  cameraService.on('move', moveCamera);
 
   appEvents.cls.on(cls);
 
@@ -75,6 +77,7 @@ function sceneRenderer(container) {
       renderer = unrender(container);
       hoveredHighlight = renderer.createHighlight();
       touchControl = createTouchControl(renderer);
+      moveCameraInternal();
     }
 
     renderer.particles(positions);
@@ -98,6 +101,19 @@ function sceneRenderer(container) {
     if (lineView) {
       lineView.toggleLinks();
     }
+  }
+
+  function moveCamera(_pos) {
+    moveCameraInternal();
+  }
+
+  function moveCameraInternal() {
+    if (!renderer) return;
+
+    var pos = cameraService.getCameraPosition();
+    if (!pos) return;
+
+    renderer.camera().position.set(pos.x, pos.y, pos.z);
   }
 
   function destroyHitTest() {
@@ -191,6 +207,8 @@ function sceneRenderer(container) {
 
     if (touchControl) touchControl.destroy();
     renderer = null;
+
+    cameraService.off('move', moveCamera);
     // todo: app events?
   }
 }
