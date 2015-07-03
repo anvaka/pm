@@ -235,12 +235,6 @@ function sceneRenderer(container) {
     view.colors(colors);
   }
 
-  function removeHighlight(key) {
-    var highlight = registeredHighlights[key];
-    renderer.destroyHighlight(highlight);
-    delete registeredHighlights[key];
-  }
-
   function toNativeIndex(i) {
     return i.id * 3;
   }
