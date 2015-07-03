@@ -1,10 +1,11 @@
 import appEvents from '../service/appEvents.js';
 import eventify from 'ngraph.events';
 import scene from '../store/scene.js';
-import qs from 'qs';
 
 export default cameraService();
 
+// TODO: This should probably be called appState, and we can add more
+// config related arguments to the query string
 function cameraService() {
   var cameraPosition, lastPos, lastLookAt;
   var api = {
