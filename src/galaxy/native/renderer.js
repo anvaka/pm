@@ -9,6 +9,8 @@
  * events bus. These events are later consumed by stores to show appropriate
  * UI feedback
  */
+// TODO: This class needs to be refactored. It is doing too much, and parts
+// of its code should be done from unrender itself
 import unrender from 'unrender';
 window.THREE = unrender.THREE;
 
@@ -19,16 +21,19 @@ import getNearestIndex from './getNearestIndex.js';
 import createTouchControl from './touchControl.js';
 import createLineView from './lineView.js';
 import cameraService from './cameraService.js';
-import qs from 'qs';
-
 
 export default sceneRenderer;
 
+var defaultNodeColor = 0xffffffff;
+var defaultNodeSize = 15;
+
+var highlightNodeSize = defaultNodeSize * 3;
+var highlightNodeColor = 0xff0000ff;
+
 function sceneRenderer(container) {
   var renderer, positions, graphModel, touchControl;
-  var hitTest, hoveredHighlight, cameraPosition;
+  var hitTest, lastHighlight, cameraPosition;
   var lineView;
-  var registeredHighlights = Object.create(null);
   var queryUpdateId = setInterval(updateQuery, 300);
 
   appEvents.positionsDownloaded.on(setPositions);
@@ -88,7 +93,6 @@ function sceneRenderer(container) {
 
     if (!renderer) {
       renderer = unrender(container);
-      hoveredHighlight = renderer.createHighlight();
       touchControl = createTouchControl(renderer);
       moveCameraInternal();
     }
@@ -155,7 +159,6 @@ function sceneRenderer(container) {
     }
   }
 
-
   function handleOver(e) {
     var nearestIndex = getNearestIndex(positions, e.indexes, e.ray, 30);
 
@@ -167,22 +170,47 @@ function sceneRenderer(container) {
   }
 
   function highlightNode(nodeIndex) {
-    if (nodeIndex === undefined) {
-      // reset old highlihgt:
-      hoveredHighlight.clear();
-    } else {
-      hoveredHighlight.show([nodeIndex], 0xff0000, 3);
+    var view = renderer.getParticleView();
+    var colors = view.colors();
+    var sizes = view.sizes();
+
+    if (lastHighlight !== undefined) {
+      colorNode(lastHighlight, colors, defaultNodeColor);
+      sizes[lastHighlight/3] = defaultNodeSize;
     }
+
+    lastHighlight = nodeIndex;
+
+    if (lastHighlight !== undefined) {
+      colorNode(lastHighlight, colors, highlightNodeColor);
+      sizes[lastHighlight/3] = highlightNodeSize;
+    }
+
+    view.colors(colors);
+    view.sizes(sizes);
   }
 
   function highlightQuery(query, color, scale) {
-    var highlight = registeredHighlights[query.request];
-    if (!highlight) {
-      highlight = registeredHighlights[query.request] = renderer.createHighlight(query.request);
-    }
+    if (!renderer) return;
+
     var nodeIds = query.results.map(toNativeIndex);
-    highlight.show(nodeIds, color, scale);
+    var view = renderer.getParticleView();
+    var colors = view.colors();
+
+    for (var i = 0; i < nodeIds.length; ++i) {
+      colorNode(nodeIds[i], colors, color)
+    }
+
+    view.colors(colors);
     appEvents.queryHighlighted.fire(query, color);
+  }
+
+  function colorNode(nodeId, colors, color) {
+    var colorOffset = (nodeId/3) * 4;
+    colors[colorOffset + 0] = (color >> 24) & 0xff;
+    colors[colorOffset + 1] = (color >> 16) & 0xff;
+    colors[colorOffset + 2] = (color >> 8) & 0xff;
+    colors[colorOffset + 3] = (color & 0xff);
   }
 
   function highlightLinks(links, color) {
@@ -197,7 +225,14 @@ function sceneRenderer(container) {
   }
 
   function cls() {
-    Object.keys(registeredHighlights).forEach(removeHighlight);
+    var view = renderer.getParticleView();
+    var colors = view.colors();
+
+    for (var i = 0; i < colors.length/4; i++) {
+      colorNode(i * 3, colors, 0xffffffff);
+    }
+
+    view.colors(colors);
   }
 
   function removeHighlight(key) {
