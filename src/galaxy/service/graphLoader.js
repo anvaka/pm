@@ -108,7 +108,7 @@ function loadGraph(name, progress) {
       }
     }
 
-    appEvents.linksDownloaded.fire(outLinks);
+    appEvents.linksDownloaded.fire(outLinks, inLinks);
   }
 
   function loadLabels() {

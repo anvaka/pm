@@ -11,6 +11,8 @@
  */
 // TODO: This class needs to be refactored. It is doing too much, and parts
 // of its code should be done from unrender itself
+// TODO: Use DynamicBufferAttribute which can accelarate render
+// E.g.: threejs.org/examples/webgl_buffergeometry_drawcalls.html
 import unrender from 'unrender';
 window.THREE = unrender.THREE;
 
@@ -32,7 +34,7 @@ var highlightNodeColor = 0xff0000ff;
 
 function sceneRenderer(container) {
   var renderer, positions, graphModel, touchControl;
-  var hitTest, lastHighlight, cameraPosition;
+  var hitTest, lastHighlight, lastHighlightSize, cameraPosition;
   var lineView, links;
   var queryUpdateId = setInterval(updateQuery, 300);
 
@@ -114,22 +116,48 @@ function sceneRenderer(container) {
     hitTest.on('dblclick', handleDblClick);
   }
 
-  function setLinks(_links) {
-    links = _links;
+  function setLinks(outLinks, inLinks) {
+    links = outLinks;
+    updateSizes(inLinks);
+    renderLineViewIfNeeded();
+  }
 
+  function updateSizes(inLinks) {
+    var maxInDegree = getMaxSize(inLinks);
+    var view = renderer.getParticleView();
+    var sizes = view.sizes();
+    for (var i = 0; i < sizes.length; ++i) {
+      var degree = inLinks[i];
+      if (degree) {
+        sizes[i] = ((200 / maxInDegree) * degree.length + 15);
+      }
+    }
+    view.sizes(sizes);
+  }
+
+  function getMaxSize(sparseArray) {
+    var maxSize = 0;
+    for (var i = 0; i < sparseArray.length; ++i) {
+      var item = sparseArray[i];
+      if (item && item.length > maxSize) maxSize = item.length;
+    }
+
+    return maxSize;
+  }
+
+  function renderLineViewIfNeeded() {
     if (!appConfig.getShowLinks()) return;
-
     if (!lineView) {
       lineView = createLineView(renderer.scene(), unrender.THREE);
     }
-    lineView.render(links, positions)
+    lineView.render(links, positions);
   }
 
   function toggleLinks() {
     if (lineView) {
       lineView.toggleLinks();
     } else {
-      setLinks(links);
+      renderLineViewIfNeeded();
     }
   }
 
@@ -189,14 +217,15 @@ function sceneRenderer(container) {
 
     if (lastHighlight !== undefined) {
       colorNode(lastHighlight, colors, defaultNodeColor);
-      sizes[lastHighlight/3] = defaultNodeSize;
+      sizes[lastHighlight/3] = lastHighlightSize;
     }
 
     lastHighlight = nodeIndex;
 
     if (lastHighlight !== undefined) {
       colorNode(lastHighlight, colors, highlightNodeColor);
-      sizes[lastHighlight/3] = highlightNodeSize;
+      lastHighlightSize = sizes[lastHighlight/3];
+      sizes[lastHighlight/3] *= 1.5;
     }
 
     view.colors(colors);
