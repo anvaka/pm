@@ -60,8 +60,8 @@ function renderLinks(scene, THREE) {
         var toY = idxToPos[toIdx * 3 + 1];
         var toZ = idxToPos[toIdx * 3 + 2];
 
-        if (maxVisibleDistance < distance(fromX, fromY, fromZ,
-                                          toX, toY, toZ)) continue;
+        var dist = distance(fromX, fromY, fromZ, toX, toY, toZ);
+        if (maxVisibleDistance < dist) continue;
         jsPos.push(fromX, fromY, fromZ, toX, toY, toZ);
         jsColors.push(fromX / r + 0.5, fromY / r + 0.5, fromZ / r + 0.5, toX / r + 0.5, toY / r + 0.5, toZ / r + 0.5)
       }
