@@ -56,12 +56,12 @@ function sceneRenderer(container) {
 
   return api;
 
-  function accelarate(isAccelerate) {
+  function accelarate(isPrecise) {
     var input = renderer.input();
-    if (isAccelerate) {
-      input.movementSpeed *= 4;
+    if (isPrecise) {
+      input.movementSpeed /= 8;
     } else {
-      input.movementSpeed /= 4;
+      input.movementSpeed *= 8;
     }
   }
 
@@ -102,6 +102,8 @@ function sceneRenderer(container) {
       renderer = unrender(container);
       touchControl = createTouchControl(renderer);
       moveCameraInternal();
+      var input = renderer.input();
+      input.movementSpeed *= 3;
     }
 
     renderer.particles(positions);
