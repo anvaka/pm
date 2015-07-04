@@ -20,7 +20,7 @@ import scene from '../store/scene.js';
 import getNearestIndex from './getNearestIndex.js';
 import createTouchControl from './touchControl.js';
 import createLineView from './lineView.js';
-import cameraService from './cameraService.js';
+import appConfig from './appConfig.js';
 
 export default sceneRenderer;
 
@@ -46,7 +46,7 @@ function sceneRenderer(container) {
   appEvents.accelerateNavigation.on(accelarate);
   appEvents.cls.on(cls);
 
-  cameraService.on('changed', moveCamera);
+  appConfig.on('camera', moveCamera);
 
   var api = {
     destroy: destroy
@@ -69,7 +69,7 @@ function sceneRenderer(container) {
     if (!renderer) return;
     var camera = renderer.camera();
 
-    cameraService.set(camera.position, camera.quaternion)
+    appConfig.setCameraConfig(camera.position, camera.quaternion);
   }
 
   function toggleSteering() {
@@ -133,11 +133,11 @@ function sceneRenderer(container) {
     if (!renderer) return;
 
     var camera = renderer.camera();
-    var pos = cameraService.getCameraPosition();
+    var pos = appConfig.getCameraPosition();
     if (pos) {
       camera.position.set(pos.x, pos.y, pos.z);
     }
-    var lookAt = cameraService.getCameraLookAt();
+    var lookAt = appConfig.getCameraLookAt();
     if (lookAt) {
       camera.quaternion.set(lookAt.x, lookAt.y, lookAt.z, lookAt.w);
     }
@@ -261,7 +261,7 @@ function sceneRenderer(container) {
     renderer = null;
 
     clearInterval(queryUpdateId);
-    cameraService.off('move', moveCamera);
+    appConfig.off('camera', moveCamera);
     // todo: app events?
   }
 }
