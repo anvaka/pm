@@ -68,6 +68,8 @@ export default eventMirror([
    'queryHighlighted',
    'highlightLinks',
    'cls',
-   'queryChanged'
+   'queryChanged',
+
+   'accelerateNavigation'
 ], appEvents);
 

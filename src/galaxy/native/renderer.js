@@ -43,6 +43,7 @@ function sceneRenderer(container) {
   appEvents.highlightQuery.on(highlightQuery);
   appEvents.highlightLinks.on(highlightLinks);
   appEvents.toggleLinks.on(toggleLinks);
+  appEvents.accelerateNavigation.on(accelarate);
   appEvents.cls.on(cls);
 
   cameraService.on('changed', moveCamera);
@@ -55,12 +56,18 @@ function sceneRenderer(container) {
 
   return api;
 
+  function accelarate(isAccelerate) {
+    var input = renderer.input();
+    if (isAccelerate) {
+      input.movementSpeed *= 4;
+    } else {
+      input.movementSpeed /= 4;
+    }
+  }
+
   function updateQuery() {
     if (!renderer) return;
     var camera = renderer.camera();
-
-    // var lookAt = new unrender.THREE.Vector3( 0, 0, -1 );
-    // lookAt.applyMatrix4( camera.matrixWorld );
 
     cameraService.set(camera.position, camera.quaternion)
   }

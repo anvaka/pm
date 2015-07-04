@@ -11,12 +11,15 @@ function sceneKeyboardBinding(container) {
   var api = {
     destroy: destroy
   };
+  var lastShiftKey = false;
 
   container.addEventListener('keydown', keydown, false);
+  container.addEventListener('keyup', keyup, false);
   return api;
 
   function destroy() {
     container.removeEventListener('keydown', keydown, false);
+    container.removeEventListener('keyup', keyup, false);
   }
 
   function keydown(e) {
@@ -27,5 +30,17 @@ function sceneKeyboardBinding(container) {
         events.toggleLinks.fire();
       }
     }
+    if (e.shiftKey && !lastShiftKey) {
+      lastShiftKey = true;
+      events.accelerateNavigation.fire(true);
+    }
   }
+
+  function keyup(e) {
+    if (lastShiftKey && !e.shiftKey) {
+      lastShiftKey = false;
+      events.accelerateNavigation.fire(false);
+    }
+  }
+
 }
