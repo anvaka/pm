@@ -106,8 +106,6 @@ function sceneRenderer(container) {
   }
 
   function setLinks(links, totalLinks) {
-    if (links.length > 200000) return; // too much for now, will freeze/crash computer
-
     if (!lineView) {
       lineView = createLineView(renderer.scene(), unrender.THREE);
     }

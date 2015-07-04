@@ -3,6 +3,7 @@ export default renderLinks;
 function renderLinks(scene, THREE) {
   var linksVisible = true;
   var linkMesh;
+  var maxVisibleDistance = 150 * 150 * 2;
 
   var api = {
     /**
@@ -38,8 +39,8 @@ function renderLinks(scene, THREE) {
   }
 
   function render(links, idxToPos, linksCount) {
-    var positions = new Float32Array(linksCount * 6);
-    var colors = new Float32Array(linksCount * 6);
+    var jsPos = [];
+    var jsColors = [];
     var r = 16000;
     var i = 0;
     var linkId = 0;
@@ -59,27 +60,22 @@ function renderLinks(scene, THREE) {
         var toY = idxToPos[toIdx * 3 + 1];
         var toZ = idxToPos[toIdx * 3 + 2];
 
-        positions[linkId] = fromX;
-        positions[linkId + 1] = fromY;
-        positions[linkId + 2] = fromZ;
-        positions[linkId + 3] = toX;
-        positions[linkId + 4] = toY;
-        positions[linkId + 5] = toZ;
-
-        colors[linkId] = fromX / r + 0.5;
-        colors[linkId + 1] = fromY / r + 0.5;
-        colors[linkId + 2] = fromZ / r + 0.5;
-        colors[linkId + 3] = toX / r + 0.5;
-        colors[linkId + 4] = toY / r + 0.5;
-        colors[linkId + 5] = toZ / r + 0.5;
-
-        linkId += 6;
+        if (maxVisibleDistance < distance(fromX, fromY, fromZ,
+                                          toX, toY, toZ)) continue;
+        jsPos.push(fromX, fromY, fromZ, toX, toY, toZ);
+        jsColors.push(fromX / r + 0.5, fromY / r + 0.5, fromZ / r + 0.5, toX / r + 0.5, toY / r + 0.5, toZ / r + 0.5)
       }
     }
 
+    var positions = new Float32Array(jsPos);
+    var colors = new Float32Array(jsColors);
+
     var geometry = new THREE.BufferGeometry();
     var material = new THREE.LineBasicMaterial({
-      vertexColors: THREE.VertexColors
+      vertexColors: THREE.VertexColors,
+      blending: THREE.AdditiveBlending,
+      opacity:0.5,
+      transparent: true
     });
 
     geometry.addAttribute('position', new THREE.BufferAttribute(positions, 3));
@@ -97,4 +93,10 @@ function renderLinks(scene, THREE) {
   function toggleLinks() {
     setOrGetLinksVisible(!linksVisible);
   }
+}
+
+function distance(x1, y1, z1, x2, y2, z2) {
+  return (x1 - x2) * (x1 - x2) +
+        (y1 - y2) * (y1 - y2) +
+        (z1 - z2) * (z1 - z2);
 }
