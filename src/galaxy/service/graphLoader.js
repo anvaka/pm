@@ -91,7 +91,6 @@ function loadGraph(name, progress) {
   function setLinks(buffer) {
     var links = new Int32Array(buffer);
     var lastArray = [];
-    var totalLinks = 0;
     outLinks[0] = lastArray;
 
     for (var i = 0; i < links.length; ++i) {
@@ -101,7 +100,6 @@ function loadGraph(name, progress) {
       } else {
         var toNode = links[i] - 1;
         lastArray.push(toNode);
-        totalLinks += 1;
         if (inLinks[toNode] === undefined) {
           inLinks[toNode] = [srcIndex];
         } else {
@@ -110,7 +108,7 @@ function loadGraph(name, progress) {
       }
     }
 
-    appEvents.linksDownloaded.fire(outLinks, totalLinks);
+    appEvents.linksDownloaded.fire(outLinks);
   }
 
   function loadLabels() {

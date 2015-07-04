@@ -12,41 +12,58 @@ var defaultConfig = {
 };
 
 function appConfig() {
-  var cameraPosition;
-  var hashConfig;
+  var hashConfig = parseFromHash(window.location.hash);
 
   var api = {
     getCameraPosition: getCameraPosition,
     getCameraLookAt: getCameraLookAt,
-    setCameraConfig: setCameraConfig
+    getShowLinks: getShowLinks,
+    setCameraConfig: setCameraConfig,
+    setShowLinks: setShowLinks
   };
 
-  appEvents.queryChanged.on(moveCameraIfNeeded);
+  appEvents.toggleLinks.on(toggleLinks);
+  appEvents.queryChanged.on(queryChanged);
 
   eventify(api);
   return api;
 
   function getCameraPosition() {
-    ensureInitialized();
     return hashConfig.pos;
   }
 
+  function toggleLinks() {
+    setShowLinks(!hashConfig.showLinks);
+  }
+
   function getCameraLookAt() {
-    ensureInitialized();
     return hashConfig.lookAt;
   }
 
-  function moveCameraIfNeeded() {
-    ensureInitialized();
+  function getShowLinks() {
+    return hashConfig.showLinks;
+  }
+
+  function queryChanged() {
     var currentHashConfig = parseFromHash(window.location.hash);
     var cameraChanged = !same(currentHashConfig.pos, hashConfig.pos) ||
                         !same(currentHashConfig.lookAt, hashConfig.lookAt);
-    var showLinkChanged = hashConfig.showLinks !== currentHashConfig.showLinks;
+    var showLinksChanged = hashConfig.showLinks !== currentHashConfig.showLinks;
 
     if (cameraChanged) {
       setCameraConfig(currentHashConfig.pos, currentHashConfig.lookAt);
       api.fire('camera');
     }
+    if (showLinksChanged) {
+      setShowLinks(currentHashConfig.showLinks);
+    }
+  }
+
+  function setShowLinks(linksVisible) {
+    if (linksVisible === hashConfig.showLinks) return;
+    hashConfig.showLinks = linksVisible;
+    api.fire('showLinks');
+    updateHash();
   }
 
   function setCameraConfig(pos, lookAt) {
@@ -54,12 +71,10 @@ function appConfig() {
         same(lookAt, hashConfig.lookAt) &&
         lookAt.w === hashConfig.lookAt.w) return;
 
-    if (!hashConfig.pos) hashConfig.pos = {};
     hashConfig.pos.x = Math.round(pos.x);
     hashConfig.pos.y = Math.round(pos.y);
     hashConfig.pos.z = Math.round(pos.z);
 
-    if (!hashConfig.lookAt) hashConfig.lookAt = {};
     hashConfig.lookAt.x = lookAt.x;
     hashConfig.lookAt.y = lookAt.y;
     hashConfig.lookAt.z = lookAt.z;
@@ -123,12 +138,6 @@ function appConfig() {
       lookAt: normalize(lookAt),
       showLinks: showLinks
     };
-  }
-
-  function ensureInitialized() {
-    if (!hashConfig) {
-      hashConfig = parseFromHash(window.location.hash);
-    }
   }
 }
 

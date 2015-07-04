@@ -33,7 +33,7 @@ var highlightNodeColor = 0xff0000ff;
 function sceneRenderer(container) {
   var renderer, positions, graphModel, touchControl;
   var hitTest, lastHighlight, cameraPosition;
-  var lineView;
+  var lineView, links;
   var queryUpdateId = setInterval(updateQuery, 300);
 
   appEvents.positionsDownloaded.on(setPositions);
@@ -42,11 +42,11 @@ function sceneRenderer(container) {
   appEvents.focusOnNode.on(focusOnNode);
   appEvents.highlightQuery.on(highlightQuery);
   appEvents.highlightLinks.on(highlightLinks);
-  appEvents.toggleLinks.on(toggleLinks);
   appEvents.accelerateNavigation.on(accelarate);
   appEvents.cls.on(cls);
 
   appConfig.on('camera', moveCamera);
+  appConfig.on('showLinks', toggleLinks);
 
   var api = {
     destroy: destroy
@@ -112,16 +112,22 @@ function sceneRenderer(container) {
     hitTest.on('dblclick', handleDblClick);
   }
 
-  function setLinks(links, totalLinks) {
+  function setLinks(_links) {
+    links = _links;
+
+    if (!appConfig.getShowLinks()) return;
+
     if (!lineView) {
       lineView = createLineView(renderer.scene(), unrender.THREE);
     }
-    lineView.render(links, positions, totalLinks)
+    lineView.render(links, positions)
   }
 
   function toggleLinks() {
     if (lineView) {
       lineView.toggleLinks();
+    } else {
+      setLinks(links);
     }
   }
 
@@ -262,6 +268,8 @@ function sceneRenderer(container) {
 
     clearInterval(queryUpdateId);
     appConfig.off('camera', moveCamera);
+    appConfig.off('showLinks', toggleLinks);
+
     // todo: app events?
   }
 }
