@@ -1,9 +1,10 @@
+import appConfig from './appConfig.js';
+
 export default renderLinks;
 
 function renderLinks(scene, THREE) {
   var linksVisible = true;
   var linkMesh;
-  var maxVisibleDistance = 150 * 150 * 2;
 
   var api = {
     /**
@@ -44,6 +45,7 @@ function renderLinks(scene, THREE) {
     var r = 16000;
     var i = 0;
     var linkId = 0;
+    var maxVisibleDistance = appConfig.getMaxVisibleEdgeLength();
 
     for (i = 0; i < links.length; ++i) {
       var to = links[i];

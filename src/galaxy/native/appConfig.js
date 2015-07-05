@@ -3,13 +3,15 @@ import eventify from 'ngraph.events';
 import scene from '../store/scene.js';
 import qs from 'qs';
 
-export default appConfig();
 
 var defaultConfig = {
   pos: {x : 0, y: 0, z: 0 },
   lookAt: {x: 0, y: 0, z: 0, w: 1},
-  showLinks: true
+  showLinks: true,
+  maxVisibleDistance: 150
 };
+
+export default appConfig();
 
 function appConfig() {
   var hashConfig = parseFromHash(window.location.hash);
@@ -18,6 +20,7 @@ function appConfig() {
     getCameraPosition: getCameraPosition,
     getCameraLookAt: getCameraLookAt,
     getShowLinks: getShowLinks,
+    getMaxVisibleEdgeLength: getMaxVisibleEdgeLength,
     setCameraConfig: setCameraConfig,
     setShowLinks: setShowLinks
   };
@@ -27,6 +30,10 @@ function appConfig() {
 
   eventify(api);
   return api;
+
+  function getMaxVisibleEdgeLength() {
+    return hashConfig.maxVisibleDistance * hashConfig.maxVisibleDistance * 2;
+  }
 
   function getCameraPosition() {
     return hashConfig.pos;
@@ -95,6 +102,7 @@ function appConfig() {
       '&ly=' + lookAt.y +
       '&lz=' + lookAt.z +
       '&lw=' + lookAt.w +
+      '&ml=' + hashConfig.maxVisibleDistance +
       '&l=' + (hashConfig.showLinks ? '1' : '0');
 
     if (window.history) {
@@ -136,7 +144,8 @@ function appConfig() {
     return {
       pos: normalize(pos),
       lookAt: normalize(lookAt),
-      showLinks: showLinks
+      showLinks: showLinks,
+      maxVisibleDistance: getNumber(query.ml, defaultConfig.maxVisibleDistance)
     };
   }
 }
@@ -149,8 +158,10 @@ function normalize(v) {
   return v;
 }
 
-function getNumber(x) {
+function getNumber(x, defaultValue) {
+  if (defaultValue === undefined) defaultValue = 0;
+
   x = parseFloat(x);
-  if (isNaN(x)) return 0;
+  if (isNaN(x)) return defaultValue;
   return x;
 }
