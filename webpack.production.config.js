@@ -2,6 +2,7 @@
  * This is the Webpack configuration file for production.
  */
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var path = require('path');
 
 module.exports = {
   entry: "./src/main",
@@ -28,6 +29,10 @@ module.exports = {
   plugins: [
     new ExtractTextPlugin('styles.css', { allChunks: true })
   ],
+  resolveLoader: {
+    root:
+      path.join(__dirname, "node_modules")
+  },
 
   resolve: {
     extensions: ['', '.js', '.jsx']
