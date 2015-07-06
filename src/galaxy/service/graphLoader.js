@@ -20,6 +20,7 @@ import config from '../../config.js';
 import request from './request.js';
 import createGraph from './graph.js';
 import appEvents from './appEvents.js';
+import appConfig from '../native/appConfig.js';
 
 export default loadGraph;
 
@@ -75,8 +76,9 @@ function loadGraph(name, progress) {
 
   function setPositions(buffer) {
     positions = new Int32Array(buffer);
+    var scaleFactor = appConfig.getScaleFactor();
     for (var i = 0; i < positions.length; ++i) {
-      positions[i] *= 1.75;
+      positions[i] *= scaleFactor;
     }
     appEvents.positionsDownloaded.fire(positions);
   }

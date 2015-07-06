@@ -8,7 +8,8 @@ var defaultConfig = {
   pos: {x : 0, y: 0, z: 0 },
   lookAt: {x: 0, y: 0, z: 0, w: 1},
   showLinks: true,
-  maxVisibleDistance: 150
+  maxVisibleDistance: 150,
+  scale: 1.75
 };
 
 export default appConfig();
@@ -20,6 +21,7 @@ function appConfig() {
     getCameraPosition: getCameraPosition,
     getCameraLookAt: getCameraLookAt,
     getShowLinks: getShowLinks,
+    getScaleFactor: getScaleFactor,
     getMaxVisibleEdgeLength: getMaxVisibleEdgeLength,
     setCameraConfig: setCameraConfig,
     setShowLinks: setShowLinks
@@ -30,6 +32,11 @@ function appConfig() {
 
   eventify(api);
   return api;
+
+
+  function getScaleFactor() {
+    return hashConfig.scale;
+  }
 
   function getMaxVisibleEdgeLength() {
     return hashConfig.maxVisibleDistance * hashConfig.maxVisibleDistance * 2;
@@ -103,6 +110,7 @@ function appConfig() {
       '&lz=' + lookAt.z +
       '&lw=' + lookAt.w +
       '&ml=' + hashConfig.maxVisibleDistance +
+      '&s=' + hashConfig.scale +
       '&l=' + (hashConfig.showLinks ? '1' : '0');
 
     if (window.history) {
@@ -145,7 +153,8 @@ function appConfig() {
       pos: normalize(pos),
       lookAt: normalize(lookAt),
       showLinks: showLinks,
-      maxVisibleDistance: getNumber(query.ml, defaultConfig.maxVisibleDistance)
+      maxVisibleDistance: getNumber(query.ml, defaultConfig.maxVisibleDistance),
+      scale: getNumber(query.s, defaultConfig.scale)
     };
   }
 }
