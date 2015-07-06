@@ -35,7 +35,7 @@ var highlightNodeColor = 0xff0000ff;
 function sceneRenderer(container) {
   var renderer, positions, graphModel, touchControl;
   var hitTest, lastHighlight, lastHighlightSize, cameraPosition;
-  var lineView, links;
+  var lineView, links, lineViewNeedsUpdate;
   var queryUpdateId = setInterval(updateQuery, 300);
 
   appEvents.positionsDownloaded.on(setPositions);
@@ -118,6 +118,7 @@ function sceneRenderer(container) {
 
   function setLinks(outLinks, inLinks) {
     links = outLinks;
+    lineViewNeedsUpdate = true;
     updateSizes(inLinks);
     renderLineViewIfNeeded();
   }
@@ -151,10 +152,12 @@ function sceneRenderer(container) {
       lineView = createLineView(renderer.scene(), unrender.THREE);
     }
     lineView.render(links, positions);
+    lineViewNeedsUpdate = false;
   }
 
   function toggleLinks() {
     if (lineView) {
+      if (lineViewNeedsUpdate) renderLineViewIfNeeded();
       lineView.toggleLinks();
     } else {
       renderLineViewIfNeeded();
