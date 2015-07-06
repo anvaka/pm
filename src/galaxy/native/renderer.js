@@ -127,11 +127,11 @@ function sceneRenderer(container) {
   function setLinks(outLinks, inLinks) {
     links = outLinks;
     lineViewNeedsUpdate = true;
-    updateSizes(inLinks);
+    updateSizes(outLinks, inLinks);
     renderLineViewIfNeeded();
   }
 
-  function updateSizes(inLinks) {
+  function updateSizes(outLinks, inLinks) {
     var maxInDegree = getMaxSize(inLinks);
     var view = renderer.getParticleView();
     var sizes = view.sizes();
@@ -139,6 +139,9 @@ function sceneRenderer(container) {
       var degree = inLinks[i];
       if (degree) {
         sizes[i] = ((200 / maxInDegree) * degree.length + 15);
+      } else if (!outLinks[i]) {
+        // This is isolate node, let's make it larger than usual:
+        sizes[i] = 30;
       }
     }
     view.sizes(sizes);

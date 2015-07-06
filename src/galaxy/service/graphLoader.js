@@ -76,7 +76,7 @@ function loadGraph(name, progress) {
   function setPositions(buffer) {
     positions = new Int32Array(buffer);
     for (var i = 0; i < positions.length; ++i) {
-      positions[i] *= 2;
+      positions[i] *= 1.75;
     }
     appEvents.positionsDownloaded.fire(positions);
   }
