@@ -85,6 +85,13 @@ function sceneRenderer(container) {
     appEvents.showSteeringMode.fire(isSteering);
   }
 
+  function clearHover() {
+    appEvents.nodeHover.fire({
+      nodeIndex: undefined,
+      mouseInfo: undefined
+    });
+  }
+
   function focusOnNode(nodeId) {
     if (!renderer) return;
 
@@ -106,6 +113,7 @@ function sceneRenderer(container) {
       moveCameraInternal();
       var input = renderer.input();
       input.movementSpeed *= 3;
+      input.on('move', clearHover);
     }
 
     renderer.particles(positions);
@@ -304,6 +312,7 @@ function sceneRenderer(container) {
     appConfig.off('camera', moveCamera);
     appConfig.off('showLinks', toggleLinks);
 
+    if (input) input.off('move', clearHover);
     // todo: app events?
   }
 }
