@@ -24,12 +24,10 @@ function commonPackageTemplate(model, link, linkText) {
         </div>
       </div>
       <div className='visible-xs-block'>
-        <div className='col-xs-12 info-block'>
-          <a href={link} target="_blank">{linkText}</a>
-          has <span id={model.id} className='in-degree'>{model.inDegree}</span>
-          {model.inDegreeLabel}, and
-          <span id={model.id} className='out-degree'>{model.outDegree}</span>
-          {model.outDegreeLabel}
+        <div className='row info-block'>
+          <div className='col-xs-6 no-overflow'><a href={link} target="_blank">{linkText}</a></div>
+          <div id={model.id} className='in-degree col-xs-3'>{model.inDegree}</div>
+          <div id={model.id} className='out-degree col-xs-3'>{model.outDegree}</div>
         </div>
       </div>
     </div>
