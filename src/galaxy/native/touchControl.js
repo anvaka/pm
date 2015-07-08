@@ -29,10 +29,12 @@ function createTouchControl(renderer) {
   }
 
   function destroy() {
+    var container = renderer.getContainer();
     container.removeEventListener('touchstart', onTouchStart, false);
     container.removeEventListener('touchend', onTouchEnd, false);
     if (touchControls) {
-      // todo: release touch too
+      touchControls.disconnect();
+      renderer.offFrame(updateFromDeviceOritentation);
     }
   }
 

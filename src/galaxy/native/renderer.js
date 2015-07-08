@@ -316,6 +316,8 @@ function sceneRenderer(container) {
   }
 
   function destroy() {
+    var input = renderer.input();
+    if (input) input.off('move', clearHover);
     renderer.destroy();
     appEvents.positionsDownloaded.off(setPositions);
     appEvents.linksDownloaded.off(setLinks);
@@ -327,7 +329,6 @@ function sceneRenderer(container) {
     appConfig.off('camera', moveCamera);
     appConfig.off('showLinks', toggleLinks);
 
-    if (input) input.off('move', clearHover);
     // todo: app events?
   }
 }

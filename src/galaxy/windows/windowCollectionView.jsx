@@ -17,7 +17,6 @@ function windowCollectionView(x) {
   };
 
   x.componentWillUnmount = function() {
-    isUnmounted = true;
     windowCollectionModel.off('changed', update);
   }
 
