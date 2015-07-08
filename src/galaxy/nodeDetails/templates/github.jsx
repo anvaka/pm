@@ -15,7 +15,7 @@ function github(props) {
       <div className='hidden-xs'>
         <div className='col-xs-6'>
           <a href={link} target='_blank'>
-            <img src={avatarSrc} alt={linkText} className='github-avatar-detail'/>
+            <img src={avatarSrc} width='50px' alt={linkText} className='github-avatar-detail'/>
             <h4 title={linkText}>{linkText}</h4>
           </a>
         </div>

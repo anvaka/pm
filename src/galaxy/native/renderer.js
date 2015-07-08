@@ -113,7 +113,7 @@ function sceneRenderer(container) {
       touchControl = createTouchControl(renderer);
       moveCameraInternal();
       var input = renderer.input();
-      input.movementSpeed *= 3;
+      input.movementSpeed *= 2.5;
       input.on('move', clearHover);
     }
 
@@ -132,6 +132,7 @@ function sceneRenderer(container) {
       container.focus();
     }, 30);
   }
+
   function setLinks(outLinks, inLinks) {
     links = outLinks;
     lineViewNeedsUpdate = true;
