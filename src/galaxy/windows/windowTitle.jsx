@@ -32,7 +32,8 @@ function contentControl(x) {
 }
 
 function contentTemplateSelector(type) {
-  var typeName = type && type.constructor && type.constructor.name;
+  var typeName = (type && type.__name) ||
+                 (type && type.constructor && type.constructor.name);
   if (typeName) {
     return resource(typeName);
   }

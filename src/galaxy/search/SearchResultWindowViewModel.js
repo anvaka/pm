@@ -7,3 +7,5 @@ function SearchResultWindowViewModel(list) {
   this.list = list;
   this.matchesCountString = formatNumber(list.length);
 }
+
+SearchResultWindowViewModel.prototype.__name = 'SearchResultWindowViewModel';

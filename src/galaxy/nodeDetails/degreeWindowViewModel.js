@@ -13,6 +13,8 @@ function DegreeWindowViewModel(name, list, connectionType, id) {
   this.degreeKindName = getDegreeName(connectionType, list.length);
 }
 
+DegreeWindowViewModel.prototype.__name = 'DegreeWindowViewModel';
+
 // TODO: This is a dupe.
 function getDegreeName(connectionType, count) {
   var graphName = scene.getGraphName();
