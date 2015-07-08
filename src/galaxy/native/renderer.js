@@ -27,7 +27,7 @@ import appConfig from './appConfig.js';
 export default sceneRenderer;
 
 var defaultNodeColor = 0xffffffff;
-var defaultNodeSize = 15;
+var defaultNodeSize = 25;
 
 var highlightNodeSize = defaultNodeSize * 3;
 var highlightNodeColor = 0xff0000ff;
@@ -106,6 +106,7 @@ function sceneRenderer(container) {
     destroyHitTest();
 
     positions = _positions;
+    focusScene();
 
     if (!renderer) {
       renderer = unrender(container);
@@ -124,6 +125,13 @@ function sceneRenderer(container) {
     hitTest.on('dblclick', handleDblClick);
   }
 
+  function focusScene() {
+    // need to be within timeout, in case if we are detached (e.g.
+    // first load)
+    setTimeout(function() {
+      container.focus();
+    }, 30);
+  }
   function setLinks(outLinks, inLinks) {
     links = outLinks;
     lineViewNeedsUpdate = true;
@@ -141,8 +149,11 @@ function sceneRenderer(container) {
         sizes[i] = ((200 / maxInDegree) * degree.length + 15);
       } else if (!outLinks[i]) {
         // This is isolate node, let's make it larger than usual:
-        sizes[i] = 30;
+        sizes[i] = 60;
       }
+      // else {
+      //   sizes[i] = 30;
+      // }
     }
     view.sizes(sizes);
   }
