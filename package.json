@@ -58,6 +58,7 @@
     "three.orientation": "^1.1.0",
     "unrender": "git+https://github.com/anvaka/unrender.git",
     "url-loader": "^0.5.5",
+    "webgl-enabled": "^1.0.3",
     "webpack": "^1.9.11"
   }
 }

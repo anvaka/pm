@@ -4,12 +4,14 @@ import NodeDetails from './nodeDetails/nodeDetailsView.jsx';
 
 import SteeringIndicator from './steeringIndicator.jsx';
 import SearchBox from './search/searchBoxView.jsx';
+import NoWebGL from './noWebgl.jsx';
+
 import WindowCollection from './windows/windowCollectionView.jsx';
 import createNativeRenderer from './native/renderer.js';
 import createKeyboardBindings from './native/sceneKeyboardBinding.js';
 
 import appEvents from './service/appEvents.js';
-
+var webglEnabled = require('webgl-enabled')();
 module.exports = require('maco')(scene);
 
 function scene(x) {
@@ -17,6 +19,10 @@ function scene(x) {
   var hoverModel, delegateClickHandler;
 
   x.render = function() {
+    if (!webglEnabled) {
+      return <NoWebGL />;
+    }
+
     return (
       <div>
         <div ref='graphContainer' className='graph-full-size'/>
@@ -30,6 +36,7 @@ function scene(x) {
   };
 
   x.componentDidMount = function() {
+    if (!webglEnabled) return;
     var container = React.findDOMNode(x.refs.graphContainer);
     nativeRenderer = createNativeRenderer(container);
     keyboard = createKeyboardBindings(container);
