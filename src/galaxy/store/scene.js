@@ -60,8 +60,13 @@ function sceneStore() {
       unknownNodeInfo.name = nodeId;
       return unknownNodeInfo;
     }
+    var nodeInfo = graph.getNodeInfo(nodeId);
+    // TODO: too tired, need to get this out from here
+    if (currentGraphName === 'github') {
+      nodeInfo.icon = 'https://avatars.githubusercontent.com/' + nodeInfo.name;
+    }
 
-    return graph.getNodeInfo(nodeId);
+    return nodeInfo;
   }
 
   function getConnected(nodeId, connectionType) {

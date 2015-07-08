@@ -5,11 +5,18 @@ module.exports = require('maco').template(windowTitle);
 
 function windowTitle(props) {
   var item = props.viewModel;
+  var image = '';
+  if (item.icon) {
+    image = <img src={item.icon} width='15px' />;
+  }
 
   return (
       <div className='row'>
-        <div id={item.id} className='node-focus no-oveflow col-md-6 col-xs-6'>
-         {item.name}
+        <div className='no-oveflow col-md-6 col-xs-6'>
+        {image}
+         <span id={item.id} className='node-focus'>
+            {item.name}
+          </span>
         </div>
         <div id={item.id} className='in-degree col-md-3 col-xs-3'>
          {formatNumber(item.in)}
