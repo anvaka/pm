@@ -43,6 +43,7 @@ function sceneStore() {
   }
 
   function downloadGraph(graphName) {
+    loadInProgress = true;
     currentGraphName = graphName;
     loadGraph(graphName, reportProgress).then(loadComplete);
   }
