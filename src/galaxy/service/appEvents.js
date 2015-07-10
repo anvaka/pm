@@ -27,6 +27,11 @@ export default eventMirror([
   'linksDownloaded',
 
   /**
+   * Fired when entire graph is downloaded
+   */
+  'graphDownloaded',
+
+  /**
    * Fired when new galaxy page is opened and graph download is required
    */
   'downloadGraphRequested',

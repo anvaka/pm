@@ -1,8 +1,13 @@
 import React from 'react';
+import appEvents from './service/appEvents.js';
+
 export default require('maco')(help);
+
 var helpWasShown = false;
 
 function help(x) {
+  var graphDownloaded = false;
+
   x.render = function() {
     if (window.orientation !== undefined) {
       // no need to show help on orientation enabled devices
@@ -11,6 +16,11 @@ function help(x) {
 
     if (helpWasShown) {
       // no need to annoy people
+      return null;
+    }
+
+    if (!graphDownloaded) {
+      // Show help only after all is downloaded
       return null;
     }
 
@@ -75,14 +85,32 @@ function help(x) {
 
   x.componentDidMount = function () {
     if (window.orientation !== undefined) return;
+    appEvents.graphDownloaded.on(showHelpIfNeeded);
+    appEvents.downloadGraphRequested.on(resetHelp);
+
     listenToKeys();
     listenToWheel();
   }
 
   x.componentWillUnmount = function () {
     if (window.orientation !== undefined) return;
+    appEvents.graphDownloaded.off(showHelpIfNeeded);
+    appEvents.downloadGraphRequested.off(resetHelp);
+
     releaseKeyListener();
     releaseWheel();
+  }
+
+  function showHelpIfNeeded() {
+    if (helpWasShown) return;
+    graphDownloaded = true;
+
+    x.forceUpdate();
+  }
+
+  function resetHelp() {
+    graphDownloaded = false;
+    x.forceUpdate();
   }
 
   function handlekey(e) {

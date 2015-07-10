@@ -85,5 +85,6 @@ function sceneStore() {
     loadInProgress = false;
     graph = model;
     api.fire('loadProgress', {});
+    appEvents.graphDownloaded.fire();
   }
 }
