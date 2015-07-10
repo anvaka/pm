@@ -5,6 +5,7 @@ import NodeDetails from './nodeDetails/nodeDetailsView.jsx';
 import SteeringIndicator from './steeringIndicator.jsx';
 import SearchBox from './search/searchBoxView.jsx';
 import NoWebGL from './noWebgl.jsx';
+import Help from './help.jsx';
 
 import WindowCollection from './windows/windowCollectionView.jsx';
 import createNativeRenderer from './native/renderer.js';
@@ -31,6 +32,7 @@ function scene(x) {
         <SteeringIndicator />
         <SearchBox />
         <WindowCollection />
+        <Help />
       </div>
     );
   };

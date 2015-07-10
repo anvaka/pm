@@ -169,10 +169,38 @@ a.list-group-item {
 }
 
 .navigation-help {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.55);
+  padding: 7px;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Roboto', sans-serif;
+  pointer-events: none;
+  h3 {
+    color: white;
+    border-bottom: 1px solid white;
+    padding-bottom: 6px;
+    margin-top: 2px;
+  }
   code {
-    margin: 4px 10px;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 100%;
+    color: white;
+    background-color: inherit;
+  }
+  code.important-key {
+    color: #90EE90;
   }
   td {
     color: #999;
+    text-align: right;
+  }
+  td:nth-child(even) {
+    text-align: left;
+
+  }
+  tr.spacer-row {
+    border-bottom: 10px solid transparent;
   }
 }

@@ -1,56 +1,117 @@
 import React from 'react';
-export default require('maco').template(help);
+export default require('maco')(help);
+var helpWasShown = false;
 
-function help() {
-  return (
-  <div className='container navigation-help'>
-    <h3>How to navigate this graph?</h3>
-    <p className='error-details'>
-      <table><tbody>
-<tr>
-<td align="right"><code>W</code></td>
-<td align="left">Move forward</td>
-<td align="right"><code>Up</code></td>
-<td>Rotate up</td>
-</tr>
-<tr>
-<td align="right"><code>S</code></td>
-<td align="left">Move backward</td>
-<td align="right"><code>Down</code></td>
-<td>Rotate down</td>
-</tr>
-<tr>
-<td align="right"><code>A</code></td>
-<td align="left">Move left</td>
-<td align="right"><code>Left</code></td>
-<td>Rotate left</td>
-</tr>
-<tr>
-<td align="right"><code>D</code></td>
-<td align="left">Move right</td>
-<td align="right"><code>Right</code></td>
-<td>Rotate right</td>
-</tr>
-<tr>
-<td align="right"><code>Q</code></td>
-<td align="left">Roll right</td>
-<td align="right"><code>R</code></td>
-<td>Fly up</td>
-</tr>
-<tr>
-<td align="right"><code>E</code></td>
-<td align="left">Roll left</td>
-<td align="right"><code>F</code></td>
-<td>Fly down</td>
-</tr>
-<tr>
-<td align="right"><code>L</code></td>
-<td align="left">Toggle links</td>
-<td align="right"><code>/</code></td>
-<td>Focus search</td>
-</tr>
-</tbody></table>
-    </p>
-  </div>
-  );
+function help(x) {
+  x.render = function() {
+    if (window.orientation !== undefined) {
+      // no need to show help on orientation enabled devices
+      return null;
+    }
+
+    if (helpWasShown) {
+      // no need to annoy people
+      return null;
+    }
+
+    return (
+        <div className='navigation-help'>
+          <h3>Spaceship operating manual</h3>
+            <table><tbody>
+      <tr>
+        <td colSpan="2"><code className='important-key'>mouse wheel</code></td>
+        <td colSpan="2">show this help</td>
+      </tr>
+      <tr className='spacer-row'>
+        <td colSpan='2'><code className='important-key' >any key</code></td>
+        <td colSpan='2'>hide this help</td>
+      </tr>
+      <tr>
+      <td><code>W</code></td>
+      <td>Move forward</td>
+      <td><code>Up</code></td>
+      <td>Rotate up</td>
+      </tr>
+      <tr>
+      <td><code>S</code></td>
+      <td>Move backward</td>
+      <td><code>Down</code></td>
+      <td>Rotate down</td>
+      </tr>
+      <tr>
+      <td><code>A</code></td>
+      <td>Move left</td>
+      <td><code>Left</code></td>
+      <td>Rotate left</td>
+      </tr>
+      <tr>
+      <td><code>D</code></td>
+      <td>Move right</td>
+      <td><code>Right</code></td>
+      <td>Rotate right</td>
+      </tr>
+      <tr>
+      <td><code>Q</code></td>
+      <td>Roll right</td>
+      <td><code>R</code></td>
+      <td>Fly up</td>
+      </tr>
+      <tr>
+      <td><code>E</code></td>
+      <td>Roll left</td>
+      <td><code>F</code></td>
+      <td>Fly down</td>
+      </tr>
+      <tr>
+      <td><code>L</code></td>
+      <td>Toggle links</td>
+      <td><code>spacebar</code></td>
+      <td>Toggle Steering</td>
+      </tr>
+      </tbody></table>
+        </div>
+        );
+    };
+
+  x.componentDidMount = function () {
+    if (window.orientation !== undefined) return;
+    listenToKeys();
+    listenToWheel();
+  }
+
+  x.componentWillUnmount = function () {
+    if (window.orientation !== undefined) return;
+    releaseKeyListener();
+    releaseWheel();
+  }
+
+  function handlekey(e) {
+    var needsUpdate = !helpWasShown;
+    helpWasShown = true;
+
+    if (needsUpdate) {
+      x.forceUpdate();
+    }
+  }
+
+  function handlewheel(e) {
+    helpWasShown = false;
+    x.forceUpdate();
+  }
+
+  function listenToKeys() {
+    document.body.addEventListener('keydown', handlekey, true);
+  }
+
+  function listenToWheel() {
+    document.body.addEventListener('wheel', handlewheel, true);
+  }
+
+  function releaseKeyListener() {
+    document.body.removeEventListener('keydown', handlekey, true);
+  }
+
+  function releaseWheel() {
+    document.body.removeEventListener('wheel', handlewheel, true);
+  }
 }
