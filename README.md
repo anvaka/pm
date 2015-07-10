@@ -5,8 +5,23 @@ This is supposed to be shown at http://2015.cascadiajs.com/browser/
 
 The slides are available here: http://anvaka.github.io/talks/cascadia2015/#/
 
-I'm keeping it open, since I don't believe people care too much about what I'm
-doing, but if you want to provide feedback - please do so.
+# User controls
+
+|    |    |    |   |
+|---:|:---|---:|---|
+| `W`  | Move forward  | `Up` |Rotate up|
+| `S`  | Move backward  | `Down`  |Rotate down |
+| `A`  | Move left  |`Left`|Rotate left|
+| `D`  | Move right  |`Right` | Rotate right|
+| `Q`  | Roll right  |`R` | Fly up|
+| `E`  | Roll left  |`F` | Fly down|
+| `L`  | Toggle links  | | |
+
+If you are browsing from the phone:
+
+* One finger touch - move forward
+* Two fingers touch - move backward
+* Rotate device to control the view port
 
 # Visualizations
 
@@ -33,7 +48,7 @@ of [galactic-data](https://github.com/anvaka/galactic-data).
 * Indexed by [allnpm](https://github.com/anvaka/allnpm)
 * [Live demo](http://anvaka.github.io/pm/#/galaxy/npm?l=1)
 
-## npm
+## go
 
 * Indexed by [allgo](https://github.com/anvaka/allgo)
 * [Live demo](http://anvaka.github.io/pm/#/galaxy/gosearch?l=1)
