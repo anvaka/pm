@@ -64,6 +64,7 @@ of [galactic-data](https://github.com/anvaka/galactic-data).
 
 ```
 git clone https://github.com/anvaka/pm
+cd pm
 npm i
 npm start
 ```
