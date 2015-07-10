@@ -15,7 +15,7 @@ The slides are available here: http://anvaka.github.io/talks/cascadia2015/#/
 | `D`  | Move right  |`Right` | Rotate right|
 | `Q`  | Roll right  |`R` | Fly up|
 | `E`  | Roll left  |`F` | Fly down|
-| `L`  | Toggle links  | | |
+| `L`  | Toggle links  | `Shift` | Slow down |
 
 If you are browsing from the phone:
 
