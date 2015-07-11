@@ -123,12 +123,16 @@ function help(x) {
   }
 
   function handlewheel(e) {
-    helpWasShown = false;
-    x.forceUpdate();
+    // only show when used on scene
+    if (e.target && e.target.nodeName === 'CANVAS') {
+      helpWasShown = false;
+      x.forceUpdate();
+      appEvents.focusScene.fire();
+    }
   }
 
   function listenToKeys() {
-    document.body.addEventListener('keydown', handlekey, true);
+    document.body.addEventListener('keydown', handlekey);
   }
 
   function listenToWheel() {

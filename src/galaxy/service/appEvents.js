@@ -69,6 +69,7 @@ export default eventMirror([
    'hideNodeListWindow',
    'showDegree',
    'focusOnNode',
+   'focusScene',
    'highlightQuery',
    'queryHighlighted',
    'highlightLinks',

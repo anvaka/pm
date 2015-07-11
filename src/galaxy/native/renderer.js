@@ -45,6 +45,7 @@ function sceneRenderer(container) {
   appEvents.highlightQuery.on(highlightQuery);
   appEvents.highlightLinks.on(highlightLinks);
   appEvents.accelerateNavigation.on(accelarate);
+  appEvents.focusScene.on(focusScene);
   appEvents.cls.on(cls);
 
   appConfig.on('camera', moveCamera);
