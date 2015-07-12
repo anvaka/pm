@@ -12,7 +12,20 @@ The slides are available here: http://anvaka.github.io/talks/cascadia2015/#/
 And links to visualizations are below. Before the links,
 quick keyboard bindings info:
 
-# User controls
+# Operating Manual
+
+Very detailed information about what you, and how to use it is available here:
+[Software Galaxies Documentation](https://github.com/anvaka/pm/tree/master/about#software-galaxies-documentation)
+
+Here I just menion most important navigation information.
+
+### If you are browsing from the phone
+
+* One finger touch - move forward
+* Two fingers touch - move backward
+* Rotate device to control the view port
+
+### If you are browsing from device with keyboard:
 
 |    |    |    |   |
 |---:|:---|---:|---|
@@ -24,11 +37,6 @@ quick keyboard bindings info:
 | `E`  | Roll left  |`F` | Fly down|
 | `L`  | Toggle links  | `Shift` | Hold it to slow down |
 
-If you are browsing from the phone:
-
-* One finger touch - move forward
-* Two fingers touch - move backward
-* Rotate device to control the view port
 
 # Visualizations
 
