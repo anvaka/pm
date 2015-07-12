@@ -13,8 +13,7 @@ that depend on each other.
 
 Some packages are connected by lines. It means one package depend on another.
 Image above shows only very close connections. We can also see all connections,
-but the image becomes obscure by amount of connections. Click on the image below
-to see a video demo:
+but the image becomes obscure by amount of connections.
 
 ![Go packages with edges](https://raw.githubusercontent.com/anvaka/pm/master/images/go_image_all_links.png)
 
@@ -23,7 +22,7 @@ to see a video demo:
 The primary focus of these visualization is exploratory discovery. It works
 best on large monitor, but also works on mobile devices. Use `one finger touch`
 to fly forward, `two fingers touch` to fly backward. Rotate your device
-to look around:
+to look around. Click on the image below to see a video demo:
 
 [![Mobile Navigation in Software Galaxies ](http://img.youtube.com/vi/iWr-4U9tyTM/0.jpg)](http://www.youtube.com/watch?v=iWr-4U9tyTM)
 
