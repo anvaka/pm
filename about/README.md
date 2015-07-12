@@ -13,7 +13,8 @@ that depend on each other.
 
 Some packages are connected by lines. It means one package depend on another.
 Image above shows only very close connections. We can also see all connections,
-but the image becomes obscure by amount of connections:
+but the image becomes obscure by amount of connections. Click on the image below
+to see a video demo:
 
 ![Go packages with edges](https://raw.githubusercontent.com/anvaka/pm/master/images/go_image_all_links.png)
 
