@@ -19,7 +19,7 @@ but the image becomes obscure by amount of connections.
 
 ## Navigating in the space
 
-The primary focus of these visualization is exploratory discovery. It works
+The primary focus of these visualizations is exploratory discovery. It works
 best on large monitor, but also works on mobile devices. Use `one finger touch`
 to fly forward, `two fingers touch` to fly backward. Rotate your device
 to look around. Click on the image below to see a video demo:
