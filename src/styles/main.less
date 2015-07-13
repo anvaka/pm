@@ -1,3 +1,4 @@
+// todo: remove duplication, refactor
 @import "~bootstrap/less/bootstrap";
 @import "./variables.less";
 @import "./steering.less";
@@ -65,22 +66,32 @@ h4 {
 
 .window-title {
   strong {
-    color: white;
+    color: @foreground;
     font-weight: normal;
     font-size: 1.2em;
   }
   .node-name {
-    color: white;
+    color: @foreground;
   }
 }
 
-.loading {
-  color: #ffffff;
-  position: absolute;
+.label {
+  color: @foreground;
   background: @background;
+  position: absolute;
   z-index: 1;
+}
+
+.loading {
+  padding: 10px;
+  left: 10px;
+  top: 48px;
+}
+
+.about {
   padding: 10px;
   right: 10px;
+  top: 0px;
 }
 
 @media (max-width: @screen-sm-min) {
@@ -93,7 +104,7 @@ h4 {
 .node-hover-tooltip {
   position: absolute;
   background: rgba(0, 0, 0, 0.8);
-  color: white;
+  color: @foreground;
   padding: 4px 10px;;
   pointer-events: none;
   min-width: 200px;
@@ -128,7 +139,7 @@ h4 {
   right: -20px;
   bottom: 10px;
   height: 150px;
-  color: white;
+  color: @foreground;
   padding: 4px;
   pointer-events: none;
   width: 220px;
@@ -147,6 +158,13 @@ h4 {
     float: none;
 }
 
+a.reset-color,
+a.reset-color:hover,
+a.reset-color:focus {
+  text-decoration: none;
+  color: inherit;
+}
+
 a.list-group-item:hover, a.list-group-item:focus {
   text-decoration: none;
   color: #FF008C;
@@ -155,7 +173,7 @@ a.list-group-item:hover, a.list-group-item:focus {
 }
 
 a.list-group-item {
-  color: white;
+  color: @foreground;
   background-color: black;
   border: none;
 }
@@ -178,7 +196,7 @@ a.list-group-item {
   font-family: 'Roboto', sans-serif;
   pointer-events: none;
   h3 {
-    color: white;
+    color: @foreground;
     border-bottom: 1px solid white;
     padding-bottom: 6px;
     margin-top: 2px;
@@ -186,7 +204,7 @@ a.list-group-item {
   code {
     font-family: 'PT Sans', sans-serif;
     font-size: 100%;
-    color: white;
+    color: @foreground;
     background-color: inherit;
   }
   code.important-key {

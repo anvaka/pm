@@ -8,7 +8,7 @@ function loadingIndicator(x) {
 
   x.render = function() {
     return scene.isLoading() ?
-        <div className='loading'>{loadingMessage}</div> :
+        <div className='label loading'>{loadingMessage}</div> :
         null;
   }
 
