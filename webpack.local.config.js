@@ -49,7 +49,8 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     // extract inline css into separate 'styles.css'
-    new ExtractTextPlugin('styles.css', {allChunks: true})
+    new ExtractTextPlugin('styles.css', {allChunks: true}),
+    new webpack.optimize.DedupePlugin()
   ],
 
   // Automatically transform files with these extensions

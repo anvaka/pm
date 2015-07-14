@@ -3,6 +3,7 @@
  */
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var path = require('path');
+var webpack = require('webpack');
 
 module.exports = {
   entry: "./src/main",
@@ -27,7 +28,8 @@ module.exports = {
   },
 
   plugins: [
-    new ExtractTextPlugin('styles.css', { allChunks: true })
+    new ExtractTextPlugin('styles.css', { allChunks: true }),
+    new webpack.optimize.DedupePlugin()
   ],
   resolveLoader: {
     root:
