@@ -45,7 +45,11 @@ function graph(rawGraphLoaderData) {
     if (!regex) return no;
 
     return function (i, labels, outLinks, inLinks, pos) {
-      return labels[i].match(regex);
+      var label = labels[i];
+      if (typeof label === 'string') {
+        return label.match(regex);
+      }
+      return label.toString().match(regex);
     }
   }
 
