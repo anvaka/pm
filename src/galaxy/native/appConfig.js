@@ -16,6 +16,7 @@ export default appConfig();
 
 function appConfig() {
   var hashConfig = parseFromHash(window.location.hash);
+  var hashUpdate; // async hash update id
 
   var api = {
     getCameraPosition: getCameraPosition,
@@ -85,14 +86,14 @@ function appConfig() {
         same(lookAt, hashConfig.lookAt) &&
         lookAt.w === hashConfig.lookAt.w) return;
 
-    hashConfig.pos.x = Math.round(pos.x);
-    hashConfig.pos.y = Math.round(pos.y);
-    hashConfig.pos.z = Math.round(pos.z);
+    hashConfig.pos.x = pos.x;
+    hashConfig.pos.y = pos.y;
+    hashConfig.pos.z = pos.z;
 
-    hashConfig.lookAt.x = lookAt.x.toFixed(4);
-    hashConfig.lookAt.y = lookAt.y.toFixed(4);
-    hashConfig.lookAt.z = lookAt.z.toFixed(4);
-    hashConfig.lookAt.w = lookAt.w.toFixed(4);
+    hashConfig.lookAt.x = lookAt.x;
+    hashConfig.lookAt.y = lookAt.y;
+    hashConfig.lookAt.z = lookAt.z;
+    hashConfig.lookAt.w = lookAt.w;
 
     updateHash();
   }
@@ -102,22 +103,35 @@ function appConfig() {
     var pos = hashConfig.pos;
     var lookAt = hashConfig.lookAt;
     var hash = '#/galaxy/' + name +
-      '?cx=' + pos.x  +
-      '&cy=' + pos.y +
-      '&cz=' + pos.z +
-      '&lx=' + lookAt.x +
-      '&ly=' + lookAt.y +
-      '&lz=' + lookAt.z +
-      '&lw=' + lookAt.w +
+      '?cx=' + Math.round(pos.x) +
+      '&cy=' + Math.round(pos.y) +
+      '&cz=' + Math.round(pos.z) +
+      '&lx=' + lookAt.x.toFixed(4) +
+      '&ly=' + lookAt.y.toFixed(4) +
+      '&lz=' + lookAt.z.toFixed(4) +
+      '&lw=' + lookAt.w.toFixed(4) +
       '&ml=' + hashConfig.maxVisibleDistance +
       '&s=' + hashConfig.scale +
       '&l=' + (hashConfig.showLinks ? '1' : '0');
 
-    if (window.history) {
-      window.history.replaceState(undefined, undefined, hash);
-    } else {
-      window.location.replace(hash);
+    setHash(hash);
+  }
+
+  function setHash(hash) {
+    // I noticed Chrome address string becomes very slow if we update URL too
+    // often. Thus, I'm adding small throttling here.
+    if (hashUpdate) {
+      window.clearTimeout(hashUpdate);
     }
+
+    hashUpdate = setTimeout(function() {
+      if (window.history) {
+        window.history.replaceState(undefined, undefined, hash);
+      } else {
+        window.location.replace(hash);
+      }
+      hashUpdate = null;
+    }, 400);
   }
 
   function same(v1, v2) {

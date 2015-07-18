@@ -36,7 +36,7 @@ function sceneRenderer(container) {
   var renderer, positions, graphModel, touchControl;
   var hitTest, lastHighlight, lastHighlightSize, cameraPosition;
   var lineView, links, lineViewNeedsUpdate;
-  var queryUpdateId = setInterval(updateQuery, 300);
+  var queryUpdateId = setInterval(updateQuery, 200);
 
   appEvents.positionsDownloaded.on(setPositions);
   appEvents.linksDownloaded.on(setLinks);
