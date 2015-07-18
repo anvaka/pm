@@ -89,10 +89,10 @@ function appConfig() {
     hashConfig.pos.y = Math.round(pos.y);
     hashConfig.pos.z = Math.round(pos.z);
 
-    hashConfig.lookAt.x = lookAt.x;
-    hashConfig.lookAt.y = lookAt.y;
-    hashConfig.lookAt.z = lookAt.z;
-    hashConfig.lookAt.w = lookAt.w;
+    hashConfig.lookAt.x = lookAt.x.toFixed(4);
+    hashConfig.lookAt.y = lookAt.y.toFixed(4);
+    hashConfig.lookAt.z = lookAt.z.toFixed(4);
+    hashConfig.lookAt.w = lookAt.w.toFixed(4);
 
     updateHash();
   }
