@@ -149,13 +149,9 @@ function sceneRenderer(container) {
       var degree = inLinks[i];
       if (degree) {
         sizes[i] = ((200 / maxInDegree) * degree.length + 15);
-      } else if (!outLinks[i]) {
-        // This is isolate node, let's make it larger than usual:
-        sizes[i] = 60;
+      } else {
+        sizes[i] = 30;
       }
-      // else {
-      //   sizes[i] = 30;
-      // }
     }
     view.sizes(sizes);
   }
