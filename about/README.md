@@ -1,6 +1,6 @@
 # Software Galaxies Documentation
 
-Software Galaxies visualizes dependencies among most popular package managers.
+[Software Galaxies](https://anvaka.github.io/pm/#/) visualizes dependencies among most popular package managers.
 Every star in this visualization represents a package.
 
 ## What do I see here?
