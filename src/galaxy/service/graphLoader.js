@@ -57,14 +57,29 @@ function loadGraph(name, progress) {
   }
 
   function loadManifest() {
-    return request(galaxyEndpoint + '/manifest.json', {
+    return request(galaxyEndpoint + '/manifest.json?nocache=' + (+new Date()), {
       responseType: 'json'
     }).then(setManifest);
   }
 
   function setManifest(response) {
     manifest = response;
-    galaxyEndpoint += '/' + manifest.last;
+    var version = getFromAppConfig(manifest) || manifest.last;
+    galaxyEndpoint += '/' + version;
+    appConfig.setManifestVersion(version);
+  }
+
+  function getFromAppConfig(manifest) {
+    var appConfigVersion = appConfig.getManifestVersion();
+    var approvedVersions = manifest && manifest.all;
+
+    // default to the last version:
+    if (!approvedVersions || !appConfigVersion) return;
+
+    // If this version is whitelised, let it through:
+    if (approvedVersions.indexOf(appConfigVersion) >= 0) {
+      return appConfigVersion;
+    }
   }
 
   function loadPositions() {

@@ -9,7 +9,8 @@ var defaultConfig = {
   lookAt: {x: 0, y: 0, z: 0, w: 1},
   showLinks: true,
   maxVisibleDistance: 150,
-  scale: 1.75
+  scale: 1.75,
+  manifestVersion: 0
 };
 
 export default appConfig();
@@ -25,7 +26,9 @@ function appConfig() {
     getScaleFactor: getScaleFactor,
     getMaxVisibleEdgeLength: getMaxVisibleEdgeLength,
     setCameraConfig: setCameraConfig,
-    setShowLinks: setShowLinks
+    setShowLinks: setShowLinks,
+    getManifestVersion: getManifestVersion,
+    setManifestVersion: setManifestVersion
   };
 
   appEvents.toggleLinks.on(toggleLinks);
@@ -37,6 +40,10 @@ function appConfig() {
 
   function getScaleFactor() {
     return hashConfig.scale;
+  }
+
+  function getManifestVersion() {
+    return hashConfig.manifestVersion;
   }
 
   function getMaxVisibleEdgeLength() {
@@ -72,6 +79,7 @@ function appConfig() {
     if (showLinksChanged) {
       setShowLinks(currentHashConfig.showLinks);
     }
+    setManifestVersion(currentHashConfig.manifestVersion);
   }
 
   function setShowLinks(linksVisible) {
@@ -79,6 +87,16 @@ function appConfig() {
     hashConfig.showLinks = linksVisible;
     api.fire('showLinks');
     updateHash();
+  }
+
+  function setManifestVersion(version) {
+    if (version === hashConfig.manifestVersion) return;
+    hashConfig.manifestVersion = version;
+
+    updateHash();
+
+    var name = scene.getGraphName();
+    appEvents.downloadGraphRequested.fire(name);
   }
 
   function setCameraConfig(pos, lookAt) {
@@ -112,7 +130,8 @@ function appConfig() {
       '&lw=' + lookAt.w.toFixed(4) +
       '&ml=' + hashConfig.maxVisibleDistance +
       '&s=' + hashConfig.scale +
-      '&l=' + (hashConfig.showLinks ? '1' : '0');
+      '&l=' + (hashConfig.showLinks ? '1' : '0') +
+      '&v=' + hashConfig.manifestVersion;
 
     setHash(hash);
   }
@@ -168,7 +187,8 @@ function appConfig() {
       lookAt: normalize(lookAt),
       showLinks: showLinks,
       maxVisibleDistance: getNumber(query.ml, defaultConfig.maxVisibleDistance),
-      scale: getNumber(query.s, defaultConfig.scale)
+      scale: getNumber(query.s, defaultConfig.scale),
+      manifestVersion: query.v || defaultConfig.manifestVersion
     };
   }
 }
