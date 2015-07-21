@@ -42,8 +42,14 @@ function request(url, options) {
         reject(`Unexpected status code ${req.status} when calling ${url}`);
         return;
       }
+      var response = req.response;
 
-      resolve(req.response);
+      if (options.responseType === 'json' && typeof response === 'string') {
+        // IE
+        response = JSON.parse(response);
+      }
+
+      resolve(response);
     }
 
     function transferFailed() {
