@@ -3,7 +3,7 @@
 This repository combines visualizations of major software package managers.
 This is supposed to be shown at http://2015.cascadiajs.com/browser/
 
-**After conference update**
+**After conference update** - [**video**](https://www.youtube.com/watch?v=vZ6Yhlxv7Os)
 
 Friends, you are awesome! I can't express how much I appreciate all your 
 kind words and warm feedback. It really means a world for me. Thank you!
