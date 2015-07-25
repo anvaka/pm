@@ -1,44 +1,21 @@
 # Software Galaxies
 
 This repository combines visualizations of major software package managers.
-This is supposed to be shown at http://2015.cascadiajs.com/browser/
 
-**After conference update** - [**video**](https://www.youtube.com/watch?v=vZ6Yhlxv7Os)
+All visualizations are available here: http://anvaka.github.io/pm/#/
 
-Friends, you are awesome! I can't express how much I appreciate all your 
+Please read [operating manual](https://github.com/anvaka/pm/tree/master/about#software-galaxies-documentation) -
+it is short and describes basic navigation principles.
+
+Repostiory was create for my talk at [CascadiaJS 2015](http://2015.cascadiajs.com/browser/)
+
+**After conference update** - [**video**](https://www.youtube.com/watch?v=vZ6Yhlxv7Os) -
+[slides](http://anvaka.github.io/talks/cascadia2015/#/)
+
+Friends, you are awesome! I can't express how much I appreciate all your
 kind words and warm feedback. It really means a world for me. Thank you!
 
-The slides are available here: http://anvaka.github.io/talks/cascadia2015/#/
-And links to visualizations are below. Before the links,
-quick keyboard bindings info:
-
-# Operating Manual
-
-Very detailed information about what you, and how to use it is available here:
-[Software Galaxies Documentation](https://github.com/anvaka/pm/tree/master/about#software-galaxies-documentation)
-
-Here I just menion most important navigation information.
-
-### If you are browsing from the phone
-
-* One finger touch - move forward
-* Two fingers touch - move backward
-* Rotate device to control the view port
-
-### If you are browsing from device with keyboard:
-
-|    |    |    |   |
-|---:|:---|---:|---|
-| `W`  | Move forward  | `Up` |Rotate up|
-| `S`  | Move backward  | `Down`  |Rotate down |
-| `A`  | Move left  |`Left`|Rotate left|
-| `D`  | Move right  |`Right` | Rotate right|
-| `Q`  | Roll right  |`R` | Fly up|
-| `E`  | Roll left  |`F` | Fly down|
-| `L`  | Toggle links  | `Shift` | Hold it to slow down |
-
-
-# Visualizations
+# Individual Visualizations
 
 Each graph is indexed individually, and data is pushed to `gh-pages` branch
 of [galactic-data](https://github.com/anvaka/galactic-data).
@@ -68,6 +45,11 @@ of [galactic-data](https://github.com/anvaka/galactic-data).
 * Indexed by [allgo](https://github.com/anvaka/allgo)
 * [Live demo](http://anvaka.github.io/pm/#/galaxy/gosearch?l=1)
 
+## R language
+
+* Indexed by [allcran](https://github.com/anvaka/allcran)
+* [Live demo](http://anvaka.github.io/pm/#/galaxy/cran?cx=-2482&cy=-5685&cz=-291&lx=0.2264&ly=-0.6790&lz=0.4330&lw=0.5480&ml=200&s=2.75&l=1&v=2015-07-24T23-30-00Z)
+
 # local development
 
 ```
@@ -77,7 +59,7 @@ npm i
 npm start
 ```
 
-This will start local development sever with auto-rebuild. 
+This will start local development sever with auto-rebuild.
 
 ## Your own graphs
 
@@ -87,7 +69,11 @@ is smaller than 10k nodes, consider using [ngraph.pixel](https://github.com/anva
 or [VivaGraph](https://github.com/anvaka/VivaGraphJS) both should
 be able to provide interactive layout.
 
-If your graphs are larger than this, then keep reading.
+If you have an interesting graph but don't have javascript experience,
+please feel free to reach out to me and I'll try to make visualization
+for you (my email `anvaka@gmail.com`).
+
+Otherwise, if you want to hack on your own, please keep reading.
 
 ### Graph
 
@@ -108,7 +94,7 @@ packages to see more examples.
 If your graph is much larger than 200k nodes, then consider using
 [ngraph.native](https://github.com/anvaka/ngraph.native) - this module
 is harder to work with (as it requires C++ knowledge), but it is much
-faster. 
+faster.
 
 The secret GitHub visualization is using [ngraph.native](https://github.com/anvaka/ngraph.native).
 
