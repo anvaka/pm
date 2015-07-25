@@ -1,8 +1,13 @@
+/**
+ * TODO: I need something better than this. Manually changing template is
+ * very inconvenient :(. Should it be defined with metadata?
+ */
 import npm from './npm.jsx';
 import gosearch from './gosearch.jsx';
 import bower from './bower.jsx';
 import composer from './composer.jsx';
 import rubygems from './rubygems.jsx';
+import cran from './cran.jsx';
 
 import github from './github.jsx';
 
@@ -15,5 +20,6 @@ export default {
   composer: composer,
   rubygems: rubygems,
   github: github,
+  cran: cran,
   default: defaultTempalte
 }
