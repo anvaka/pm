@@ -91,8 +91,8 @@ function appConfig() {
 
   function setManifestVersion(version) {
     if (version === hashConfig.manifestVersion) return;
+    hashConfig = parseFromHash(window.location.hash);
     hashConfig.manifestVersion = version;
-
     updateHash();
 
     var name = scene.getGraphName();
@@ -117,6 +117,8 @@ function appConfig() {
   }
 
   function updateHash() {
+    // TODO: This needs to be rewritten. It should not update all fields,
+    // only those that modified.
     var name = scene.getGraphName();
     var pos = hashConfig.pos;
     var lookAt = hashConfig.lookAt;
