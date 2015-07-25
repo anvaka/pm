@@ -9,6 +9,8 @@ function galaxyPage(x) {
   var currentPath;
 
   x.render = function() {
+    // This doesn't seem to belong here. The whole routing system is a mess
+    // TODO: Come up with better routing
     loadGraphIfRouteChanged();
 
     return (
@@ -20,9 +22,6 @@ function galaxyPage(x) {
   }
 
   function loadGraphIfRouteChanged() {
-    // FIXME: This will cause double load when user clicks back and forward
-    // history buttons. appConfig is also listening to manifest change events
-    // and will conflict with this one
     var routeChanged = x.props.params.name !== currentPath;
     if (routeChanged) {
       currentPath = x.props.params.name;
