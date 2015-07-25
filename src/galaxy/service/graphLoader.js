@@ -37,7 +37,8 @@ function loadGraph(name, progress) {
   var inLinks = [];
 
   // todo: handle errors
-  var galaxyEndpoint = config.dataUrl + name;
+  var manifestEndpoint = config.dataUrl + name;
+  var galaxyEndpoint = manifestEndpoint;
 
   var manifest;
 
@@ -57,7 +58,7 @@ function loadGraph(name, progress) {
   }
 
   function loadManifest() {
-    return request(galaxyEndpoint + '/manifest.json?nocache=' + (+new Date()), {
+    return request(manifestEndpoint + '/manifest.json?nocache=' + (+new Date()), {
       responseType: 'json'
     }).then(setManifest);
   }
@@ -65,6 +66,13 @@ function loadGraph(name, progress) {
   function setManifest(response) {
     manifest = response;
     var version = getFromAppConfig(manifest) || manifest.last;
+    if (manifest.endpoint) {
+      // the endpoint is overriden. Since we trust manifest endpoint, we also
+      // trust overidden endpoint:
+      galaxyEndpoint = manifest.endpoint;
+    } else {
+      galaxyEndpoint = manifestEndpoint;
+    }
     galaxyEndpoint += '/' + version;
     appConfig.setManifestVersion(version);
   }
