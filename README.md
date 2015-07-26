@@ -7,7 +7,7 @@ All visualizations are available here: http://anvaka.github.io/pm/#/
 Please read [operating manual](https://github.com/anvaka/pm/tree/master/about#software-galaxies-documentation) -
 it is short and describes basic navigation principles.
 
-Repostiory was create for my talk at [CascadiaJS 2015](http://2015.cascadiajs.com/browser/)
+Repository was create for my talk at [CascadiaJS 2015](http://2015.cascadiajs.com/browser/)
 
 **After conference update** - [**video**](https://www.youtube.com/watch?v=vZ6Yhlxv7Os) -
 [slides](http://anvaka.github.io/talks/cascadia2015/#/)
@@ -48,7 +48,12 @@ of [galactic-data](https://github.com/anvaka/galactic-data).
 ## R language
 
 * Indexed by [allcran](https://github.com/anvaka/allcran)
-* [Live demo](http://anvaka.github.io/pm/#/galaxy/cran?cx=-2482&cy=-5685&cz=-291&lx=0.2264&ly=-0.6790&lz=0.4330&lw=0.5480&ml=200&s=2.75&l=1&v=2015-07-24T23-30-00Z)
+* [Live demo](http://anvaka.github.io/pm/#/galaxy/cran?cx=-2482&cy=-5685&cz=-291&lx=0.2264&ly=-0.6790&lz=0.4330&lw=0.5480&ml=200&s=2.75&l=1)
+
+## Homebrew
+
+* Indexed by [allbrew](https://github.com/anvaka/allbrew)
+* [Live demo](http://anvaka.github.io/pm/#/galaxy/brew?cx=-803&cy=-3622&cz=-1640&lx=0.3774&ly=-0.7360&lz=0.4338&lw=0.3573&ml=200&s=2.75&l=1)
 
 # local development
 
@@ -71,7 +76,7 @@ be able to provide interactive layout.
 
 If you have an interesting graph but don't have javascript experience,
 please feel free to reach out to me and I'll try to make visualization
-for you (my email `anvaka@gmail.com`).
+for you (my email is `anvaka@gmail.com`).
 
 Otherwise, if you want to hack on your own, please keep reading.
 
