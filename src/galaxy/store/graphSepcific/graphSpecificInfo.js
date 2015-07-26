@@ -5,8 +5,10 @@ function graphSpecificInfo(graphName) {
     case 'npm':
     case 'bower':
     case 'cpan':
+    case 'cran':
     case 'composer':
     case 'rubygems':
+    case 'brew':
       return new PackagesGraph(graphName);
     case 'gosearch':
       return new GoGraph(graphName);

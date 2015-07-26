@@ -22,9 +22,11 @@ function getDegreeName(connectionType, count) {
     case 'npm':
     case 'bower':
     case 'cpan':
+    case 'cran':
     case 'composer':
     case 'rubygems':
     case 'gosearch':
+    case 'brew':
       return dependencyName(connectionType, count);
     case 'github':
       return followerName(connectionType, count);

@@ -8,6 +8,7 @@ import bower from './bower.jsx';
 import composer from './composer.jsx';
 import rubygems from './rubygems.jsx';
 import cran from './cran.jsx';
+import brew from './brew.jsx';
 
 import github from './github.jsx';
 
@@ -21,5 +22,6 @@ export default {
   rubygems: rubygems,
   github: github,
   cran: cran,
+  brew: brew,
   default: defaultTempalte
 }
