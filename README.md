@@ -45,6 +45,11 @@ of [galactic-data](https://github.com/anvaka/galactic-data).
 * Indexed by [allgo](https://github.com/anvaka/allgo)
 * [Live demo](http://anvaka.github.io/pm/#/galaxy/gosearch?l=1)
 
+## Debian
+
+* Indexed by [alldebian](https://github.com/anvaka/alldebian)
+* [Live demo](https://anvaka.github.io/pm/#/galaxy/debian?cx=-201&cy=-6170&cz=-6841&lx=0.5676&ly=-0.7456&lz=0.2400&lw=0.2536&ml=150&s=1.75&l=1)
+
 ## R language
 
 * Indexed by [allcran](https://github.com/anvaka/allcran)
