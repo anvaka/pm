@@ -9,6 +9,7 @@ import composer from './composer.jsx';
 import rubygems from './rubygems.jsx';
 import cran from './cran.jsx';
 import brew from './brew.jsx';
+import debian from './debian.jsx';
 
 import github from './github.jsx';
 
@@ -23,5 +24,6 @@ export default {
   github: github,
   cran: cran,
   brew: brew,
+  debian: debian,
   default: defaultTempalte
 }

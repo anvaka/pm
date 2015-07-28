@@ -8,6 +8,7 @@ function graphSpecificInfo(graphName) {
     case 'cran':
     case 'composer':
     case 'rubygems':
+    case 'debian':
     case 'brew':
       return new PackagesGraph(graphName);
     case 'gosearch':
