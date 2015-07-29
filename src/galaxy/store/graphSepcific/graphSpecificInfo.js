@@ -9,6 +9,7 @@ function graphSpecificInfo(graphName) {
     case 'composer':
     case 'rubygems':
     case 'debian':
+    case 'arch':
     case 'brew':
       return new PackagesGraph(graphName);
     case 'gosearch':
