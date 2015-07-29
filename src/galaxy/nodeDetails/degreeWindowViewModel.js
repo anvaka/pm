@@ -27,6 +27,7 @@ function getDegreeName(connectionType, count) {
     case 'rubygems':
     case 'gosearch':
     case 'debian':
+    case 'arch':
     case 'brew':
       return dependencyName(connectionType, count);
     case 'github':
