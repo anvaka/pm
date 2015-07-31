@@ -20,45 +20,62 @@ kind words and warm feedback. It really means a world for me. Thank you!
 Each graph is indexed individually, and data is pushed to `gh-pages` branch
 of [galactic-data](https://github.com/anvaka/galactic-data).
 
-## Bower
-
-* Indexed by [allbower](https://github.com/anvaka/allbower)
-* [Live demo](http://anvaka.github.io/pm/#/galaxy/bower?l=1)
-
-## PHP Composer
-
-* Indexed by [allcomposer](https://github.com/anvaka/allcomposer)
-* [Live demo](http://anvaka.github.io/pm/#/galaxy/composer?l=1)
-
-## Ruby gems
-
-* Indexed by [allgems](https://github.com/anvaka/allgems)
-* [Live demo](http://anvaka.github.io/pm/#/galaxy/rubygems?l=1)
-
-## npm
-
-* Indexed by [allnpm](https://github.com/anvaka/allnpm)
-* [Live demo](http://anvaka.github.io/pm/#/galaxy/npm?l=1)
-
-## go
-
-* Indexed by [allgo](https://github.com/anvaka/allgo)
-* [Live demo](http://anvaka.github.io/pm/#/galaxy/gosearch?l=1)
-
-## Debian
-
-* Indexed by [alldebian](https://github.com/anvaka/alldebian)
-* [Live demo](https://anvaka.github.io/pm/#/galaxy/debian?cx=-201&cy=-6170&cz=-6841&lx=0.5676&ly=-0.7456&lz=0.2400&lw=0.2536&ml=150&s=1.75&l=1)
-
-## R language
-
-* Indexed by [allcran](https://github.com/anvaka/allcran)
-* [Live demo](http://anvaka.github.io/pm/#/galaxy/cran?cx=-2482&cy=-5685&cz=-291&lx=0.2264&ly=-0.6790&lz=0.4330&lw=0.5480&ml=200&s=2.75&l=1)
-
-## Homebrew
-
-* Indexed by [allbrew](https://github.com/anvaka/allbrew)
-* [Live demo](http://anvaka.github.io/pm/#/galaxy/brew?cx=-803&cy=-3622&cz=-1640&lx=0.3774&ly=-0.7360&lz=0.4338&lw=0.3573&ml=200&s=2.75&l=1)
+<table>
+  <tbody>
+    <tr>
+      <td align="center">
+        <h3>Bower</h3>
+        <a href="https://github.com/anvaka/allbower">indexer</a> | 
+        <a href="http://anvaka.github.io/pm/#/galaxy/bower?l=1">demo</a>
+      </td>
+      <td align="center">
+        <h3>PHP Composer</h3>
+        <a href="https://github.com/anvaka/allcomposer">indexer</a> | 
+        <a href="http://anvaka.github.io/pm/#/galaxy/composer?l=1">demo</a>
+      </td>
+      <td align="center">
+        <h3>Ruby gems</h3>
+        <a href="https://github.com/anvaka/allgems">indexer</a> | 
+        <a href="http://anvaka.github.io/pm/#/galaxy/rubygems?l=1">demo</a>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <h3>npm</h3>
+        <a href="https://github.com/anvaka/allnpm">indexer</a> | 
+        <a href="http://anvaka.github.io/pm/#/galaxy/npm?l=1">demo</a>
+      </td>
+      <td align="center">
+        <h3>Go</h3>
+        <a href="https://github.com/anvaka/allgo">indexer</a> | 
+        <a href="http://anvaka.github.io/pm/#/galaxy/gosearch?l=1">demo</a>
+      </td>
+      <td align="center">
+        <h3>R language</h3>
+        <a href="https://github.com/anvaka/allcran">indexer</a> | 
+        <a href="http://anvaka.github.io/pm/#/galaxy/cran?cx=-2482&cy=-5685&cz=-291&lx=0.2264&ly=-0.6790&lz=0.4330&lw=0.5480&ml=200&s=2.75&l=1">demo</a>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <h3>Homebrew</h3>
+        <a href="https://github.com/anvaka/allbrew">indexer</a> | 
+        <a href="http://anvaka.github.io/pm/#/galaxy/brew?cx=-803&cy=-3622&cz=-1640&lx=0.3774&ly=-0.7360&lz=0.4338&lw=0.3573&ml=200&s=2.75&l=1">demo</a>
+      </td>
+      <td align="center">
+        <h3>Debian</h3>
+        <a href="https://github.com/anvaka/alldebian">indexer</a> | 
+        <a href="https://anvaka.github.io/pm/#/galaxy/debian?cx=-201&cy=-6170&cz=-6841&lx=0.5676&ly=-0.7456&lz=0.2400&lw=0.2536&ml=150&s=1.75&l=1">demo</a>
+      </td>
+      <td align="center">
+        <h3>Arch Linux</h3>
+        <a href="https://github.com/phiresky/crawl-arch">indexer</a> | 
+        <a href="https://anvaka.github.io/pm/#/galaxy/arch?cx=870&cy=-3968&cz=-2010&lx=0.7695&ly=-0.3554&lz=0.3109&lw=0.4299&ml=150&s=1.75&l=1&v=no-aur">demo (w/o AUR)</a> |
+        <a href="https://anvaka.github.io/pm/#/galaxy/arch?cx=2655&cy=859&cz=7898&lx=0.2160&ly=0.0620&lz=0.8560&lw=0.4656&ml=150&s=1.75&l=1&v=including-aur">demo (w/ AUR)</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 # local development
 
