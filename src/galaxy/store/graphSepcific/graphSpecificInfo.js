@@ -11,6 +11,7 @@ function graphSpecificInfo(graphName) {
     case 'debian':
     case 'arch':
     case 'brew':
+    case 'nuget':
       return new PackagesGraph(graphName);
     case 'gosearch':
       return new GoGraph(graphName);

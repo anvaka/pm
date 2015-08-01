@@ -29,6 +29,7 @@ function getDegreeName(connectionType, count) {
     case 'debian':
     case 'arch':
     case 'brew':
+    case 'nuget':
       return dependencyName(connectionType, count);
     case 'github':
       return followerName(connectionType, count);

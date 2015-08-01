@@ -10,6 +10,7 @@ import rubygems from './rubygems.jsx';
 import cran from './cran.jsx';
 import brew from './brew.jsx';
 import debian from './debian.jsx';
+import nuget from './nuget.jsx';
 
 import github from './github.jsx';
 
@@ -25,5 +26,6 @@ export default {
   cran: cran,
   brew: brew,
   debian: debian,
+  nuget: nuget,
   default: defaultTempalte
 }
