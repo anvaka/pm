@@ -27,9 +27,7 @@ import appConfig from './appConfig.js';
 export default sceneRenderer;
 
 var defaultNodeColor = 0xffffffff;
-var defaultNodeSize = 25;
 
-var highlightNodeSize = defaultNodeSize * 3;
 var highlightNodeColor = 0xff0000ff;
 
 function sceneRenderer(container) {
