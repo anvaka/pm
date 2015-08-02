@@ -76,14 +76,6 @@ of [galactic-data](https://github.com/anvaka/galactic-data).
     </tr>
     <tr>
       <td align="center">
-        <h3>Homebrew</h3>
-        <a href="https://anvaka.github.io/pm/#/galaxy/brew?cx=-803&cy=-3622&cz=-1640&lx=0.3774&ly=-0.7360&lz=0.4338&lw=0.3573&ml=200&s=2.75&l=1">
-          <img src="https://raw.githubusercontent.com/wiki/anvaka/pm/images/brew_fly_first.png">
-        </a><br />
-        <a href="https://github.com/anvaka/allbrew">indexer</a> | 
-        <a href="https://anvaka.github.io/pm/#/galaxy/brew?cx=-803&cy=-3622&cz=-1640&lx=0.3774&ly=-0.7360&lz=0.4338&lw=0.3573&ml=200&s=2.75&l=1">demo</a>
-      </td>
-      <td align="center">
         <h3>Debian</h3>
         <a href="https://anvaka.github.io/pm/#/galaxy/debian?cx=-201&cy=-6170&cz=-6841&lx=0.5676&ly=-0.7456&lz=0.2400&lw=0.2536&ml=150&s=1.75&l=1">
           <img src="https://raw.githubusercontent.com/wiki/anvaka/pm/images/debian_fly_first.png">
@@ -97,10 +89,39 @@ of [galactic-data](https://github.com/anvaka/galactic-data).
           <img src="https://raw.githubusercontent.com/wiki/anvaka/pm/images/archlinux_fly_first.png">
         </a><br />
         <a href="https://github.com/phiresky/crawl-arch">indexer</a> | 
-        <a href="https://anvaka.github.io/pm/#/galaxy/arch?cx=870&cy=-3968&cz=-2010&lx=0.7695&ly=-0.3554&lz=0.3109&lw=0.4299&ml=150&s=1.75&l=1&v=no-aur">demo (w/o AUR)</a> |
-        <a href="https://anvaka.github.io/pm/#/galaxy/arch?cx=2655&cy=859&cz=7898&lx=0.2160&ly=0.0620&lz=0.8560&lw=0.4656&ml=150&s=1.75&l=1&v=including-aur">demo (w/ AUR)</a>
+        <a href="https://anvaka.github.io/pm/#/galaxy/arch?cx=870&cy=-3968&cz=-2010&lx=0.7695&ly=-0.3554&lz=0.3109&lw=0.4299&ml=150&s=1.75&l=1&v=no-aur">demo</a>
+      </td>
+      <td align="center">
+        <h3>Arch Linux + AUR</h3>
+        <a href="https://anvaka.github.io/pm/#/galaxy/arch?cx=870&cy=-3968&cz=-2010&lx=0.7695&ly=-0.3554&lz=0.3109&lw=0.4299&ml=150&s=1.75&l=1&v=including-aur">
+          <img src="https://raw.githubusercontent.com/wiki/anvaka/pm/images/archlinux_aur_fly_first.png">
+        </a><br />
+        <a href="https://github.com/phiresky/crawl-arch">indexer</a> | 
+        <a href="https://anvaka.github.io/pm/#/galaxy/arch?cx=2655&cy=859&cz=7898&lx=0.2160&ly=0.0620&lz=0.8560&lw=0.4656&ml=150&s=1.75&l=1&v=including-aur">demo</a>
       </td>
     </tr>
+    <tr>
+      <td align="center">
+        <h3>NuGet</h3>
+        <a href="https://anvaka.github.io/pm/#/galaxy/nuget?l=1">
+          <img src="https://raw.githubusercontent.com/wiki/anvaka/pm/images/nuget_fly_first.png">
+        </a><br />
+        <a href="https://github.com/anvaka/allnuget">indexer</a> | 
+        <a href="https://anvaka.github.io/pm/#/galaxy/nuget?l=1">demo</a>
+      </td>
+      <td align="center">
+        <h3>Homebrew</h3>
+        <a href="https://anvaka.github.io/pm/#/galaxy/brew?cx=-803&cy=-3622&cz=-1640&lx=0.3774&ly=-0.7360&lz=0.4338&lw=0.3573&ml=200&s=2.75&l=1">
+          <img src="https://raw.githubusercontent.com/wiki/anvaka/pm/images/brew_fly_first.png">
+        </a><br />
+        <a href="https://github.com/anvaka/allbrew">indexer</a> | 
+        <a href="https://anvaka.github.io/pm/#/galaxy/brew?cx=-803&cy=-3622&cz=-1640&lx=0.3774&ly=-0.7360&lz=0.4338&lw=0.3573&ml=200&s=2.75&l=1">demo</a>
+      </td>
+      <td align="center">
+        <h3>Your graph?</h3>
+        Open issue to <a href="https://github.com/anvaka/pm/issues">request your own graph</a>
+      </td>
+    </tr>    
   </tbody>
 </table>
 
