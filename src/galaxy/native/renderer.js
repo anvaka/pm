@@ -40,6 +40,7 @@ function sceneRenderer(container) {
   appEvents.linksDownloaded.on(setLinks);
   appEvents.toggleSteering.on(toggleSteering);
   appEvents.focusOnNode.on(focusOnNode);
+  appEvents.around.on(around);
   appEvents.highlightQuery.on(highlightQuery);
   appEvents.highlightLinks.on(highlightLinks);
   appEvents.accelerateNavigation.on(accelarate);
@@ -99,6 +100,10 @@ function sceneRenderer(container) {
     function highlightFocused() {
       appEvents.selectNode.fire(nodeId);
     }
+  }
+
+  function around(r, x, y, z) {
+    renderer.around(r, x, y, z);
   }
 
   function setPositions(_positions) {

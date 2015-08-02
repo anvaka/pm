@@ -74,6 +74,7 @@ export default eventMirror([
    'queryHighlighted',
    'highlightLinks',
    'cls',
+   'around',
    'queryChanged',
 
    'accelerateNavigation'
