@@ -21,6 +21,8 @@ import request from './request.js';
 import createGraph from './graph.js';
 import appEvents from './appEvents.js';
 import appConfig from '../native/appConfig.js';
+import asyncFor from 'rafor';
+import Promise from 'bluebird';
 
 export default loadGraph;
 
@@ -117,13 +119,15 @@ function loadGraph(name, progress) {
     var links = new Int32Array(buffer);
     var lastArray = [];
     outLinks[0] = lastArray;
+    asyncFor(links, processLink, reportBack);
+    var deffered = defer();
 
-    for (var i = 0; i < links.length; ++i) {
-      if (links[i] < 0) {
-        var srcIndex = -(links[i]) - 1;
+    function processLink(link) {
+      if (link < 0) {
+        var srcIndex = -link - 1;
         lastArray = outLinks[srcIndex] = [];
       } else {
-        var toNode = links[i] - 1;
+        var toNode = link - 1;
         lastArray.push(toNode);
         if (inLinks[toNode] === undefined) {
           inLinks[toNode] = [srcIndex];
@@ -133,7 +137,12 @@ function loadGraph(name, progress) {
       }
     }
 
-    appEvents.linksDownloaded.fire(outLinks, inLinks);
+    function reportBack() {
+      appEvents.linksDownloaded.fire(outLinks, inLinks);
+      deffered.resolve();
+    }
+
+    return deffered.promise;
   }
 
   function loadLabels() {
@@ -157,4 +166,17 @@ function loadGraph(name, progress) {
       });
     };
   }
+}
+
+function defer() {
+    var resolve, reject;
+    var promise = new Promise(function() {
+        resolve = arguments[0];
+        reject = arguments[1];
+    });
+    return {
+        resolve: resolve,
+        reject: reject,
+        promise: promise
+    };
 }
