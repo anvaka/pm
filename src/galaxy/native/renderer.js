@@ -61,9 +61,11 @@ function sceneRenderer(container) {
   function accelarate(isPrecise) {
     var input = renderer.input();
     if (isPrecise) {
-      input.movementSpeed /= 8;
+      input.movementSpeed *= 4;
+      input.rollSpeed *= 4;
     } else {
-      input.movementSpeed *= 8;
+      input.movementSpeed /= 4;
+      input.rollSpeed /= 4;
     }
   }
 
@@ -117,7 +119,6 @@ function sceneRenderer(container) {
       touchControl = createTouchControl(renderer);
       moveCameraInternal();
       var input = renderer.input();
-      input.movementSpeed *= 2.5;
       input.on('move', clearHover);
     }
 
@@ -127,6 +128,17 @@ function sceneRenderer(container) {
     hitTest.on('over', handleOver);
     hitTest.on('click', handleClick);
     hitTest.on('dblclick', handleDblClick);
+    hitTest.on('hitTestReady', adjustMovementSpeed);
+  }
+
+  function adjustMovementSpeed(tree) {
+    var input = renderer.input();
+    if (tree) {
+      var root = tree.getRoot();
+      input.movementSpeed = root.bounds.half * 0.02;
+    } else {
+      input.movementSpeed *= 2;
+    }
   }
 
   function focusScene() {
@@ -211,6 +223,7 @@ function sceneRenderer(container) {
     hitTest.off('over', handleOver);
     hitTest.off('click', handleClick);
     hitTest.off('dblclick', handleDblClick);
+    hitTest.off('hitTestReady', adjustMovementSpeed);
   }
 
   function handleClick(e) {

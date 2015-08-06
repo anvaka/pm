@@ -119,6 +119,7 @@ function loadGraph(name, progress) {
     var links = new Int32Array(buffer);
     var lastArray = [];
     outLinks[0] = lastArray;
+    // TODO: Report progress?
     asyncFor(links, processLink, reportBack);
     var deffered = defer();
 

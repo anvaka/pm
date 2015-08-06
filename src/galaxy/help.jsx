@@ -78,6 +78,12 @@ function help(x) {
       <td><code>spacebar</code></td>
       <td>Toggle Steering</td>
       </tr>
+      <tr>
+      <td><code>shift</code></td>
+      <td>Move faster</td>
+      <td><code></code></td>
+      <td></td>
+      </tr>
       </tbody></table>
         </div>
         );
