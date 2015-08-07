@@ -1,3 +1,11 @@
+/**
+ * This component shows basic navigation help. The idea is to show it only
+ * first time when user opens. All subsequent page opening should not trigger
+ * help screen.
+ *
+ * The only possible way to show help again is by triggerign "show help"
+ * action, which is currently bound to mouse wheel event
+ */
 import React from 'react';
 import appEvents from './service/appEvents.js';
 
