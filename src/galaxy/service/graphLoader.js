@@ -120,12 +120,13 @@ function loadGraph(name, progress) {
     var lastArray = [];
     outLinks[0] = lastArray;
     // TODO: Report progress?
+    var srcIndex;
     asyncFor(links, processLink, reportBack);
     var deffered = defer();
 
     function processLink(link) {
       if (link < 0) {
-        var srcIndex = -link - 1;
+        srcIndex = -link - 1;
         lastArray = outLinks[srcIndex] = [];
       } else {
         var toNode = link - 1;
