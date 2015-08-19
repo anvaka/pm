@@ -37,6 +37,7 @@ If you are on the desktop, you can use `mouse wheel` to bring up keyboard map:
 | `Q`  | Roll right  |`R` | Fly up|
 | `E`  | Roll left  |`F` | Fly down|
 | `L`  | Toggle links  | `Space` | Toggle steering |
+| `Shift`  | Fly faster  |  |  |
 
 I personally prefer to fly with steering mode on (`spacebar` activates it). In
 this mode the spaceship will follow your mouse cursor:
