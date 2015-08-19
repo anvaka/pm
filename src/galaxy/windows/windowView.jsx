@@ -34,11 +34,17 @@ function windowView(x) {
       return <NodeInfoRow key={key} viewModel={vm} />
     }
 
+    function getHeight() {
+      // FIXME: Hardcoding is not good.
+      return 20;
+    }
+
     function content(items) {
       if (items.length > 0) {
           return <ReactList itemRenderer={renderItem}
                     length={items.length}
-                    type='simple'
+                    itemSizeGetter={getHeight}
+                    type='variable'
                     key={id}/>
       } else {
         return null;
