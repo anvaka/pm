@@ -21,7 +21,7 @@ function loadingIndicator(x) {
   }
 
   function updateLoadingIndicator(progress) {
-    loadingMessage = `${progress.name}: ${progress.file} - ${progress.completed}`;
+    loadingMessage = `${progress.message} - ${progress.completed}`;
     x.forceUpdate();
   }
 }

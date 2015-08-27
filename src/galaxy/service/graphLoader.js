@@ -30,7 +30,7 @@ export default loadGraph;
  * @param {string} name of the graph to be downloaded
  * @param {progressCallback} progress notifies when download progress event is
  * received
- * @param {completeCallback} complete notifies when all graph files are downloaed
+ * @param {completeCallback} complete notifies when all graph files are downloaded
  *
  */
 function loadGraph(name, progress) {
@@ -69,8 +69,8 @@ function loadGraph(name, progress) {
     manifest = response;
     var version = getFromAppConfig(manifest) || manifest.last;
     if (manifest.endpoint) {
-      // the endpoint is overriden. Since we trust manifest endpoint, we also
-      // trust overidden endpoint:
+      // the endpoint is overridden. Since we trust manifest endpoint, we also
+      // trust overridden endpoint:
       galaxyEndpoint = manifest.endpoint;
     } else {
       galaxyEndpoint = manifestEndpoint;
@@ -86,7 +86,7 @@ function loadGraph(name, progress) {
     // default to the last version:
     if (!approvedVersions || !appConfigVersion) return;
 
-    // If this version is whitelised, let it through:
+    // If this version is whitelisted, let it through:
     if (approvedVersions.indexOf(appConfigVersion) >= 0) {
       return appConfigVersion;
     }
@@ -119,8 +119,10 @@ function loadGraph(name, progress) {
     var links = new Int32Array(buffer);
     var lastArray = [];
     outLinks[0] = lastArray;
-    // TODO: Report progress?
     var srcIndex;
+    var processed = 0;
+    var total = links.length;
+
     asyncFor(links, processLink, reportBack);
     var deffered = defer();
 
@@ -137,6 +139,17 @@ function loadGraph(name, progress) {
           inLinks[toNode].push(srcIndex);
         }
       }
+      processed += 1;
+      if (processed % 10000 === 0) {
+        reportLinkProgress(processed / total);
+      }
+    }
+
+    function reportLinkProgress(percent) {
+      progress({
+        message: name + ': initializing edges ',
+        completed: Math.round(percent * 100) + '%'
+      });
     }
 
     function reportBack() {
@@ -162,8 +175,7 @@ function loadGraph(name, progress) {
   function reportProgress(name, file) {
     return function(e) {
       progress({
-        name: name,
-        file: file,
+        message: name + ': downloading ' + file,
         completed: Math.round(e.percent * 100) + '%'
       });
     };

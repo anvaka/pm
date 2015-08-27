@@ -144,7 +144,7 @@ is smaller than 10k nodes, consider using [ngraph.pixel](https://github.com/anva
 or [VivaGraph](https://github.com/anvaka/VivaGraphJS) both should
 be able to provide interactive layout.
 
-If you have an interesting graph but don't have javascript experience,
+If you have an interesting graph but don't have JavaScript experience,
 please feel free to reach out to me and I'll try to make visualization
 for you (my email is `anvaka@gmail.com`).
 
