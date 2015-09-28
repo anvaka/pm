@@ -33,6 +33,11 @@ export default class WelcomePage extends React.Component {
                       media='go_fly_first.png'
                       name='Go Search'/>
 
+          <Destination description='Python Package Index'
+                      href='#/galaxy/python?cx=-2700&cy=377&cz=5622&lx=-0.0869&ly=-0.2315&lz=-0.0338&lw=0.9684&ml=150&s=1.75&l=1&v=2015-09-27T13-00-00Z'
+                      media='composer_fly_first.png'
+                      name='Python (PyPI)'/>
+
           <Destination description='Packages from .NET world'
                       href='#/galaxy/nuget?l=1'
                       media='nuget_fly_first.png'
