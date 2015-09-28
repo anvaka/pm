@@ -11,6 +11,7 @@ import cran from './cran.jsx';
 import brew from './brew.jsx';
 import debian from './debian.jsx';
 import nuget from './nuget.jsx';
+import python from './python.jsx';
 
 import github from './github.jsx';
 
@@ -27,5 +28,6 @@ export default {
   brew: brew,
   debian: debian,
   nuget: nuget,
+  python: python,
   default: defaultTempalte
 }

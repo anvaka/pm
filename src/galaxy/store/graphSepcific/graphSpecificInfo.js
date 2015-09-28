@@ -12,6 +12,7 @@ function graphSpecificInfo(graphName) {
     case 'arch':
     case 'brew':
     case 'nuget':
+    case 'python':
       return new PackagesGraph(graphName);
     case 'gosearch':
       return new GoGraph(graphName);
