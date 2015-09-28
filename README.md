@@ -118,6 +118,24 @@ of [galactic-data](https://github.com/anvaka/galactic-data).
         <a href="https://anvaka.github.io/pm/#/galaxy/brew?cx=-803&cy=-3622&cz=-1640&lx=0.3774&ly=-0.7360&lz=0.4338&lw=0.3573&ml=200&s=2.75&l=1">demo</a>
       </td>
       <td align="center">
+        <h3>PyPI</h3>
+        <a href="https://anvaka.github.io/pm/#/galaxy/python?cx=-2700&cy=377&cz=5622&lx=-0.0869&ly=-0.2315&lz=-0.0338&lw=0.9684&ml=150&s=1.75&l=1">
+          <img src="https://raw.githubusercontent.com/wiki/anvaka/pm/images/composer_fly_first.png">
+        </a><br />
+        <a href="https://github.com/anvaka/allpypi">indexer</a> | 
+        <a href="https://anvaka.github.io/pm/#/galaxy/python?cx=-2700&cy=377&cz=5622&lx=-0.0869&ly=-0.2315&lz=-0.0338&lw=0.9684&ml=150&s=1.75&l=1">demo</a>
+      </td>
+    </tr>    
+    <tr>
+      <td align="center">
+        <h3>Your graph?</h3>
+        Open issue to <a href="https://github.com/anvaka/pm/issues">request your own graph</a>
+      </td>
+      <td align="center">
+        <h3>Your graph?</h3>
+        Open issue to <a href="https://github.com/anvaka/pm/issues">request your own graph</a>
+      </td>
+      <td align="center">
         <h3>Your graph?</h3>
         Open issue to <a href="https://github.com/anvaka/pm/issues">request your own graph</a>
       </td>
