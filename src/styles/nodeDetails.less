@@ -1,3 +1,7 @@
+@font-size: 18px;
+@line-height: 1.4;
+@lines-to-show: 2;
+
 .node-details {
   width: 395px;
   left: 16px;
@@ -13,10 +17,21 @@
   color: white;
 
   h4 {
+  display: block; /* Fallback for non-webkit */
+  display: -webkit-box;
+  max-width: 400px;
+  height: @font-size*@line-height*@lines-to-show; /* Fallback for non-webkit */
+  margin: 0 auto;
+  font-size: @font-size;
+  line-height: @line-height;
+  -webkit-line-clamp: @lines-to-show;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
     margin: 0;
     font-family: 'PT Sans', sans-serif;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    // overflow: hidden;
+    // text-overflow: ellipsis;
   }
   h2 {
     margin: 0;
@@ -41,7 +56,7 @@
   }
   .info-block {
     a {
-      font-size: 18px;
+      font-size: @font-size;
     }
   }
 }
