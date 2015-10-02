@@ -53,6 +53,9 @@ export default eventMirror([
    */
   'toggleSteering',
 
+  /**
+   * Fired when user wants to show or hide links
+   */
   'toggleLinks',
 
   /**
@@ -65,6 +68,12 @@ export default eventMirror([
    */
   'commandBarChanged',
 
+  /**
+   * fired when user requesed to show or hide help screen
+   */
+  'toggleHelp',
+
+  // These events are not documented since I'm not sure whether to keep them
    'showNodeListWindow',
    'hideNodeListWindow',
    'showDegree',

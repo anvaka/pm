@@ -8,6 +8,7 @@
  */
 import React from 'react';
 import appEvents from './service/appEvents.js';
+import Key from './utils/key.js';
 
 export default require('maco')(help);
 
@@ -101,6 +102,7 @@ function help(x) {
     if (window.orientation !== undefined) return;
     appEvents.graphDownloaded.on(showHelpIfNeeded);
     appEvents.downloadGraphRequested.on(resetHelp);
+    appEvents.toggleHelp.on(toggleHelp);
 
     listenToKeys();
     listenToWheel();
@@ -110,6 +112,7 @@ function help(x) {
     if (window.orientation !== undefined) return;
     appEvents.graphDownloaded.off(showHelpIfNeeded);
     appEvents.downloadGraphRequested.off(resetHelp);
+    appEvents.toggleHelp.off(toggleHelp);
 
     releaseKeyListener();
     releaseWheel();
@@ -122,12 +125,21 @@ function help(x) {
     x.forceUpdate();
   }
 
+  function toggleHelp() {
+    helpWasShown = !helpWasShown;
+    x.forceUpdate();
+  }
+
   function resetHelp() {
     graphDownloaded = false;
     x.forceUpdate();
   }
 
   function handlekey(e) {
+    if (Key.isModifier(e)) {
+      // ignore modifiers
+      return;
+    }
     var needsUpdate = !helpWasShown;
     helpWasShown = true;
 

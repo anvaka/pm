@@ -6,6 +6,7 @@
 export default sceneKeyboardBinding;
 
 import events from '../service/appEvents.js';
+import Key from '../utils/key.js';
 
 function sceneKeyboardBinding(container) {
   var api = {
@@ -23,12 +24,18 @@ function sceneKeyboardBinding(container) {
   }
 
   function keydown(e) {
-    if (e.which === 32) { // spacebar
+    if (e.which === Key.Space) {
       events.toggleSteering.fire();
-    } else if (e.which === 76) { // L - toggle links
+    } else if (e.which === Key.L) { // L - toggle links
       if (!e.ctrlKey && !e.metaKey) {
         events.toggleLinks.fire();
       }
+    } else if (e.which === Key.H || (e.which === Key['/'] && e.shiftKey)) { // 'h' or '?' key
+      // Need to stop propagation, since help screen attempts to close itself
+      // once user presses any key. We don't want that now, since this is
+      // explicit request to render help
+      e.stopPropagation();
+      events.toggleHelp.fire();
     }
     if (e.shiftKey && !lastShiftKey) {
       lastShiftKey = true;
