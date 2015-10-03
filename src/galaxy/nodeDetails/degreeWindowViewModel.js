@@ -27,6 +27,7 @@ function getDegreeName(connectionType, count) {
     case 'rubygems':
     case 'gosearch':
     case 'debian':
+    case 'fedora':
     case 'arch':
     case 'brew':
     case 'nuget':

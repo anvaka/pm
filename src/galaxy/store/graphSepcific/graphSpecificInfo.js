@@ -9,6 +9,7 @@ function graphSpecificInfo(graphName) {
     case 'composer':
     case 'rubygems':
     case 'debian':
+    case 'fedora':
     case 'arch':
     case 'brew':
     case 'nuget':

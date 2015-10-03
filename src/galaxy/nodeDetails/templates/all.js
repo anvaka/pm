@@ -10,6 +10,7 @@ import rubygems from './rubygems.jsx';
 import cran from './cran.jsx';
 import brew from './brew.jsx';
 import debian from './debian.jsx';
+import fedora from './fedora.jsx';
 import nuget from './nuget.jsx';
 import python from './python.jsx';
 
@@ -27,6 +28,7 @@ export default {
   cran: cran,
   brew: brew,
   debian: debian,
+  fedora: fedora,
   nuget: nuget,
   python: python,
   default: defaultTempalte
