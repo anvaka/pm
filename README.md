@@ -28,7 +28,7 @@ of [galactic-data](https://github.com/anvaka/galactic-data).
         <a href="http://anvaka.github.io/pm/#/galaxy/bower?l=1">
           <img src="https://raw.githubusercontent.com/wiki/anvaka/pm/images/bower_fly_first.png">
         </a><br />
-        <a href="https://github.com/anvaka/allbower">indexer</a> | 
+        <a href="https://github.com/anvaka/allbower">indexer</a> |
         <a href="http://anvaka.github.io/pm/#/galaxy/bower?l=1">demo</a>
       </td>
       <td align="center">
@@ -36,7 +36,7 @@ of [galactic-data](https://github.com/anvaka/galactic-data).
         <a href="http://anvaka.github.io/pm/#/galaxy/composer?l=1">
           <img src="https://raw.githubusercontent.com/wiki/anvaka/pm/images/composer_fly_first.png">
         </a><br />
-        <a href="https://github.com/anvaka/allcomposer">indexer</a> | 
+        <a href="https://github.com/anvaka/allcomposer">indexer</a> |
         <a href="http://anvaka.github.io/pm/#/galaxy/composer?l=1">demo</a>
       </td>
       <td align="center">
@@ -44,7 +44,7 @@ of [galactic-data](https://github.com/anvaka/galactic-data).
         <a href="http://anvaka.github.io/pm/#/galaxy/rubygems?l=1">
           <img src="https://raw.githubusercontent.com/wiki/anvaka/pm/images/ruby_fly_first.png">
         </a><br />
-        <a href="https://github.com/anvaka/allgems">indexer</a> | 
+        <a href="https://github.com/anvaka/allgems">indexer</a> |
         <a href="http://anvaka.github.io/pm/#/galaxy/rubygems?l=1">demo</a>
       </td>
     </tr>
@@ -54,15 +54,15 @@ of [galactic-data](https://github.com/anvaka/galactic-data).
         <a href="http://anvaka.github.io/pm/#/galaxy/npm?l=1">
           <img src="https://raw.githubusercontent.com/wiki/anvaka/pm/images/npm_fly_first.png">
         </a><br />
-        <a href="https://github.com/anvaka/allnpm">indexer</a> | 
+        <a href="https://github.com/anvaka/allnpm">indexer</a> |
         <a href="http://anvaka.github.io/pm/#/galaxy/npm?l=1">demo</a>
       </td>
       <td align="center">
         <h3>Go</h3>
         <a href="http://anvaka.github.io/pm/#/galaxy/gosearch?l=1">
           <img src="https://raw.githubusercontent.com/wiki/anvaka/pm/images/go_fly_first.png">
-        </a><br />        
-        <a href="https://github.com/anvaka/allgo">indexer</a> | 
+        </a><br />
+        <a href="https://github.com/anvaka/allgo">indexer</a> |
         <a href="http://anvaka.github.io/pm/#/galaxy/gosearch?l=1">demo</a>
       </td>
       <td align="center">
@@ -70,7 +70,7 @@ of [galactic-data](https://github.com/anvaka/galactic-data).
         <a href="http://anvaka.github.io/pm/#/galaxy/cran?cx=-2482&cy=-5685&cz=-291&lx=0.2264&ly=-0.6790&lz=0.4330&lw=0.5480&ml=200&s=2.75&l=1">
           <img src="https://raw.githubusercontent.com/wiki/anvaka/pm/images/cran_fly_first.png">
         </a><br />
-        <a href="https://github.com/anvaka/allcran">indexer</a> | 
+        <a href="https://github.com/anvaka/allcran">indexer</a> |
         <a href="http://anvaka.github.io/pm/#/galaxy/cran?cx=-2482&cy=-5685&cz=-291&lx=0.2264&ly=-0.6790&lz=0.4330&lw=0.5480&ml=200&s=2.75&l=1">demo</a>
       </td>
     </tr>
@@ -80,7 +80,7 @@ of [galactic-data](https://github.com/anvaka/galactic-data).
         <a href="https://anvaka.github.io/pm/#/galaxy/debian?cx=-201&cy=-6170&cz=-6841&lx=0.5676&ly=-0.7456&lz=0.2400&lw=0.2536&ml=150&s=1.75&l=1">
           <img src="https://raw.githubusercontent.com/wiki/anvaka/pm/images/debian_fly_first.png">
         </a><br />
-        <a href="https://github.com/anvaka/alldebian">indexer</a> | 
+        <a href="https://github.com/anvaka/alldebian">indexer</a> |
         <a href="https://anvaka.github.io/pm/#/galaxy/debian?cx=-201&cy=-6170&cz=-6841&lx=0.5676&ly=-0.7456&lz=0.2400&lw=0.2536&ml=150&s=1.75&l=1">demo</a>
       </td>
       <td align="center">
@@ -88,7 +88,7 @@ of [galactic-data](https://github.com/anvaka/galactic-data).
         <a href="https://anvaka.github.io/pm/#/galaxy/arch?cx=870&cy=-3968&cz=-2010&lx=0.7695&ly=-0.3554&lz=0.3109&lw=0.4299&ml=150&s=1.75&l=1&v=no-aur">
           <img src="https://raw.githubusercontent.com/wiki/anvaka/pm/images/archlinux_fly_first.png">
         </a><br />
-        <a href="https://github.com/phiresky/crawl-arch">indexer</a> | 
+        <a href="https://github.com/phiresky/crawl-arch">indexer</a> |
         <a href="https://anvaka.github.io/pm/#/galaxy/arch?cx=870&cy=-3968&cz=-2010&lx=0.7695&ly=-0.3554&lz=0.3109&lw=0.4299&ml=150&s=1.75&l=1&v=no-aur">demo</a>
       </td>
       <td align="center">
@@ -96,7 +96,7 @@ of [galactic-data](https://github.com/anvaka/galactic-data).
         <a href="https://anvaka.github.io/pm/#/galaxy/arch?cx=870&cy=-3968&cz=-2010&lx=0.7695&ly=-0.3554&lz=0.3109&lw=0.4299&ml=150&s=1.75&l=1&v=including-aur">
           <img src="https://raw.githubusercontent.com/wiki/anvaka/pm/images/archlinux_aur_fly_first.png">
         </a><br />
-        <a href="https://github.com/phiresky/crawl-arch">indexer</a> | 
+        <a href="https://github.com/phiresky/crawl-arch">indexer</a> |
         <a href="https://anvaka.github.io/pm/#/galaxy/arch?cx=2655&cy=859&cz=7898&lx=0.2160&ly=0.0620&lz=0.8560&lw=0.4656&ml=150&s=1.75&l=1&v=including-aur">demo</a>
       </td>
     </tr>
@@ -106,7 +106,7 @@ of [galactic-data](https://github.com/anvaka/galactic-data).
         <a href="https://anvaka.github.io/pm/#/galaxy/nuget?l=1">
           <img src="https://raw.githubusercontent.com/wiki/anvaka/pm/images/nuget_fly_first.png">
         </a><br />
-        <a href="https://github.com/anvaka/allnuget">indexer</a> | 
+        <a href="https://github.com/anvaka/allnuget">indexer</a> |
         <a href="https://anvaka.github.io/pm/#/galaxy/nuget?l=1">demo</a>
       </td>
       <td align="center">
@@ -114,7 +114,7 @@ of [galactic-data](https://github.com/anvaka/galactic-data).
         <a href="https://anvaka.github.io/pm/#/galaxy/brew?cx=-803&cy=-3622&cz=-1640&lx=0.3774&ly=-0.7360&lz=0.4338&lw=0.3573&ml=200&s=2.75&l=1">
           <img src="https://raw.githubusercontent.com/wiki/anvaka/pm/images/brew_fly_first.png">
         </a><br />
-        <a href="https://github.com/anvaka/allbrew">indexer</a> | 
+        <a href="https://github.com/anvaka/allbrew">indexer</a> |
         <a href="https://anvaka.github.io/pm/#/galaxy/brew?cx=-803&cy=-3622&cz=-1640&lx=0.3774&ly=-0.7360&lz=0.4338&lw=0.3573&ml=200&s=2.75&l=1">demo</a>
       </td>
       <td align="center">
@@ -122,14 +122,18 @@ of [galactic-data](https://github.com/anvaka/galactic-data).
         <a href="https://anvaka.github.io/pm/#/galaxy/python?cx=-2700&cy=377&cz=5622&lx=-0.0869&ly=-0.2315&lz=-0.0338&lw=0.9684&ml=150&s=1.75&l=1">
           <img src="https://raw.githubusercontent.com/wiki/anvaka/pm/images/composer_fly_first.png">
         </a><br />
-        <a href="https://github.com/anvaka/allpypi">indexer</a> | 
+        <a href="https://github.com/anvaka/allpypi">indexer</a> |
         <a href="https://anvaka.github.io/pm/#/galaxy/python?cx=-2700&cy=377&cz=5622&lx=-0.0869&ly=-0.2315&lz=-0.0338&lw=0.9684&ml=150&s=1.75&l=1">demo</a>
       </td>
-    </tr>    
+    </tr>
     <tr>
       <td align="center">
-        <h3>Your graph?</h3>
-        Open issue to <a href="https://github.com/anvaka/pm/issues">request your own graph</a>
+        <h3>Fedora</h3>
+        <a href="https://anvaka.github.io/pm/#/galaxy/fedora?cx=1539&cy=409&cz=7141&lx=0.0164&ly=0.1453&lz=-0.0027&lw=0.9892&ml=150&s=1.75&l=1">
+          <img src="https://raw.githubusercontent.com/wiki/anvaka/pm/images/debian_fly_first.png">
+        </a><br />
+        <a href="https://github.com/shaded-enmity/allfedora">indexer</a> |
+        <a href="https://anvaka.github.io/pm/#/galaxy/fedora?cx=1539&cy=409&cz=7141&lx=0.0164&ly=0.1453&lz=-0.0027&lw=0.9892&ml=150&s=1.75&l=1">demo</a>
       </td>
       <td align="center">
         <h3>Your graph?</h3>
@@ -139,7 +143,7 @@ of [galactic-data](https://github.com/anvaka/galactic-data).
         <h3>Your graph?</h3>
         Open issue to <a href="https://github.com/anvaka/pm/issues">request your own graph</a>
       </td>
-    </tr>    
+    </tr>
   </tbody>
 </table>
 
