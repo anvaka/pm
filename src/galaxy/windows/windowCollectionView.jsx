@@ -1,5 +1,8 @@
+/**
+ * Renders collection of windows
+ */
 import React from 'react';
-import Window from './windowView.jsx';
+import NodeListView from './nodeListView.jsx';
 import windowCollectionModel from './windowCollectionModel.js';
 
 module.exports = require('maco')(windowCollectionView);
@@ -21,7 +24,7 @@ function windowCollectionView(x) {
   }
 
   function toWindowView(windowViewModel, idx) {
-    return <Window viewModel={windowViewModel} key={idx} />;
+    return <NodeListView viewModel={windowViewModel} key={idx} />;
   }
 
   function update() {

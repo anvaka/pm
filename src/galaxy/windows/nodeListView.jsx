@@ -1,12 +1,17 @@
+/**
+ * This component renders list of packages in single window.
+ * There can be multiple lists opened at any time. The list is currently
+ * managed by windowCollectionView
+ */
 import React from 'react';
 import ReactList from 'react-list';
 import WindowTitle from './windowTitle.jsx';
 import NodeInfoRow from './nodeInfoRow.jsx';
 
-module.exports = require('maco')(windowView);
+module.exports = require('maco')(nodeListView);
 var windowId = 0;
 
-function windowView(x) {
+function nodeListView(x) {
   windowId += 1;
 
   x.render = function () {
