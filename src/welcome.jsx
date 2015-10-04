@@ -53,8 +53,8 @@ export default class WelcomePage extends React.Component {
                       media='debian_fly_first.png'
                       name='Debian'/>
 
-          <Destination description='Fedora'
-                      href='/#/galaxy/fedora?cx=1539&cy=409&cz=7141&lx=0.0164&ly=0.1453&lz=-0.0027&lw=0.9892&ml=150&s=1.75&l=1&v=2015-09-02T00-00-00Z'
+          <Destination description='Fedora Packages'
+                      href='#/galaxy/fedora?cx=1539&cy=409&cz=7141&lx=0.0164&ly=0.1453&lz=-0.0027&lw=0.9892&ml=150&s=1.75&l=1&v=2015-09-02T00-00-00Z'
                       media='debian_fly_first.png'
                       name='Fedora'/>
 
