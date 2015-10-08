@@ -132,7 +132,7 @@ of [galactic-data](https://github.com/anvaka/galactic-data).
         <a href="https://anvaka.github.io/pm/#/galaxy/fedora?cx=1539&cy=409&cz=7141&lx=0.0164&ly=0.1453&lz=-0.0027&lw=0.9892&ml=150&s=1.75&l=1">
           <img src="https://raw.githubusercontent.com/wiki/anvaka/pm/images/debian_fly_first.png">
         </a><br />
-        <a href="https://github.com/shaded-enmity/allfedora">indexer</a> |
+        <a href="https://github.com/shaded-enmity/allrpm">indexer</a> |
         <a href="https://anvaka.github.io/pm/#/galaxy/fedora?cx=1539&cy=409&cz=7141&lx=0.0164&ly=0.1453&lz=-0.0027&lw=0.9892&ml=150&s=1.75&l=1">demo</a>
       </td>
       <td align="center">
