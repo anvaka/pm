@@ -17,6 +17,9 @@ but the image becomes obscure by amount of connections.
 
 ![Go packages with edges](https://raw.githubusercontent.com/anvaka/pm/master/images/go_image_all_links.png)
 
+The size of the dots represents total number of dependents. The bigger the star - 
+the more packages are using it.
+
 ## Navigating in the space
 
 The primary focus of these visualizations is exploratory discovery. It works
