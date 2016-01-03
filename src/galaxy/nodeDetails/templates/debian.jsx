@@ -1,6 +1,7 @@
+import React from 'react';
 import commonPackageTemplate from './commonPackageTempalte.jsx';
 
-export default require('maco').template(debian);
+export default require('maco').template(debian, React);
 
 function debian(props) {
   var model = props.model;

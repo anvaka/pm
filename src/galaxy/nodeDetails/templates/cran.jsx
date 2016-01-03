@@ -1,6 +1,7 @@
+import React from 'react';
 import commonPackageTemplate from './commonPackageTempalte.jsx';
 
-export default require('maco').template(cran);
+export default require('maco').template(cran, React);
 
 function cran(props) {
   var model = props.model;

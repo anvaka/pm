@@ -1,7 +1,7 @@
-
+import React from 'react';
 import commonPackageTemplate from './commonPackageTempalte.jsx';
 
-export default require('maco').template(nuget);
+export default require('maco').template(nuget, React);
 
 function nuget(props) {
   var model = props.model;

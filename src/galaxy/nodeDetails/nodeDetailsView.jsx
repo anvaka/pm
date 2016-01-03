@@ -1,10 +1,9 @@
-import detailModel from './nodeDetailsStore.js';
-
 import React from 'react';
+import detailModel from './nodeDetailsStore.js';
 import specialNodeDetails from './templates/all.js';
 import scene from '../store/scene.js';
 
-module.exports = require('maco')(detailedNodeView);
+module.exports = require('maco')(detailedNodeView, React);
 
 function detailedNodeView(x) {
   x.render = function () {
@@ -17,15 +16,15 @@ function detailedNodeView(x) {
         <NodeDetails model={selectedNode} />
       </div>
     );
-  }
+  };
 
   x.componentDidMount = function() {
     detailModel.on('changed', updateView);
-  }
+  };
 
   x.componentWillUnmount = function () {
     detailModel.off('changed', updateView);
-  }
+  };
 
   function getNodeDetails(viewModel) {
     var Template = specialNodeDetails[scene.getGraphName()] || specialNodeDetails.default;

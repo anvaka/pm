@@ -1,6 +1,7 @@
+import React from 'react';
 import commonPackageTemplate from './commonPackageTempalte.jsx';
 
-export default require('maco').template(ruby);
+export default require('maco').template(ruby, React);
 
 function ruby(props) {
   var model = props.model;

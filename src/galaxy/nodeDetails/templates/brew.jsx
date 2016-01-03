@@ -1,6 +1,7 @@
+import React from 'react';
 import commonPackageTemplate from './commonPackageTempalte.jsx';
 
-export default require('maco').template(brew);
+export default require('maco').template(brew, React);
 
 function brew(props) {
   var model = props.model;

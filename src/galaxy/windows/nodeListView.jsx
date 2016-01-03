@@ -8,7 +8,7 @@ import ReactList from 'react-list';
 import WindowTitle from './windowTitle.jsx';
 import NodeInfoRow from './nodeInfoRow.jsx';
 
-module.exports = require('maco')(nodeListView);
+module.exports = require('maco')(nodeListView, React);
 var windowId = 0;
 
 function nodeListView(x) {
@@ -36,7 +36,7 @@ function nodeListView(x) {
 
     function renderItem(idx, key) {
       var vm = items[idx];
-      return <NodeInfoRow key={key} viewModel={vm} />
+      return <NodeInfoRow key={key} viewModel={vm} />;
     }
 
     function getHeight() {
@@ -46,14 +46,14 @@ function nodeListView(x) {
 
     function content(items) {
       if (items.length > 0) {
-          return <ReactList itemRenderer={renderItem}
-                    length={items.length}
-                    itemSizeGetter={getHeight}
-                    type='variable'
-                    key={id}/>
+        return <ReactList itemRenderer={renderItem}
+                  length={items.length}
+                  itemSizeGetter={getHeight}
+                  type='variable'
+                  key={id}/>;
       } else {
         return null;
       }
     }
-  }
+  };
 }

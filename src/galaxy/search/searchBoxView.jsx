@@ -1,7 +1,7 @@
 import React from 'react';
 import searchBoxModel from './searchBoxModel.js';
 
-module.exports = require('maco')(searchBar);
+module.exports = require('maco')(searchBar, React);
 
 function searchBar(x) {
   x.render = function () {
@@ -24,7 +24,7 @@ function searchBar(x) {
         </div>
       </div>
     );
-  }
+  };
 
   function runSearch(e) {
     searchBoxModel.search(e.target.value);

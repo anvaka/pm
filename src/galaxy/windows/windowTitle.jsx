@@ -4,9 +4,9 @@ import resource from '../utils/resources.js';
 var maco = require('maco');
 registerDataTemplates();
 
-module.exports = maco.template(windowTitle);
+module.exports = maco.template(windowTitle, React);
 
-var ContentControl = maco(contentControl);
+var ContentControl = maco(contentControl, React);
 
 function windowTitle(props) {
   // TODO: Close/drag?
@@ -28,7 +28,7 @@ function contentControl(x) {
     }
 
     return <Template {...viewModel} />;
-  }
+  };
 }
 
 function contentTemplateSelector(type) {
@@ -52,13 +52,13 @@ function registerDataTemplates() {
         </span>
       </h4>
     );
-  }));
+  }, React));
 
   resource.add('SearchResultWindowViewModel', maco.template(ctx => {
-      return (
-        <h4 className='window-title'>
-          Found <strong>{ctx.matchesCountString}</strong> matches
-        </h4>
-      );
-  }));
+    return (
+      <h4 className='window-title'>
+        Found <strong>{ctx.matchesCountString}</strong> matches
+      </h4>
+    );
+  }, React));
 }

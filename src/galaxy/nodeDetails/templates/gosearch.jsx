@@ -1,6 +1,7 @@
+import React from 'react';
 import commonPackageTemplate from './commonPackageTempalte.jsx';
 
-export default require('maco').template(goSearch);
+export default require('maco').template(goSearch, React);
 
 function goSearch(props) {
   var model = props.model;

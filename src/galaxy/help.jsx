@@ -10,7 +10,7 @@ import React from 'react';
 import appEvents from './service/appEvents.js';
 import Key from './utils/key.js';
 
-export default require('maco')(help);
+export default require('maco')(help, React);
 
 var helpWasShown = false;
 

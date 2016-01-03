@@ -1,4 +1,5 @@
 import React from 'react';
+import {findDOMNode} from 'react-dom';
 import HoverInfo from './hoverInfo.jsx';
 import NodeDetails from './nodeDetails/nodeDetailsView.jsx';
 
@@ -14,7 +15,7 @@ import createKeyboardBindings from './native/sceneKeyboardBinding.js';
 
 import appEvents from './service/appEvents.js';
 var webglEnabled = require('webgl-enabled')();
-module.exports = require('maco')(scene);
+module.exports = require('maco')(scene, React);
 
 function scene(x) {
   var nativeRenderer, keyboard;
@@ -41,7 +42,7 @@ function scene(x) {
 
   x.componentDidMount = function() {
     if (!webglEnabled) return;
-    var container = React.findDOMNode(x.refs.graphContainer);
+    var container = findDOMNode(x.refs.graphContainer);
     nativeRenderer = createNativeRenderer(container);
     keyboard = createKeyboardBindings(container);
     delegateClickHandler = container.parentNode;
@@ -55,23 +56,23 @@ function scene(x) {
   };
 
   function handleDelegateClick(e) {
-      var clickedEl = e.target;
+    var clickedEl = e.target;
 
-      // since we are handling all clicks, we should avoid excessive work and
-      // talk with DOM only when absolutely necessary:
-      var classList = clickedEl.classList;
-      var isInDegree = classList.contains('in-degree');
-      var isOutDegree = !isInDegree && classList.contains('out-degree');
-      var nodeId;
-      if (isInDegree || isOutDegree) {
-        nodeId = parseInt(clickedEl.id, 10);
-        var connectionType = isInDegree ? 'in' : 'out';
+    // since we are handling all clicks, we should avoid excessive work and
+    // talk with DOM only when absolutely necessary:
+    var classList = clickedEl.classList;
+    var isInDegree = classList.contains('in-degree');
+    var isOutDegree = !isInDegree && classList.contains('out-degree');
+    var nodeId;
+    if (isInDegree || isOutDegree) {
+      nodeId = parseInt(clickedEl.id, 10);
+      var connectionType = isInDegree ? 'in' : 'out';
 
-        appEvents.showDegree.fire(nodeId, connectionType);
-      }
-      if (classList.contains('node-focus')) {
-        nodeId = parseInt(clickedEl.id, 10);
-        appEvents.focusOnNode.fire(nodeId);
-      }
+      appEvents.showDegree.fire(nodeId, connectionType);
     }
+    if (classList.contains('node-focus')) {
+      nodeId = parseInt(clickedEl.id, 10);
+      appEvents.focusOnNode.fire(nodeId);
+    }
+  }
 }

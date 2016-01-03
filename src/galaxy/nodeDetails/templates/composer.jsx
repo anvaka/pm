@@ -1,6 +1,7 @@
+import React from 'react';
 import commonPackageTemplate from './commonPackageTempalte.jsx';
 
-export default require('maco').template(composer);
+export default require('maco').template(composer, React);
 
 function composer(props) {
   var model = props.model;

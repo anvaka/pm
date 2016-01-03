@@ -1,7 +1,7 @@
-
+import React from 'react';
 import commonPackageTemplate from './commonPackageTempalte.jsx';
 
-export default require('maco').template(python);
+export default require('maco').template(python, React);
 
 function python(props) {
   var model = props.model;

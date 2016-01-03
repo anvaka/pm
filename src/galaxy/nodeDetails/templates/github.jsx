@@ -1,7 +1,7 @@
 import React from 'react';
 import commonPackageTemplate from './commonPackageTempalte.jsx';
 
-export default require('maco').template(github);
+export default require('maco').template(github, React);
 
 function github(props) {
   var model = props.model;

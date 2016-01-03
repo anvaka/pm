@@ -1,5 +1,5 @@
 import React from 'react';
-export default require('maco').template(about);
+export default require('maco').template(about, React);
 
 function about() {
   return (

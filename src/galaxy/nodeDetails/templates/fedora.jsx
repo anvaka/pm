@@ -1,6 +1,7 @@
+import React from 'react';
 import commonPackageTemplate from './commonPackageTempalte.jsx';
 
-export default require('maco').template(fedora);
+export default require('maco').template(fedora, React);
 
 function fedora(props) {
   var model = props.model;

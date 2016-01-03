@@ -2,7 +2,7 @@ import scene from './store/scene.js';
 import React from 'react';
 import hoverModel from './store/hover.js';
 
-module.exports = require('maco')(hoverInfo);
+module.exports = require('maco')(hoverInfo, React);
 
 function hoverInfo(x) {
   var hoverTemplate = null;
@@ -13,11 +13,11 @@ function hoverInfo(x) {
 
   x.componentDidMount = function() {
     hoverModel.on('changed', updateView);
-  }
+  };
 
   x.componentWillUnmount = function () {
     hoverModel.off('changed', updateView);
-  }
+  };
 
   function updateView(viewTemplate) {
     hoverTemplate = viewTemplate;

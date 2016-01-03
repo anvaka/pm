@@ -5,7 +5,7 @@ import React from 'react';
 import NodeListView from './nodeListView.jsx';
 import windowCollectionModel from './windowCollectionModel.js';
 
-module.exports = require('maco')(windowCollectionView);
+module.exports = require('maco')(windowCollectionView, React);
 
 function windowCollectionView(x) {
   x.render = function () {
@@ -13,7 +13,7 @@ function windowCollectionView(x) {
     if (windows.length === 0) return null;
 
     return <div>{windows.map(toWindowView)}</div>;
-  }
+  };
 
   x.componentDidMount = function () {
     windowCollectionModel.on('changed', update);
@@ -21,7 +21,7 @@ function windowCollectionView(x) {
 
   x.componentWillUnmount = function() {
     windowCollectionModel.off('changed', update);
-  }
+  };
 
   function toWindowView(windowViewModel, idx) {
     return <NodeListView viewModel={windowViewModel} key={idx} />;

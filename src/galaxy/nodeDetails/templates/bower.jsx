@@ -1,6 +1,7 @@
+import React from 'react';
 import commonPackageTemplate from './commonPackageTempalte.jsx';
 
-export default require('maco').template(bower);
+export default require('maco').template(bower, React);
 
 function bower(props) {
   var model = props.model;

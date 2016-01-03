@@ -5,7 +5,7 @@
 import appEvents from './service/appEvents.js';
 import React from 'react';
 
-module.exports = require('maco')(steeringIndicator);
+module.exports = require('maco')(steeringIndicator, React);
 
 function steeringIndicator(x) {
   var showSteeringMode = false;
@@ -20,7 +20,7 @@ function steeringIndicator(x) {
         <div className="steering-help">Press SPACE to deactivate steering mode</div>
       </div>
     );
-  }
+  };
 
   function updateSteering(isVisible) {
     showSteeringMode = isVisible;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default require('maco').template(template);
+export default require('maco').template(template, React);
 
 function template(props) {
   var model = props.model;
