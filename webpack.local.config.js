@@ -12,7 +12,7 @@ module.exports = {
   port: port,
 
   // Efficiently evaluate modules with source maps
-  //devtool: "eval",
+  devtool: "eval",
 
   // Set entry point to ./src/main and include necessary files for hot load
   entry: [
