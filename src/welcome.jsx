@@ -23,7 +23,7 @@ export default class WelcomePage extends React.Component {
                       media='ruby_fly_first.png'
                       name='RubyGems'/>
 
-          <Destination description='JavScript package manager'
+          <Destination description='JavaScript package manager'
                       href='#/galaxy/npm?cx=-1345&cy=-7006&cz=-6553&lx=0.621700613972938&ly=-0.6458651572907126&lz=0.30983196944957914&lw=0.31678177960626197&l=1'
                       media='npm_fly_first.png'
                       name='npm'/>
