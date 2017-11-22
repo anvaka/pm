@@ -10,6 +10,7 @@ var compiler = webpack(devConfig);
 new WebpackDevServer(compiler, {
   publicPath: devConfig.output.publicPath,
   contentBase: "./build",
+  disableHostCheck: true,
   hot: true,
   quiet: false,
   filename: 'app.js',
