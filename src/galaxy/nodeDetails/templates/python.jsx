@@ -1,5 +1,5 @@
 import React from 'react';
-import commonPackageTemplate from './commonPackageTempalte.jsx';
+import commonPackageTemplate from './commonPackageTemplate.jsx';
 
 export default require('maco').template(python, React);
 

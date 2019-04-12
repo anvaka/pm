@@ -16,7 +16,7 @@ import python from './python.jsx';
 
 import github from './github.jsx';
 
-import defaultTempalte from './default.jsx';
+import defaultTemplate from './default.jsx';
 
 export default {
   npm: npm,
@@ -31,5 +31,5 @@ export default {
   fedora: fedora,
   nuget: nuget,
   python: python,
-  default: defaultTempalte
+  default: defaultTemplate
 }
