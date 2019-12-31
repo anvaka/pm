@@ -201,11 +201,46 @@ Once layout is computed, we are ready to visualize. Just save the graph using
 [ngraph.tobinary](https://github.com/anvaka/ngraph.tobinary#ngraphtobinary)
 and store it along with latest positions file (produced by layout) into a folder.
 
-Follow the same folder structure as in [`galactic-data`](https://github.com/anvaka/galactic-data/tree/gh-pages/npm).
+The folder structure should look like this:
+
+```
+.
+└── my-pm-data-server
+    └── my-graph
+        ├── manifest.json
+        └── version-1
+            ├── labels.json         /* this file is produced by ngraph.tobinary */
+            ├── links.bin           /* this file is produced by ngraph.tobinary */
+            └── positions.bin       /* this file is produced by ngraph.native   */
+```
+
+The file `manifest.json` describes what version of the graph are available and has the following
+content:
+
+``` json
+{
+  "all": ["version-1"],
+  "last": "version-1"
+}
+```
+
+Inside `my-pm-data-server` we launch a web server. I personally prefer [http-server](https://www.npmjs.com/package/http-server). Once it is installed globally (`npm i http-server -g`), you can launch it like this:
+
+```
+http-server --cors -p 9090
+```
+
+This will start a local data server at `http://127.0.0.1:9090/`
 
 Update the [config.js](https://github.com/anvaka/pm/blob/master/src/config.js) in
-this repository to point to your data server, and you are ready to explore
-your own graph.
+this repository to point to your data server, and your graph should be accessible at
+
+http://127.0.0.1:8081/#/galaxy/my-graph
+
+
+#### Note
+The [`galactic-data`](https://github.com/anvaka/galactic-data/tree/gh-pages/npm) follows the same
+data structure as described above. Use it for the reference if you need an example
 
 # The secret visualization
 
