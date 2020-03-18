@@ -13,6 +13,7 @@ import debian from './debian.jsx';
 import fedora from './fedora.jsx';
 import nuget from './nuget.jsx';
 import python from './python.jsx';
+import google from './google.jsx';
 
 import github from './github.jsx';
 
@@ -31,5 +32,6 @@ export default {
   fedora: fedora,
   nuget: nuget,
   python: python,
+  'covid-lit': google,
   default: defaultTemplate
 }
