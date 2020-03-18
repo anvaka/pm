@@ -174,10 +174,15 @@ function loadGraph(name, progress) {
 
   function reportProgress(name, file) {
     return function(e) {
-      progress({
+      let progressInfo = {
         message: name + ': downloading ' + file,
-        completed: Math.round(e.percent * 100) + '%'
-      });
+      };
+      if (e.percent !== undefined) {
+        progressInfo.completed = Math.round(e.percent * 100) + '%'
+      } else {
+        progressInfo.completed = Math.round(e.loaded) + ' bytes'
+      }
+      progress(progressInfo);
     };
   }
 }

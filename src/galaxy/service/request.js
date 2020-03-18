@@ -34,6 +34,10 @@ function request(url, options) {
           total: e.total,
           percent: e.loaded / e.total
         });
+      } else {
+        options.progress({
+          loaded: e.loaded,
+        });
       }
     }
 
