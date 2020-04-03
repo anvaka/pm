@@ -72,6 +72,18 @@ export default class WelcomePage extends React.Component {
                       href='#/galaxy/brew?cx=-803&cy=-3622&cz=-1640&lx=0.3774&ly=-0.7360&lz=0.4338&lw=0.3573&ml=200&s=2.75&l=1'
                       media='brew_fly_first.png'
                       name='Brew'/>
+
+          <Destination description='Rust package repository (crates.io)'
+                      href='#/galaxy/crates?cx=6617&cy=467&cz=353&lx=0.0169&ly=0.7328&lz=0.0495&lw=0.6785&ml=200&s=1.75&l=1&v=2020-02-19T00-00-00Z'
+                      static='https://i.imgur.com/vAPK5lT.png'
+                      dynamic='https://i.imgur.com/BRcE24z.gif'
+                      name='Rust'/>
+
+          <Destination description='A delightful language'
+                      href='#/galaxy/elm?cx=-247&cy=-1794&cz=1804&lx=0.4062&ly=0.1564&lz=-0.3016&lw=0.8483&ml=150&s=1.75&l=1&v=2020-02-21T00-00-00Z'
+                      static='https://i.imgur.com/44Sj8Js.png'
+                      dynamic='https://i.imgur.com/zfQTac3.gif'
+                      name='Elm'/>
         </div>
       </div>
     );

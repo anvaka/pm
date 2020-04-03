@@ -17,6 +17,9 @@ export default class Destination extends React.Component {
     let isHover = x.state ? x.state.hover : false;
     let imageSrc = prefix + props.media;
     if (isHover) imageSrc = imageSrc.replace(/_first\.png/, '_150.gif');
+    if (props.static && props.dynamic) {
+      imageSrc = isHover ? props.dynamic : props.static;
+    }
 
     return (
   <a className='media col-md-6 col-lg-4' href={props.href}

@@ -136,12 +136,20 @@ of [galactic-data](https://github.com/anvaka/galactic-data).
         <a href="https://anvaka.github.io/pm/#/galaxy/fedora?cx=1539&cy=409&cz=7141&lx=0.0164&ly=0.1453&lz=-0.0027&lw=0.9892&ml=150&s=1.75&l=1">demo</a>
       </td>
       <td align="center">
-        <h3>Your graph?</h3>
-        Open issue to <a href="https://github.com/anvaka/pm/issues">request your own graph</a>
+        <h3>Rust Crates</h3>
+        <a href="https://anvaka.github.io/pm/#/galaxy/crates?cx=6617&cy=467&cz=353&lx=0.0169&ly=0.7328&lz=0.0495&lw=0.6785&ml=200&s=1.75&l=1&v=2020-02-19T00-00-00Z">
+          <img src="https://i.imgur.com/vAPK5lT.png">
+        </a><br />
+        <a href="https://github.com/brandly/allcrates">indexer</a> |
+        <a href="https://anvaka.github.io/pm/#/galaxy/crates?cx=6617&cy=467&cz=353&lx=0.0169&ly=0.7328&lz=0.0495&lw=0.6785&ml=200&s=1.75&l=1&v=2020-02-19T00-00-00Z">demo</a>
       </td>
       <td align="center">
-        <h3>Your graph?</h3>
-        Open issue to <a href="https://github.com/anvaka/pm/issues">request your own graph</a>
+        <h3>Elm</h3>
+        <a href="https://anvaka.github.io/pm/#/galaxy/elm?cx=-247&cy=-1794&cz=1804&lx=0.4062&ly=0.1564&lz=-0.3016&lw=0.8483&ml=150&s=1.75&l=1&v=2020-02-21T00-00-00Z">
+          <img src="https://i.imgur.com/44Sj8Js.png">
+        </a><br />
+        <a href="https://github.com/brandly/allelm">indexer</a> |
+        <a href="https://anvaka.github.io/pm/#/galaxy/elm?cx=-247&cy=-1794&cz=1804&lx=0.4062&ly=0.1564&lz=-0.3016&lw=0.8483&ml=150&s=1.75&l=1&v=2020-02-21T00-00-00Z">demo</a>
       </td>
     </tr>
   </tbody>
