@@ -214,7 +214,7 @@ The folder structure should look like this:
 ```
 .
 └── my-pm-data-server
-    └── my-graph
+    └── graph_data
         ├── manifest.json
         └── version-1
             ├── labels.json         /* this file is produced by ngraph.tobinary */
