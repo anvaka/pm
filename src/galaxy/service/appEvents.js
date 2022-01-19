@@ -86,6 +86,8 @@ export default eventMirror([
    'around',
    'queryChanged',
 
-   'accelerateNavigation'
+   'accelerateNavigation',
+
+   'renderLinks'
 ], appEvents);
 
