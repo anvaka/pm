@@ -253,7 +253,7 @@ data structure as described above. Use it as a reference if you need an example.
 # The secret visualization
 
 The last shown visualization was the secret GitHub followers visualization.
-It shows all GitHub users who has more than two followers.
+It shows all GitHub users who have more than two followers.
 
 The visualization has more than 1,100,000 nodes, and renders
 at 60 fps while flying around. The FPS drops to 20-30 when you hover-over
