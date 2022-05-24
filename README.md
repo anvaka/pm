@@ -13,7 +13,7 @@ Repository was create for my talk at [CascadiaJS 2015](http://2015.cascadiajs.co
 [slides](http://anvaka.github.io/talks/cascadia2015/#/)
 
 Friends, you are awesome! I can't express how much I appreciate all your
-kind words and warm feedback. It really means a world for me. Thank you!
+kind words and warm feedback. It really means the world to me. Thank you!
 
 # Individual Visualizations
 
@@ -164,7 +164,7 @@ npm i
 npm start
 ```
 
-This will start local development sever with auto-rebuild.
+This will start local development server with auto-rebuild.
 
 ## Your own graphs
 
