@@ -164,18 +164,18 @@ npm i
 npm start
 ```
 
-This will start local development server with auto-rebuild.
+This will start a local development server with auto-rebuild.
 
 ## Your own graphs
 
 This section has detailed instructions about how to use the tool
 with your own graphs. Before you read any further, if your graph
 is smaller than 10k nodes, consider using [ngraph.pixel](https://github.com/anvaka/ngraph.pixel)
-or [VivaGraph](https://github.com/anvaka/VivaGraphJS) both should
+or [VivaGraph](https://github.com/anvaka/VivaGraphJS) - both should
 be able to provide interactive layout.
 
-If you have an interesting graph but don't have JavaScript experience,
-please feel free to reach out to me and I'll try to make visualization
+If you have an interesting graph, but don't have JavaScript experience,
+please feel free to reach out to me and I'll try to make a visualization
 for you (my email is `anvaka@gmail.com`).
 
 Otherwise, if you want to hack on your own, please keep reading.
@@ -183,16 +183,16 @@ Otherwise, if you want to hack on your own, please keep reading.
 ### Graph
 
 First, you will need a graph in [ngraph.graph](https://github.com/anvaka/ngraph.graph)
-format. The `ngraph.graph` has detailed documentation about how to create graph,
+format. The `ngraph.graph` has detailed documentation about how to create graphs,
 but it also has several loaders from popular graph formats (e.g. [dot](https://github.com/anvaka/ngraph.fromdot),
 [gexf](https://github.com/anvaka/ngraph.gexf))
 
 ### Layout
 
-Now that you have a graph we need to compute the layout.
+Now that you have a graph, we need to compute the layout.
 
 If your graph is smaller than 200k nodes, consider using [ngraph.offline.layout](https://github.com/anvaka/ngraph.offline.layout). This module was
-created exactly for the purpose of the `pm` project, it is well documented, and
+created exactly for the purpose of the `pm` project. It is well documented, and
 should be easy to get started with. You can also read `layout.js` of `all[gems|go|bower]`
 packages to see more examples.
 
@@ -205,9 +205,9 @@ The secret GitHub visualization is using [ngraph.native](https://github.com/anva
 
 ### Data format
 
-Once layout is computed, we are ready to visualize. Just save the graph using
+Once the layout is computed, we are ready to visualize. Just save the graph using
 [ngraph.tobinary](https://github.com/anvaka/ngraph.tobinary#ngraphtobinary)
-and store it along with latest positions file (produced by layout) into a folder.
+and store it along with the latest positions file (produced by layout) into a folder.
 
 The folder structure should look like this:
 
@@ -248,7 +248,7 @@ http://127.0.0.1:8081/#/galaxy/my-graph
 
 #### Note
 The [`galactic-data`](https://github.com/anvaka/galactic-data/tree/gh-pages/npm) follows the same
-data structure as described above. Use it for the reference if you need an example
+data structure as described above. Use it for the reference if you need an example.
 
 # The secret visualization
 
@@ -260,7 +260,7 @@ at 60 fps when flying around. The FPS drops when you hover-over
 nodes to 20-30, This is because we are doing hit-testing,
 to find what's under cursor.
 
-With this many nodes, it runs well in the browser. Unfortunately
+With this many nodes, it runs well in the browser. Unfortunately,
 it requires more than 1GB of RAM. Which may or may not crash
 your phone browser - sorry about this.
 
