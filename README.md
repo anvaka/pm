@@ -192,7 +192,7 @@ but it also has several loaders from popular graph formats (e.g. [dot](https://g
 Now that you have a graph, we need to compute the layout.
 
 If your graph is smaller than 200k nodes, consider using [ngraph.offline.layout](https://github.com/anvaka/ngraph.offline.layout). This module was
-created exactly for the purpose of the `pm` project. It is well documented, and
+created exactly for the purpose of the `pm` project. It is well-documented, and
 should be easy to get started with. You can also read `layout.js` of `all[gems|go|bower]`
 packages to see more examples.
 
@@ -222,7 +222,7 @@ The folder structure should look like this:
             └── positions.bin       /* this file is produced by ngraph.native   */
 ```
 
-The file `manifest.json` describes what version of the graph are available and has the following
+The file `manifest.json` describes what versions of the graph are available and has the following
 content:
 
 ``` json
@@ -248,17 +248,17 @@ http://127.0.0.1:8081/#/galaxy/my-graph
 
 #### Note
 The [`galactic-data`](https://github.com/anvaka/galactic-data/tree/gh-pages/npm) follows the same
-data structure as described above. Use it for the reference if you need an example.
+data structure as described above. Use it as a reference if you need an example.
 
 # The secret visualization
 
-The last shown visualization was secret GitHub followers visualization.
+The last shown visualization was the secret GitHub followers visualization.
 It shows all GitHub users who has more than two followers.
 
 The visualization has more than 1,100,000 nodes, and renders
-at 60 fps when flying around. The FPS drops when you hover-over
-nodes to 20-30, This is because we are doing hit-testing,
-to find what's under cursor.
+at 60 fps while flying around. The FPS drops to 20-30 when you hover-over
+a node. This is because we are doing hit-testing,
+to find what's under the cursor.
 
 With this many nodes, it runs well in the browser. Unfortunately,
 it requires more than 1GB of RAM. Which may or may not crash
