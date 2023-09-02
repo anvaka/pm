@@ -46,6 +46,7 @@ function sceneRenderer(container) {
   appEvents.accelerateNavigation.on(accelarate);
   appEvents.focusScene.on(focusScene);
   appEvents.cls.on(cls);
+  appEvents.renderLinks.on(renderLineViewIfNeeded);
 
   appConfig.on('camera', moveCamera);
   appConfig.on('showLinks', toggleLinks);
@@ -191,6 +192,7 @@ function sceneRenderer(container) {
   }
 
   function toggleLinks() {
+    var lineViewNeedsUpdate = true;
     if (lineView) {
       if (lineViewNeedsUpdate) renderLineViewIfNeeded();
       lineView.toggleLinks();

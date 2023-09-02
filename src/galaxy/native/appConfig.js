@@ -47,7 +47,8 @@ function appConfig() {
   }
 
   function getMaxVisibleEdgeLength() {
-    return hashConfig.maxVisibleDistance * hashConfig.maxVisibleDistance * hashConfig.scale;
+    var val = parseFloat(document.getElementById("range").value);
+    return val * val * hashConfig.scale;
   }
 
   function getCameraPosition() {
