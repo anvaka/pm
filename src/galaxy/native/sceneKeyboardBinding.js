@@ -36,6 +36,16 @@ function sceneKeyboardBinding(container) {
       // explicit request to render help
       e.stopPropagation();
       events.toggleHelp.fire();
+    } else if (e.which === Key.Minus) {
+        var el = document.getElementById("range");
+        el.value = parseFloat(el.value) - 10;
+        events.renderLinks.fire();
+    } else if (e.which === Key.Plus) {
+        var el = document.getElementById("range");
+        el.value = parseFloat(el.value) + 10;
+        events.renderLinks.fire();
+    } else if (e.which === Key.P) {
+        events.around.fire(2000,0,0,0);
     }
     if (e.shiftKey && !lastShiftKey) {
       lastShiftKey = true;
