@@ -36,6 +36,10 @@ function scene(x) {
         <WindowCollection />
         <Help />
         <About />
+        <div  className='label about'>
+        Range
+          <input onChange={appEvents.renderLinks.fire} type="range" min="0" max="800" step="10" defaultValue="100" id="range" />
+        </div>
       </div>
     );
   };
@@ -57,6 +61,10 @@ function scene(x) {
 
   function handleDelegateClick(e) {
     var clickedEl = e.target;
+    if (clickedEl.id == "range"){
+      appEvents.renderLinks.fire();
+        return
+    }
 
     // since we are handling all clicks, we should avoid excessive work and
     // talk with DOM only when absolutely necessary:

@@ -4,7 +4,10 @@ export default {
   H: 72,
   L: 76,
   Space: 32,
-  '/': 191
+  '/': 191,
+  P: 80,
+  Minus:189,
+  Plus:187
 };
 
 function isModifier(e) {
