@@ -39,6 +39,11 @@ function windowCollectionModel() {
     if (windowIndex !== undefined) {
       delete registeredWindows[windowId];
       allWindows.splice(windowIndex, 1);
+      Object.keys(registeredWindows).forEach(function (id) {
+        if (registeredWindows[id] > windowIndex) {
+          registeredWindows[id] -= 1;
+        }
+      });
 
       api.fire('changed', windowIndex);
     }
